@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ChangerView: BaseView {
     
@@ -14,6 +15,8 @@ class ChangerView: BaseView {
     lazy var bottomView = UIView()
     lazy var bottomImageButton = UIButton()
     lazy var bottomTextLable = CustomLabel(text: "변환하기", font: .boldSystemFont(ofSize: 16))
+    
+    private var inputTextBackgroundViewHeightConstraint: Constraint?
     
     override func configure() {
         super.configure()
@@ -37,7 +40,9 @@ class ChangerView: BaseView {
         inputTextBackgroundView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.6)
+
+            let height = UIScreen.main.bounds.height * 0.6
+            make.height.equalTo(height)
         }
         
         inputTextView.snp.makeConstraints { make in
@@ -54,13 +59,27 @@ class ChangerView: BaseView {
         
         bottomImageButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-12)
+            make.bottom.equalToSuperview().offset(-100)
             make.width.height.equalTo(40)
         }
         
         bottomTextLable.snp.makeConstraints { make in
             make.top.equalTo(bottomImageButton.snp.bottom).offset(12)
             make.centerX.equalToSuperview()
+        }
+    }
+    
+    func changeViewLayout() {
+        inputTextBackgroundView.snp.updateConstraints { make in
+            let height = inputTextView.snp.width
+            //이거 수치를 조정해야 할 필요 있을 것 같음
+            make.height.equalTo(200)
+        }
+        
+        bottomTextLable.text = "행운부적 만들기"
+        
+        UIView.animate(withDuration: 0.3) {
+            self.layoutIfNeeded()
         }
     }
 }

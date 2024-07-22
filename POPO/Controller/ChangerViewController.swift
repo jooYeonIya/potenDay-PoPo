@@ -33,9 +33,20 @@ class ChangerViewController: BaseViewController {
                 self?.inputTextBackgroundViewTapped()
             }
             .disposed(by: disposeBag)
+        
+        baseView.bottomImageButton.rx.tap
+            .bind { [weak self] _ in
+                self?.bottomImageButtonTapped()
+            }
+            .disposed(by: disposeBag)
+
     }
     
     private func inputTextBackgroundViewTapped() {
         baseView.inputTextView.resignFirstResponder()
+    }
+    
+    private func bottomImageButtonTapped() {
+        baseView.changeViewLayout()
     }
 }
