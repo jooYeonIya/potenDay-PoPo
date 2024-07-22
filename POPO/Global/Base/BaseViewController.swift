@@ -16,6 +16,6 @@ class BaseViewController: UIViewController {
         setupEvent()
     }
  
-    private func setupDelegate() {}
-    private func setupEvent() {}
+    func setupDelegate() {}
+    func setupEvent() {}
 }
