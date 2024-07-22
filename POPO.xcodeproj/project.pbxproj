@@ -13,6 +13,7 @@
 		0A34A5FC2C4D3CBB0023C8C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A34A5FB2C4D3CBB0023C8C7 /* Assets.xcassets */; };
 		0A34A5FF2C4D3CBB0023C8C7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0A34A5FE2C4D3CBB0023C8C7 /* Base */; };
 		0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1252C4E5B4C00A2C7A4 /* BaseViewController.swift */; };
+		0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD12E2C4E5ECB00A2C7A4 /* BaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,8 +23,9 @@
 		0A34A5F62C4D3CBA0023C8C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0A34A5FB2C4D3CBB0023C8C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A34A5FE2C4D3CBB0023C8C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0A34A6002C4D3CBB0023C8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Application/Info.plist; sourceTree = "<group>"; };
+		0A34A6002C4D3CBB0023C8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AADD1252C4E5B4C00A2C7A4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		0AADD12E2C4E5ECB00A2C7A4 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +97,7 @@
 				0A34A5F22C4D3CBA0023C8C7 /* AppDelegate.swift */,
 				0A34A5F42C4D3CBA0023C8C7 /* SceneDelegate.swift */,
 			);
-			name = Application;
-			path = "New Group";
+			path = Application;
 			sourceTree = "<group>";
 		};
 		0AADD11C2C4E543400A2C7A4 /* Global */ = {
@@ -144,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				0AADD1252C4E5B4C00A2C7A4 /* BaseViewController.swift */,
+				0AADD12E2C4E5ECB00A2C7A4 /* BaseView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -220,6 +222,7 @@
 			files = (
 				0A34A5F72C4D3CBA0023C8C7 /* ViewController.swift in Sources */,
 				0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */,
+				0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */,
 				0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */,
 				0A34A5F52C4D3CBA0023C8C7 /* SceneDelegate.swift in Sources */,
 			);

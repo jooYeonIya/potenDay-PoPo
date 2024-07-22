@@ -8,21 +8,14 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-    
-    lazy var topView = UIView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         
-        setupUI()
-        setupLayout()
         setupDelegate()
         setupEvent()
     }
  
-    func setupUI() {}
-    func setupLayout() {}
-    func setupDelegate() {}
-    func setupEvent() {}
+    private func setupDelegate() {}
+    private func setupEvent() {}
 }
