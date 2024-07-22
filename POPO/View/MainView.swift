@@ -36,7 +36,7 @@ class MainView: BaseView {
         return view
     }()
     
-    lazy var charmView: UIView = {
+    lazy var totalCharmView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
         view.layer.cornerRadius = 12
@@ -68,7 +68,7 @@ class MainView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([changerView, charmView])
+        addSubviews([changerView, totalCharmView])
     }
     
     override func setupLayout() {
@@ -78,7 +78,7 @@ class MainView: BaseView {
             make.height.equalTo(100)
         }
         
-        charmView.snp.makeConstraints { make in
+        totalCharmView.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(60)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(100)

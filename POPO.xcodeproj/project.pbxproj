@@ -26,6 +26,8 @@
 		0AADD14A2C4E741E00A2C7A4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1492C4E741E00A2C7A4 /* MainView.swift */; };
 		0AADD14C2C4E799200A2C7A4 /* ChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD14B2C4E799200A2C7A4 /* ChangerView.swift */; };
 		0AADD14E2C4E79C900A2C7A4 /* ChangerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD14D2C4E79C900A2C7A4 /* ChangerViewController.swift */; };
+		0AADD1502C4E879600A2C7A4 /* MakeCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD14F2C4E879600A2C7A4 /* MakeCharmView.swift */; };
+		0AADD1522C4E880400A2C7A4 /* MakeCharmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1512C4E880400A2C7A4 /* MakeCharmViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		0AADD1492C4E741E00A2C7A4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0AADD14B2C4E799200A2C7A4 /* ChangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangerView.swift; sourceTree = "<group>"; };
 		0AADD14D2C4E79C900A2C7A4 /* ChangerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangerViewController.swift; sourceTree = "<group>"; };
+		0AADD14F2C4E879600A2C7A4 /* MakeCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmView.swift; sourceTree = "<group>"; };
+		0AADD1512C4E880400A2C7A4 /* MakeCharmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 				0AADD1302C4E60F900A2C7A4 /* OnboardingView.swift */,
 				0AADD1492C4E741E00A2C7A4 /* MainView.swift */,
 				0AADD14B2C4E799200A2C7A4 /* ChangerView.swift */,
+				0AADD14F2C4E879600A2C7A4 /* MakeCharmView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 				0AADD13C2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift */,
 				0AADD1472C4E73E500A2C7A4 /* MainViewController.swift */,
 				0AADD14D2C4E79C900A2C7A4 /* ChangerViewController.swift */,
+				0AADD1512C4E880400A2C7A4 /* MakeCharmViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AADD1522C4E880400A2C7A4 /* MakeCharmViewController.swift in Sources */,
 				0AADD13B2C4E682600A2C7A4 /* UITextField+Extension.swift in Sources */,
 				0AADD14A2C4E741E00A2C7A4 /* MainView.swift in Sources */,
 				0AADD14C2C4E799200A2C7A4 /* ChangerView.swift in Sources */,
@@ -272,6 +279,7 @@
 				0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */,
 				0AADD13D2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift in Sources */,
 				0AADD14E2C4E79C900A2C7A4 /* ChangerViewController.swift in Sources */,
+				0AADD1502C4E879600A2C7A4 /* MakeCharmView.swift in Sources */,
 				0AADD1342C4E61F200A2C7A4 /* UILabel+Extension.swift in Sources */,
 				0AADD1312C4E60F900A2C7A4 /* OnboardingView.swift in Sources */,
 				0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */,

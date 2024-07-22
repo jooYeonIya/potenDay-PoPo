@@ -47,6 +47,11 @@ class ChangerViewController: BaseViewController {
     }
     
     private func bottomImageButtonTapped() {
+        if baseView.bottomTextLable.text == "행운부적 만들기" {
+            let viewController = MakeCharmViewController()
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+        
         baseView.changeViewLayout()
     }
 }
