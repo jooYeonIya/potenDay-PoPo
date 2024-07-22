@@ -12,6 +12,7 @@ class OnboardingViewController: BaseViewController {
     lazy var baseView = OnboardingView()
     
     override func loadView() {
+        super.loadView()
         view = baseView
     }
 
