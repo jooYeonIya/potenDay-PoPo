@@ -19,6 +19,9 @@
 		0AADD1362C4E624100A2C7A4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1352C4E624100A2C7A4 /* UIView+Extension.swift */; };
 		0AADD1392C4E62E400A2C7A4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0AADD1382C4E62E400A2C7A4 /* SnapKit */; };
 		0AADD13B2C4E682600A2C7A4 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD13A2C4E682600A2C7A4 /* UITextField+Extension.swift */; };
+		0AADD13D2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD13C2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift */; };
+		0AADD1422C4E714A00A2C7A4 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 0AADD1412C4E714A00A2C7A4 /* RxCocoa */; };
+		0AADD1442C4E714A00A2C7A4 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AADD1432C4E714A00A2C7A4 /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,7 @@
 		0AADD1332C4E61F200A2C7A4 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		0AADD1352C4E624100A2C7A4 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		0AADD13A2C4E682600A2C7A4 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		0AADD13C2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAgeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AADD1442C4E714A00A2C7A4 /* RxSwift in Frameworks */,
+				0AADD1422C4E714A00A2C7A4 /* RxCocoa in Frameworks */,
 				0AADD1392C4E62E400A2C7A4 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				0A34A5F62C4D3CBA0023C8C7 /* OnboardingViewController.swift */,
+				0AADD13C2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -190,6 +197,8 @@
 			name = POPO;
 			packageProductDependencies = (
 				0AADD1382C4E62E400A2C7A4 /* SnapKit */,
+				0AADD1412C4E714A00A2C7A4 /* RxCocoa */,
+				0AADD1432C4E714A00A2C7A4 /* RxSwift */,
 			);
 			productName = POPO;
 			productReference = 0A34A5EF2C4D3CBA0023C8C7 /* POPO.app */;
@@ -221,6 +230,7 @@
 			mainGroup = 0A34A5E62C4D3CBA0023C8C7;
 			packageReferences = (
 				0AADD1372C4E62E400A2C7A4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				0AADD1402C4E714A00A2C7A4 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 0A34A5F02C4D3CBA0023C8C7 /* Products */;
 			projectDirPath = "";
@@ -253,6 +263,7 @@
 				0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */,
 				0AADD1362C4E624100A2C7A4 /* UIView+Extension.swift in Sources */,
 				0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */,
+				0AADD13D2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift in Sources */,
 				0AADD1342C4E61F200A2C7A4 /* UILabel+Extension.swift in Sources */,
 				0AADD1312C4E60F900A2C7A4 /* OnboardingView.swift in Sources */,
 				0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */,
@@ -479,6 +490,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		0AADD1402C4E714A00A2C7A4 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -486,6 +505,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0AADD1372C4E62E400A2C7A4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		0AADD1412C4E714A00A2C7A4 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0AADD1402C4E714A00A2C7A4 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		0AADD1432C4E714A00A2C7A4 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0AADD1402C4E714A00A2C7A4 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

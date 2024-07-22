@@ -10,10 +10,12 @@ import SnapKit
 
 class OnboardingView: BaseView {
     
+    var title = "POPO"
+    
     lazy var titleLabel = CustomLabel(text: "POPO", font: .boldSystemFont(ofSize: 16))
     
     lazy var nameTextField = UITextField()
-    lazy var nameTitleLabel = CustomLabel(text: "행운이 찾아갈 너의 이름을 알려줘!", font: .systemFont(ofSize: 16))
+    lazy var nameTitleLabel = CustomLabel(text: title, font: .systemFont(ofSize: 16))
     
     lazy var nextButton = UIButton()
     
@@ -31,7 +33,6 @@ class OnboardingView: BaseView {
         nameTitleLabel.textColor = .black
         
         nextButton.setImage(UIImage(systemName: "arrowshape.turn.up.right"), for: .normal)
-        nextButton.addTarget(self, action: #selector(moveToNextView), for: .touchUpInside)
     }
     
     override func setupLayout() {
@@ -57,9 +58,5 @@ class OnboardingView: BaseView {
 
             make.width.height.equalTo(40)
         }
-    }
-    
-    @objc func moveToNextView() {
-        print("moveToNextView")
     }
 }

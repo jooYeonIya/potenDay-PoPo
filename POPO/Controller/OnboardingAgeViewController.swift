@@ -1,17 +1,15 @@
 //
-//  OnboardingViewController.swift
+//  OnboardingAgeViewController.swift
 //  POPO
 //
 //  Created by Jooyeon Kang on 7/21/24.
 //
 
 import UIKit
-import RxCocoa
 import RxSwift
+import RxCocoa
 
-// 1 공통 부분 추출 혹은
-// 2 페이지컨트롤러 로 변경
-class OnboardingViewController: BaseViewController {
+class OnboardingAgeViewController: BaseViewController {
     
     lazy var baseView = OnboardingView()
     
@@ -24,7 +22,7 @@ class OnboardingViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseView.title = "행운이 찾아갈 너의 이름을 알려줘!"
+        baseView.title = "연령대도 알려줘!"
         baseView.configure()
     }
     
@@ -37,7 +35,6 @@ class OnboardingViewController: BaseViewController {
     }
     
     private func moveToNextView() {
-        let viewController = OnboardingAgeViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        print("ASf")
     }
 }
