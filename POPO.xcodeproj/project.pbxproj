@@ -123,7 +123,6 @@
 			children = (
 				0AADD1322C4E61DB00A2C7A4 /* Extension */,
 				0AADD1212C4E54B100A2C7A4 /* Base */,
-				0AADD1202C4E54A800A2C7A4 /* TabBar */,
 				0AADD11F2C4E548700A2C7A4 /* Enum */,
 				0AADD11E2C4E545B00A2C7A4 /* Font */,
 				0AADD11D2C4E544300A2C7A4 /* Image */,
@@ -151,13 +150,6 @@
 			children = (
 			);
 			path = Enum;
-			sourceTree = "<group>";
-		};
-		0AADD1202C4E54A800A2C7A4 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TabBar;
 			sourceTree = "<group>";
 		};
 		0AADD1212C4E54B100A2C7A4 /* Base */ = {
