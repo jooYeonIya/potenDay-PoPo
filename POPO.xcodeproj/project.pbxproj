@@ -24,6 +24,8 @@
 		0AADD1442C4E714A00A2C7A4 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AADD1432C4E714A00A2C7A4 /* RxSwift */; };
 		0AADD1482C4E73E500A2C7A4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1472C4E73E500A2C7A4 /* MainViewController.swift */; };
 		0AADD14A2C4E741E00A2C7A4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1492C4E741E00A2C7A4 /* MainView.swift */; };
+		0AADD14C2C4E799200A2C7A4 /* ChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD14B2C4E799200A2C7A4 /* ChangerView.swift */; };
+		0AADD14E2C4E79C900A2C7A4 /* ChangerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD14D2C4E79C900A2C7A4 /* ChangerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		0AADD13C2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAgeViewController.swift; sourceTree = "<group>"; };
 		0AADD1472C4E73E500A2C7A4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0AADD1492C4E741E00A2C7A4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		0AADD14B2C4E799200A2C7A4 /* ChangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangerView.swift; sourceTree = "<group>"; };
+		0AADD14D2C4E79C900A2C7A4 /* ChangerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 				0A34A5FD2C4D3CBB0023C8C7 /* LaunchScreen.storyboard */,
 				0AADD1302C4E60F900A2C7A4 /* OnboardingView.swift */,
 				0AADD1492C4E741E00A2C7A4 /* MainView.swift */,
+				0AADD14B2C4E799200A2C7A4 /* ChangerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 				0A34A5F62C4D3CBA0023C8C7 /* OnboardingViewController.swift */,
 				0AADD13C2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift */,
 				0AADD1472C4E73E500A2C7A4 /* MainViewController.swift */,
+				0AADD14D2C4E79C900A2C7A4 /* ChangerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -258,12 +264,14 @@
 			files = (
 				0AADD13B2C4E682600A2C7A4 /* UITextField+Extension.swift in Sources */,
 				0AADD14A2C4E741E00A2C7A4 /* MainView.swift in Sources */,
+				0AADD14C2C4E799200A2C7A4 /* ChangerView.swift in Sources */,
 				0AADD1482C4E73E500A2C7A4 /* MainViewController.swift in Sources */,
 				0A34A5F72C4D3CBA0023C8C7 /* OnboardingViewController.swift in Sources */,
 				0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */,
 				0AADD1362C4E624100A2C7A4 /* UIView+Extension.swift in Sources */,
 				0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */,
 				0AADD13D2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift in Sources */,
+				0AADD14E2C4E79C900A2C7A4 /* ChangerViewController.swift in Sources */,
 				0AADD1342C4E61F200A2C7A4 /* UILabel+Extension.swift in Sources */,
 				0AADD1312C4E60F900A2C7A4 /* OnboardingView.swift in Sources */,
 				0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */,

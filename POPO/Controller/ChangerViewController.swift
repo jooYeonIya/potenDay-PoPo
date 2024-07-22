@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  ChangerViewController.swift
 //  POPO
 //
 //  Created by Jooyeon Kang on 7/22/24.
@@ -9,16 +9,16 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MainViewController: BaseViewController {
-    lazy var baseView = MainView()
+class ChangerViewController: BaseViewController {
+    lazy var baseView = ChangerView()
     
     let disposeBag = DisposeBag()
-    
+        
     override func loadView() {
         super.loadView()
         view = baseView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         baseView.configure()
@@ -26,17 +26,16 @@ class MainViewController: BaseViewController {
     
     override func setupEvent() {
         let tapGesture = UITapGestureRecognizer()
-        baseView.changerView.addGestureRecognizer(tapGesture)
+        baseView.inputTextBackgroundView.addGestureRecognizer(tapGesture)
         
         tapGesture.rx.event
             .bind { [weak self] _ in
-                self?.changerViewTapped()
+                self?.inputTextBackgroundViewTapped()
             }
             .disposed(by: disposeBag)
     }
     
-    func changerViewTapped() {
-        let viewController = ChangerViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+    private func inputTextBackgroundViewTapped() {
+        baseView.inputTextView.resignFirstResponder()
     }
 }
