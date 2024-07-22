@@ -35,6 +35,9 @@ class OnboardingAgeViewController: BaseViewController {
     }
     
     private func moveToNextView() {
-        print("ASf")
+        let viewController = MainViewController()
+        
+        guard let window = view.window else { return }
+        window.rootViewController = UINavigationController(rootViewController: viewController)
     }
 }

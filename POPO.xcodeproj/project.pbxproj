@@ -22,6 +22,8 @@
 		0AADD13D2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD13C2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift */; };
 		0AADD1422C4E714A00A2C7A4 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 0AADD1412C4E714A00A2C7A4 /* RxCocoa */; };
 		0AADD1442C4E714A00A2C7A4 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AADD1432C4E714A00A2C7A4 /* RxSwift */; };
+		0AADD1482C4E73E500A2C7A4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1472C4E73E500A2C7A4 /* MainViewController.swift */; };
+		0AADD14A2C4E741E00A2C7A4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1492C4E741E00A2C7A4 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		0AADD1352C4E624100A2C7A4 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		0AADD13A2C4E682600A2C7A4 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		0AADD13C2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAgeViewController.swift; sourceTree = "<group>"; };
+		0AADD1472C4E73E500A2C7A4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0AADD1492C4E741E00A2C7A4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +97,9 @@
 		0AADD1192C4E538900A2C7A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0AADD1302C4E60F900A2C7A4 /* OnboardingView.swift */,
 				0A34A5FD2C4D3CBB0023C8C7 /* LaunchScreen.storyboard */,
+				0AADD1302C4E60F900A2C7A4 /* OnboardingView.swift */,
+				0AADD1492C4E741E00A2C7A4 /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -104,6 +109,7 @@
 			children = (
 				0A34A5F62C4D3CBA0023C8C7 /* OnboardingViewController.swift */,
 				0AADD13C2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift */,
+				0AADD1472C4E73E500A2C7A4 /* MainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -251,6 +257,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AADD13B2C4E682600A2C7A4 /* UITextField+Extension.swift in Sources */,
+				0AADD14A2C4E741E00A2C7A4 /* MainView.swift in Sources */,
+				0AADD1482C4E73E500A2C7A4 /* MainViewController.swift in Sources */,
 				0A34A5F72C4D3CBA0023C8C7 /* OnboardingViewController.swift in Sources */,
 				0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */,
 				0AADD1362C4E624100A2C7A4 /* UIView+Extension.swift in Sources */,
