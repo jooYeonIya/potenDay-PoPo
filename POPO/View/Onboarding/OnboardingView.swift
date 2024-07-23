@@ -8,6 +8,33 @@
 import UIKit
 import SnapKit
 
+enum Ages: Int, CaseIterable {
+    case age0to9
+    case age10to14
+    case age15to19
+    case age20to24
+    case age25to29
+    
+    var description: String {
+        switch self {
+        case .age0to9:
+            return "0-9"
+        case .age10to14:
+            return "10-14"
+        case .age15to19:
+            return "15-19"
+        case .age20to24:
+            return "20-24"
+        case .age25to29:
+            return "25-29"
+        }
+    }
+    
+    static func from(number: Int) -> Ages? {
+        return Ages(rawValue: number)
+    }
+}
+
 class OnboardingView: BaseView {
     
     lazy var scrollView = UIScrollView()
@@ -19,7 +46,7 @@ class OnboardingView: BaseView {
     lazy var rightButton = UIButton()
     
     lazy var errorLabel = CustomLabel(text: "10자 이내로 입력해줘!", font: .body(ofSize: 15))
-        
+    
     override func configure() {
         super.configure()
         backgroundColor = .userLightGreen
@@ -40,7 +67,7 @@ class OnboardingView: BaseView {
         let indicatorImage = UIImage(named: "Indicator")
         pageControl.setIndicatorImage(indicatorImage, forPage: 0)
         pageControl.setIndicatorImage(indicatorImage, forPage: 1)
-                
+        
         errorLabel.isHidden = true
         
         addSubviews([scrollView, pageControl, errorLabel])
@@ -94,11 +121,30 @@ class OnboardingView: BaseView {
     private func setupAgePageView() {
         let ageLabel = CustomLabel(text: "나이대도 알려줄래?", font: .point(ofSize: 15))
         
-        agePageView.addSubviews([ageLabel])
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 8
+        layout.itemSize = CGSize(width: 68, height: 40)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(AgePageCollectionViewCell.self,
+                                forCellWithReuseIdentifier: "AgePageCollectionViewCell")
+        
+        agePageView.addSubviews([ageLabel, collectionView])
         
         ageLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(50)
             make.centerX.equalToSuperview()
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(ageLabel.snp.bottom).offset(12)
+            make.centerX.leading.trailing.equalToSuperview()
+            make.height.equalTo(76)
         }
     }
     
@@ -181,5 +227,17 @@ extension OnboardingView: UITextFieldDelegate {
         guard let currentText = textField.text else { return true }
         let newLength = currentText.count + string.count - range.length
         return newLength <= 11
+    }
+}
+
+extension OnboardingView: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return Ages.allCases.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AgePageCollectionViewCell", for: indexPath) as! AgePageCollectionViewCell
+        cell.configure(text: Ages.from(number: indexPath.row)?.description ?? "")
+        return cell
     }
 }
