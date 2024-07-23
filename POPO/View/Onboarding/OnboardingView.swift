@@ -16,7 +16,9 @@ class OnboardingView: BaseView {
     lazy var namePageView = UIView()
     lazy var agePageView = UIView()
     
-    let rightButton = UIButton()
+    lazy var rightButton = UIButton()
+    
+    lazy var errorLabel = CustomLabel(text: "10자 이내로 입력해줘!", font: .body(ofSize: 15))
         
     override func configure() {
         super.configure()
@@ -38,8 +40,10 @@ class OnboardingView: BaseView {
         let indicatorImage = UIImage(named: "Indicator")
         pageControl.setIndicatorImage(indicatorImage, forPage: 0)
         pageControl.setIndicatorImage(indicatorImage, forPage: 1)
+                
+        errorLabel.isHidden = true
         
-        addSubviews([scrollView, pageControl])
+        addSubviews([scrollView, pageControl, errorLabel])
         
         setupNamePageView()
         setupAgePageView()
@@ -111,6 +115,11 @@ class OnboardingView: BaseView {
             make.top.equalTo(scrollView.snp.bottom).offset(20)
         }
         
+        errorLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(pageControl.snp.top).offset(-12)
+        }
+        
         namePageView.snp.makeConstraints { make in
             make.top.bottom.leading.equalToSuperview()
             make.width.equalToSuperview()
@@ -150,11 +159,18 @@ extension OnboardingView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        if let text = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty {
-            rightButton.setImage(UIImage(named: "DoneButton"), for: .normal)
-            rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
-        } else {
-            rightButton.setImage(UIImage(named: "CancelButton"), for: .normal)
+        if let text = textField.text,
+           !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            if text.count < 11 {
+                rightButton.setImage(UIImage(named: "DoneButton"), for: .normal)
+                rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
+                rightButton.isEnabled = true
+                errorLabel.isHidden = true
+            } else {
+                rightButton.setImage(UIImage(named: "CancelButton"), for: .normal)
+                rightButton.isEnabled = false
+                errorLabel.isHidden = false
+            }
         }
         
         return true
@@ -163,6 +179,6 @@ extension OnboardingView: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let currentText = textField.text else { return true }
         let newLength = currentText.count + string.count - range.length
-        return newLength <= 10
+        return newLength <= 11
     }
 }
