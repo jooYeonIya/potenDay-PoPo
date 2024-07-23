@@ -124,6 +124,12 @@ class OnboardingView: BaseView {
             make.leading.equalTo(namePageView.snp.trailing)
         }
     }
+    
+    @objc private func rightButtonTapped() {
+        let pageWidth = scrollView.frame.width
+        let offset = CGPoint(x: pageWidth * 1, y: 0)
+        scrollView.setContentOffset(offset, animated: true)
+    }
 }
 
 extension OnboardingView: UIScrollViewDelegate {
@@ -146,6 +152,7 @@ extension OnboardingView: UITextFieldDelegate {
         
         if let text = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty {
             rightButton.setImage(UIImage(named: "DoneButton"), for: .normal)
+            rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
         } else {
             rightButton.setImage(UIImage(named: "CancelButton"), for: .normal)
         }
