@@ -15,6 +15,8 @@ class OnboardingView: BaseView {
     
     lazy var namePageView = UIView()
     lazy var agePageView = UIView()
+    
+    let rightButton = UIButton()
         
     override func configure() {
         super.configure()
@@ -61,6 +63,15 @@ class OnboardingView: BaseView {
         nameTextField.attributedPlaceholder = NSAttributedString(string: "닉네임, 애칭, 본명 뭐든 좋아",
                                                                  attributes: placeholderAttributes)
         
+        rightButton.setImage(UIImage(named: "CancelButton"), for: .normal)
+        rightButton.isHidden = true
+        
+        nameTextField.addSubview(rightButton)
+        
+        rightButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-16)
+        }
         
         namePageView.addSubviews([nameLabel, nameTextField])
         
@@ -72,7 +83,7 @@ class OnboardingView: BaseView {
         nameTextField.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(12)
             make.centerX.leading.trailing.equalToSuperview()
-            make.height.equalTo(60)
+            make.height.equalTo(76)
         }
     }
     
@@ -124,6 +135,11 @@ extension OnboardingView: UIScrollViewDelegate {
 }
 
 extension OnboardingView: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.placeholder = ""
+        rightButton.isHidden = !textField.isEditing
+    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let currentText = textField.text else { return true }
