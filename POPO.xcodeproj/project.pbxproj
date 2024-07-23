@@ -21,6 +21,7 @@
 		0AADD1682C4FD77100A2C7A4 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1672C4FD77100A2C7A4 /* UIFont+Extension.swift */; };
 		0AADD16A2C4FD91F00A2C7A4 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AADD1692C4FD91F00A2C7A4 /* Pretendard-Regular.otf */; };
 		0AADD16C2C4FD92D00A2C7A4 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AADD16B2C4FD92D00A2C7A4 /* Pretendard-Bold.otf */; };
+		0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD16D2C4FDBF100A2C7A4 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		0AADD1672C4FD77100A2C7A4 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		0AADD1692C4FD91F00A2C7A4 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.9/public/static/Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		0AADD16B2C4FD92D00A2C7A4 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.9/public/static/Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		0AADD16D2C4FDBF100A2C7A4 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				0AADD1672C4FD77100A2C7A4 /* UIFont+Extension.swift */,
+				0AADD16D2C4FDBF100A2C7A4 /* UIColor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */,
 				0AADD1682C4FD77100A2C7A4 /* UIFont+Extension.swift in Sources */,
 				0A34A5F72C4D3CBA0023C8C7 /* ViewController.swift in Sources */,
 				0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */,
