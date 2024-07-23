@@ -10,6 +10,7 @@ import UIKit
 struct ColorName {
     static let primary = "Primary"
     static let secondary = "Secondary"
+    static let pink = "Pink"
     
     static func gray(_ number: Int) -> String {
         return "Gray\(number)"
@@ -24,6 +25,11 @@ extension UIColor {
     
     static var userLightGreen: UIColor {
         guard let color = UIColor(named: ColorName.secondary) else { return .systemGreen }
+        return color
+    }
+    
+    static var userPink: UIColor {
+        guard let color = UIColor(named: ColorName.pink) else { return .systemGreen }
         return color
     }
     

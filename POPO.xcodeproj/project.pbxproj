@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F22C4D3CBA0023C8C7 /* AppDelegate.swift */; };
 		0A34A5F52C4D3CBA0023C8C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F42C4D3CBA0023C8C7 /* SceneDelegate.swift */; };
-		0A34A5F72C4D3CBA0023C8C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F62C4D3CBA0023C8C7 /* ViewController.swift */; };
+		0A34A5F72C4D3CBA0023C8C7 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F62C4D3CBA0023C8C7 /* LaunchScreenViewController.swift */; };
 		0A34A5FC2C4D3CBB0023C8C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A34A5FB2C4D3CBB0023C8C7 /* Assets.xcassets */; };
 		0A34A5FF2C4D3CBB0023C8C7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0A34A5FE2C4D3CBB0023C8C7 /* Base */; };
 		0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1252C4E5B4C00A2C7A4 /* BaseViewController.swift */; };
@@ -22,13 +22,17 @@
 		0AADD16A2C4FD91F00A2C7A4 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AADD1692C4FD91F00A2C7A4 /* Pretendard-Regular.otf */; };
 		0AADD16C2C4FD92D00A2C7A4 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AADD16B2C4FD92D00A2C7A4 /* Pretendard-Bold.otf */; };
 		0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD16D2C4FDBF100A2C7A4 /* UIColor+Extension.swift */; };
+		0AF68BB72C4FF7BD00CE0EC1 /* UILable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BB62C4FF7BD00CE0EC1 /* UILable+Extension.swift */; };
+		0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */; };
+		0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */; };
+		0AF68BBD2C50039700CE0EC1 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBC2C50039700CE0EC1 /* UIImage+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A34A5EF2C4D3CBA0023C8C7 /* POPO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POPO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A34A5F22C4D3CBA0023C8C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../Application/AppDelegate.swift; sourceTree = "<group>"; };
 		0A34A5F42C4D3CBA0023C8C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = ../Application/SceneDelegate.swift; sourceTree = "<group>"; };
-		0A34A5F62C4D3CBA0023C8C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0A34A5F62C4D3CBA0023C8C7 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		0A34A5FB2C4D3CBB0023C8C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A34A5FE2C4D3CBB0023C8C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A34A6002C4D3CBB0023C8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,6 +43,10 @@
 		0AADD1692C4FD91F00A2C7A4 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.9/public/static/Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		0AADD16B2C4FD92D00A2C7A4 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.9/public/static/Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		0AADD16D2C4FDBF100A2C7A4 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		0AF68BB62C4FF7BD00CE0EC1 /* UILable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILable+Extension.swift"; sourceTree = "<group>"; };
+		0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		0AF68BBC2C50039700CE0EC1 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +101,7 @@
 		0AADD1192C4E538900A2C7A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0A34A5FD2C4D3CBB0023C8C7 /* LaunchScreen.storyboard */,
+				0AF68BB32C4FF61900CE0EC1 /* LaunchScreen */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -101,7 +109,6 @@
 		0AADD11A2C4E53B100A2C7A4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0A34A5F62C4D3CBA0023C8C7 /* ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -175,8 +182,21 @@
 			children = (
 				0AADD1672C4FD77100A2C7A4 /* UIFont+Extension.swift */,
 				0AADD16D2C4FDBF100A2C7A4 /* UIColor+Extension.swift */,
+				0AF68BB62C4FF7BD00CE0EC1 /* UILable+Extension.swift */,
+				0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */,
+				0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */,
+				0AF68BBC2C50039700CE0EC1 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		0AF68BB32C4FF61900CE0EC1 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0A34A5F62C4D3CBA0023C8C7 /* LaunchScreenViewController.swift */,
+				0A34A5FD2C4D3CBB0023C8C7 /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,10 +283,14 @@
 			files = (
 				0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */,
 				0AADD1682C4FD77100A2C7A4 /* UIFont+Extension.swift in Sources */,
-				0A34A5F72C4D3CBA0023C8C7 /* ViewController.swift in Sources */,
+				0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */,
+				0A34A5F72C4D3CBA0023C8C7 /* LaunchScreenViewController.swift in Sources */,
+				0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */,
 				0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */,
 				0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */,
+				0AF68BB72C4FF7BD00CE0EC1 /* UILable+Extension.swift in Sources */,
 				0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */,
+				0AF68BBD2C50039700CE0EC1 /* UIImage+Extension.swift in Sources */,
 				0A34A5F52C4D3CBA0023C8C7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,7 +448,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.studyiOS.POPO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.studyiOS.POPO1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -452,7 +476,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.studyiOS.POPO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.studyiOS.POPO1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
