@@ -30,6 +30,12 @@ class OnboardingView: BaseView, UIScrollViewDelegate {
         pageControl.currentPage = 0
         pageControl.allowsContinuousInteraction = false
         pageControl.isUserInteractionEnabled = false
+        pageControl.currentPageIndicatorTintColor = .userGreen
+        pageControl.pageIndicatorTintColor = .userGray(4)
+        
+        let indicatorImage = UIImage(named: "Indicator")
+        pageControl.setIndicatorImage(indicatorImage, forPage: 0)
+        pageControl.setIndicatorImage(indicatorImage, forPage: 1)
         
         addSubviews([scrollView, pageControl])
         
