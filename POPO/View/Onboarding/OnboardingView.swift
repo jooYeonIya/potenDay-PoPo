@@ -47,6 +47,8 @@ class OnboardingView: BaseView {
     
     lazy var errorLabel = CustomLabel(text: "10자 이내로 입력해줘!", font: .body(ofSize: 15))
     
+    lazy var doneButton = UIButton()
+    
     override func configure() {
         super.configure()
         backgroundColor = .userLightGreen
@@ -70,7 +72,10 @@ class OnboardingView: BaseView {
         
         errorLabel.isHidden = true
         
-        addSubviews([scrollView, pageControl, errorLabel])
+        doneButton.applyBlurButton(withImage: UIImage(named: "Clover")!, withText: "준비 끝!", fontSize: 15)
+        doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        
+        addSubviews([scrollView, pageControl, errorLabel, doneButton])
         
         setupNamePageView()
         setupAgePageView()
@@ -178,6 +183,11 @@ class OnboardingView: BaseView {
             make.height.equalToSuperview()
             make.leading.equalTo(namePageView.snp.trailing)
         }
+        
+        doneButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-20)
+        }
     }
     
     @objc private func rightButtonTapped() {
@@ -185,6 +195,10 @@ class OnboardingView: BaseView {
         let offset = CGPoint(x: pageWidth * 1, y: 0)
         scrollView.setContentOffset(offset, animated: true)
         scrollView.isScrollEnabled = true
+    }
+    
+    @objc private func doneButtonTapped() {
+        print("asdfasdf")
     }
 }
 
