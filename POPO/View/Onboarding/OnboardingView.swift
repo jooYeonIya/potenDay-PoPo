@@ -26,7 +26,7 @@ class OnboardingView: BaseView {
     }
     
     override func setupUI() {
-        scrollView.isPagingEnabled = true
+        scrollView.isScrollEnabled = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.delegate = self
         
@@ -138,6 +138,7 @@ class OnboardingView: BaseView {
         let pageWidth = scrollView.frame.width
         let offset = CGPoint(x: pageWidth * 1, y: 0)
         scrollView.setContentOffset(offset, animated: true)
+        scrollView.isScrollEnabled = true
     }
 }
 
