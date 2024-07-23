@@ -28,6 +28,9 @@
 		0AADD14E2C4E79C900A2C7A4 /* ChangerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD14D2C4E79C900A2C7A4 /* ChangerViewController.swift */; };
 		0AADD1502C4E879600A2C7A4 /* MakeCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD14F2C4E879600A2C7A4 /* MakeCharmView.swift */; };
 		0AADD1522C4E880400A2C7A4 /* MakeCharmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1512C4E880400A2C7A4 /* MakeCharmViewController.swift */; };
+		0AADD1552C4E8C3700A2C7A4 /* TotalCharmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1542C4E8C3700A2C7A4 /* TotalCharmViewController.swift */; };
+		0AADD1572C4E8C4200A2C7A4 /* TotalCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1562C4E8C4200A2C7A4 /* TotalCharmView.swift */; };
+		0AADD15A2C4E8CA300A2C7A4 /* TotalCharmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1592C4E8CA300A2C7A4 /* TotalCharmCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		0AADD14D2C4E79C900A2C7A4 /* ChangerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangerViewController.swift; sourceTree = "<group>"; };
 		0AADD14F2C4E879600A2C7A4 /* MakeCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmView.swift; sourceTree = "<group>"; };
 		0AADD1512C4E880400A2C7A4 /* MakeCharmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmViewController.swift; sourceTree = "<group>"; };
+		0AADD1542C4E8C3700A2C7A4 /* TotalCharmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCharmViewController.swift; sourceTree = "<group>"; };
+		0AADD1562C4E8C4200A2C7A4 /* TotalCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCharmView.swift; sourceTree = "<group>"; };
+		0AADD1592C4E8CA300A2C7A4 /* TotalCharmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCharmCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +111,13 @@
 		0AADD1192C4E538900A2C7A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0AADD1582C4E8C8D00A2C7A4 /* Cell */,
 				0A34A5FD2C4D3CBB0023C8C7 /* LaunchScreen.storyboard */,
 				0AADD1302C4E60F900A2C7A4 /* OnboardingView.swift */,
 				0AADD1492C4E741E00A2C7A4 /* MainView.swift */,
 				0AADD14B2C4E799200A2C7A4 /* ChangerView.swift */,
 				0AADD14F2C4E879600A2C7A4 /* MakeCharmView.swift */,
+				0AADD1562C4E8C4200A2C7A4 /* TotalCharmView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -122,6 +130,7 @@
 				0AADD1472C4E73E500A2C7A4 /* MainViewController.swift */,
 				0AADD14D2C4E79C900A2C7A4 /* ChangerViewController.swift */,
 				0AADD1512C4E880400A2C7A4 /* MakeCharmViewController.swift */,
+				0AADD1542C4E8C3700A2C7A4 /* TotalCharmViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -187,6 +196,14 @@
 				0AADD13A2C4E682600A2C7A4 /* UITextField+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		0AADD1582C4E8C8D00A2C7A4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0AADD1592C4E8CA300A2C7A4 /* TotalCharmCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,11 +294,14 @@
 				0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */,
 				0AADD1362C4E624100A2C7A4 /* UIView+Extension.swift in Sources */,
 				0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */,
+				0AADD1572C4E8C4200A2C7A4 /* TotalCharmView.swift in Sources */,
 				0AADD13D2C4E6EB200A2C7A4 /* OnboardingAgeViewController.swift in Sources */,
+				0AADD1552C4E8C3700A2C7A4 /* TotalCharmViewController.swift in Sources */,
 				0AADD14E2C4E79C900A2C7A4 /* ChangerViewController.swift in Sources */,
 				0AADD1502C4E879600A2C7A4 /* MakeCharmView.swift in Sources */,
 				0AADD1342C4E61F200A2C7A4 /* UILabel+Extension.swift in Sources */,
 				0AADD1312C4E60F900A2C7A4 /* OnboardingView.swift in Sources */,
+				0AADD15A2C4E8CA300A2C7A4 /* TotalCharmCollectionViewCell.swift in Sources */,
 				0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */,
 				0A34A5F52C4D3CBA0023C8C7 /* SceneDelegate.swift in Sources */,
 			);

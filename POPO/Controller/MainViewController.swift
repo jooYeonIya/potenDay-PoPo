@@ -33,10 +33,24 @@ class MainViewController: BaseViewController {
                 self?.changerViewTapped()
             }
             .disposed(by: disposeBag)
+        
+        let totalCharmTapGesture = UITapGestureRecognizer()
+        baseView.totalCharmView.addGestureRecognizer(totalCharmTapGesture)
+        
+        totalCharmTapGesture.rx.event
+            .bind { [weak self] _ in
+                self?.totalCharmViewTapped()
+            }
+            .disposed(by: disposeBag)
     }
     
-    func changerViewTapped() {
+    private func changerViewTapped() {
         let viewController = ChangerViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func totalCharmViewTapped() {
+        let viewController = TotalCharmViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
