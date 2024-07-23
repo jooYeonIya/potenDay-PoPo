@@ -49,7 +49,17 @@ class OnboardingView: BaseView, UIScrollViewDelegate {
         let nameLabel = CustomLabel(text: "행운이 찾아갈 너의 이름을 알려줘!", font: .point(ofSize: 15))
         
         let nameTextField = UITextField()
-        nameTextField.placeholder = "닉네임, 애칭, 본명 뭐든 좋아"
+        nameTextField.background = UIImage(named: "BlurButton")
+        nameTextField.textAlignment = .center
+        nameTextField.tintColor = .userGreen
+
+        let placeholderAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.body(ofSize: 13),
+            .foregroundColor: UIColor.userGray(4)
+        ]
+        nameTextField.attributedPlaceholder = NSAttributedString(string: "닉네임, 애칭, 본명 뭐든 좋아",
+                                                                 attributes: placeholderAttributes)
+               
         
         namePageView.addSubviews([nameLabel, nameTextField])
         
@@ -59,10 +69,9 @@ class OnboardingView: BaseView, UIScrollViewDelegate {
         }
         
         nameTextField.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
+            make.top.equalTo(nameLabel.snp.bottom).offset(12)
+            make.centerX.leading.trailing.equalToSuperview()
+            make.height.equalTo(60)
         }
     }
     
