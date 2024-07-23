@@ -15,7 +15,7 @@ class BaseView: UIView {
         setupDelegate()
     }
     
-    private func setupUI() {}
-    private func setupLayout() {}
-    private func setupDelegate() {}
+    func setupUI() {}
+    func setupLayout() {}
+    func setupDelegate() {}
 }

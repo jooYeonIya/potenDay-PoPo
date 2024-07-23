@@ -71,7 +71,7 @@ class LaunchScreenViewController: UIViewController {
         // 첫 실행 시 - 온보딩 뷰
         let onboardingView = OnboardingViewController()
         onboardingView.modalPresentationStyle = .fullScreen
-        self.present(onboardingView, animated: true, completion: nil)
+        present(onboardingView, animated: true, completion: nil)
     }
 }
 
