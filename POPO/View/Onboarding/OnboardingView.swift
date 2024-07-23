@@ -141,6 +141,18 @@ extension OnboardingView: UITextFieldDelegate {
         rightButton.isHidden = !textField.isEditing
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        if let text = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty {
+            rightButton.setImage(UIImage(named: "DoneButton"), for: .normal)
+        } else {
+            rightButton.setImage(UIImage(named: "CancelButton"), for: .normal)
+        }
+        
+        return true
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let currentText = textField.text else { return true }
         let newLength = currentText.count + string.count - range.length
