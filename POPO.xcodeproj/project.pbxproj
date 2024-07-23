@@ -26,6 +26,8 @@
 		0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */; };
 		0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */; };
 		0AF68BBD2C50039700CE0EC1 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBC2C50039700CE0EC1 /* UIImage+Extension.swift */; };
+		0AF68BC02C502DBF00CE0EC1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBF2C502DBF00CE0EC1 /* OnboardingView.swift */; };
+		0AF68BC32C502DE600CE0EC1 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BC22C502DE600CE0EC1 /* OnboardingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		0AF68BBC2C50039700CE0EC1 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		0AF68BBF2C502DBF00CE0EC1 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		0AF68BC22C502DE600CE0EC1 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		0AADD1192C4E538900A2C7A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0AF68BBE2C502DAC00CE0EC1 /* Onboarding */,
 				0AF68BB32C4FF61900CE0EC1 /* LaunchScreen */,
 			);
 			path = View;
@@ -109,6 +114,7 @@
 		0AADD11A2C4E53B100A2C7A4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0AF68BC12C502DCB00CE0EC1 /* Onboarding */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,6 +205,22 @@
 			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
+		0AF68BBE2C502DAC00CE0EC1 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				0AF68BBF2C502DBF00CE0EC1 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		0AF68BC12C502DCB00CE0EC1 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				0AF68BC22C502DE600CE0EC1 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -281,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AF68BC32C502DE600CE0EC1 /* OnboardingViewController.swift in Sources */,
 				0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */,
 				0AADD1682C4FD77100A2C7A4 /* UIFont+Extension.swift in Sources */,
 				0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */,
@@ -290,6 +313,7 @@
 				0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */,
 				0AF68BB72C4FF7BD00CE0EC1 /* UILable+Extension.swift in Sources */,
 				0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */,
+				0AF68BC02C502DBF00CE0EC1 /* OnboardingView.swift in Sources */,
 				0AF68BBD2C50039700CE0EC1 /* UIImage+Extension.swift in Sources */,
 				0A34A5F52C4D3CBA0023C8C7 /* SceneDelegate.swift in Sources */,
 			);

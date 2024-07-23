@@ -32,6 +32,7 @@ class LaunchScreenViewController: UIViewController {
         subTitleLabel.textColor = .userGray(4)
         
         button.applyBlurButton(withImage: UIImage(named: "Clover")!, withText: "무엇이든 긍정적으로 바꿔봐!", fontSize: 15)
+        button.addTarget(self, action: #selector(moveToNextView), for: .touchUpInside)        
         
         applyRadialGradientBackground()
     }
@@ -62,6 +63,15 @@ class LaunchScreenViewController: UIViewController {
         gradientLayer.frame = view.bounds
         gradientLayer.setNeedsDisplay()
         view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    @objc private func moveToNextView() {
+        // 첫 실행인지 아닌지에 따라서 뷰 이동 따로따로 해야함
+        
+        // 첫 실행 시 - 온보딩 뷰
+        let onboardingView = OnboardingViewController()
+        onboardingView.modalPresentationStyle = .fullScreen
+        self.present(onboardingView, animated: true, completion: nil)
     }
 }
 
