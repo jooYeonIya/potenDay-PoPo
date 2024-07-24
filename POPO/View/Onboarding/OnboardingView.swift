@@ -14,6 +14,10 @@ enum Ages: Int, CaseIterable {
     case age15to19
     case age20to24
     case age25to29
+    case age30to34
+    case age35to39
+    case age40
+    case age50
     
     var description: String {
         switch self {
@@ -27,6 +31,14 @@ enum Ages: Int, CaseIterable {
             return "20-24"
         case .age25to29:
             return "25-29"
+        case .age30to34:
+            return "30-34"
+        case .age35to39:
+            return "35-39"
+        case .age40:
+            return "40대"
+        case .age50:
+            return "50대 이상"
         }
     }
     
