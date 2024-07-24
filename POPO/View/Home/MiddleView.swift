@@ -13,9 +13,10 @@ class MiddleView: BaseView {
     lazy var inputTextBackgroundView = UIView()
     lazy var inputTextView = UITextView()
     lazy var actionButton = UIButton()
+    
     lazy var characterTextView = UITextView()
     lazy var characterImageView = UIImageView()
-    lazy var speechBubble = UIImageView()
+    lazy var speechBubbleImageView = UIImageView()
     
     override func configure() {
         super.configure()
@@ -24,11 +25,12 @@ class MiddleView: BaseView {
     override func setupUI() {
         addSubviews([inputTextBackgroundView,
                      actionButton,
+                     speechBubbleImageView,
                      characterTextView,
                      characterImageView])
         
         setupInputTextView()
-        setupActionButton()
+        setupCharactorView()
     }
     
     private func setupInputTextView() {
@@ -43,11 +45,16 @@ class MiddleView: BaseView {
         inputTextView.textAlignment = .center
         inputTextView.delegate = self
         inputTextView.addSubview(inputePlaceholderLabel)
-    }
-    
-    private func setupActionButton() {
+        
         actionButton.applyDeselectedButton(withImgae: UIImage(named: "DeselectedClover")!,
                                            withText: "얍")
+    }
+
+    private func setupCharactorView() {
+        speechBubbleImageView.image = UIImage(named: "SpeechBalloon")
+        speechBubbleImageView.addSubviews([characterTextView])
+        
+        characterImageView.image = UIImage(named: "MainCharactor")
     }
     
     override func setupLayout() {
@@ -73,6 +80,17 @@ class MiddleView: BaseView {
             make.bottom.equalToSuperview().offset(-20)
             make.height.equalTo(40)
             make.width.equalTo(120)
+        }
+        
+        speechBubbleImageView.snp.makeConstraints { make in
+            make.top.equalTo(inputTextBackgroundView.snp.bottom).offset(16)
+            make.leading.trailing.equalTo(inputTextBackgroundView)
+        }
+        
+        characterImageView.snp.makeConstraints{ make in
+            make.top.equalTo(speechBubbleImageView.snp.bottom).offset(-16)
+            make.trailing.equalToSuperview()
+            make.width.height.equalTo(100)
         }
     }
 }
