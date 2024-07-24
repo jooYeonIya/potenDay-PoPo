@@ -28,12 +28,13 @@ class MiddleView: BaseView {
                      characterImageView])
         
         setupInputTextView()
+        setupActionButton()
     }
     
     private func setupInputTextView() {
         inputePlaceholderLabel.textColor = .userGray(4)
         
-        inputTextBackgroundView.addSubview(inputTextView)
+        inputTextBackgroundView.addSubviews([inputTextView, actionButton])
         inputTextBackgroundView.backgroundColor = .white
         inputTextBackgroundView.layer.cornerRadius = 20
         
@@ -42,6 +43,11 @@ class MiddleView: BaseView {
         inputTextView.textAlignment = .center
         inputTextView.delegate = self
         inputTextView.addSubview(inputePlaceholderLabel)
+    }
+    
+    private func setupActionButton() {
+        actionButton.applyDeselectedButton(withImgae: UIImage(named: "DeselectedClover")!,
+                                           withText: "얍")
     }
     
     override func setupLayout() {
@@ -59,7 +65,14 @@ class MiddleView: BaseView {
         inputTextView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().inset(20)
-            make.top.height.equalTo(100)
+            make.top.height.equalTo(100 - 40)
+        }
+        
+        actionButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-20)
+            make.height.equalTo(40)
+            make.width.equalTo(120)
         }
     }
 }
