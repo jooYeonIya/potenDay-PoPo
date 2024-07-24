@@ -8,10 +8,11 @@
 import UIKit
 
 class HomeView: BaseView {
+    lazy var viewBlurEffect = UIVisualEffectView()
     lazy var pinkCircleView = UIView()
     lazy var greenCircleView = UIView()
     
-    lazy var viewBlurEffect = UIVisualEffectView()
+    lazy var segmentedView = SegmentedView()
 
     override func configure() {
         super.configure()
@@ -19,11 +20,12 @@ class HomeView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([pinkCircleView, greenCircleView, viewBlurEffect])
+        addSubviews([pinkCircleView, greenCircleView, viewBlurEffect, segmentedView])
         
         viewBlurEffect.effect = UIBlurEffect(style: .light)
-        
         applyCircleViews()
+        
+        segmentedView.configure()
     }
     
     private func applyCircleViews() {
@@ -49,6 +51,13 @@ class HomeView: BaseView {
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-12)
             make.trailing.equalToSuperview().offset(-100)
             make.width.height.equalTo(411)
+        }
+        
+        segmentedView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(40)
+            make.width.equalTo(120)
         }
     }
 }

@@ -7,6 +7,52 @@
 
 import UIKit
 
-class SegmentedView: BaseView {
+enum SegmentedOption: Int {
+    case popo
+    case viki
+    
+    var title: String {
+        switch self {
+        case .popo: return "포포"
+        case .viki: return "비키"
+        }
+    }
 }
 
+class SegmentedView: BaseView {
+    lazy var segmentControl: UISegmentedControl = {
+        let items = [SegmentedOption.popo.title, SegmentedOption.viki.title]
+        
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.backgroundColor = .userLightGreen
+        segmentedControl.selectedSegmentTintColor = .white
+
+        let normalAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.body(ofSize: 17),
+            .foregroundColor: UIColor.userGray(4)
+        ]
+        segmentedControl.setTitleTextAttributes(normalAttributes, for: .normal)
+        
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.bodyBold(ofSize: 17),
+            .foregroundColor: UIColor.userGreen
+        ]
+        segmentedControl.setTitleTextAttributes(selectedAttributes, for: .selected)
+        
+        return segmentedControl
+    }()
+    
+    override func configure() {
+        super.configure()
+    }
+    
+    override func setupUI() {
+        addSubview(segmentControl)
+    }
+    
+    override func setupLayout() {
+        segmentControl.snp.makeConstraints { make in            make.center.width.height.equalToSuperview()
+        }
+    }
+}
