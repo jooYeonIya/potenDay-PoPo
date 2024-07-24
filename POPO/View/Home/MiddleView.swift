@@ -52,9 +52,20 @@ class MiddleView: BaseView {
 
     private func setupCharactorView() {
         speechBubbleImageView.image = UIImage(named: "SpeechBalloon")
-        speechBubbleImageView.addSubviews([characterTextView])
+        speechBubbleImageView.addSubviews([characterTextView, characterTextView])
         
         characterImageView.image = UIImage(named: "MainCharactor")
+        
+        characterTextView.text = """
+                                안녕? 내 이름은 포포(PoPo)
+                                긍정의 힘에서 따온 말이래.
+                                무엇이든 긍적으로 바꿔줄게!
+                                으으으으으
+                                어어어어어어
+                                """
+        characterTextView.font = .point(ofSize: 15)
+        characterTextView.textAlignment = .center
+        
     }
     
     override func setupLayout() {
@@ -91,6 +102,11 @@ class MiddleView: BaseView {
             make.top.equalTo(speechBubbleImageView.snp.bottom).offset(-16)
             make.trailing.equalToSuperview()
             make.width.height.equalTo(100)
+        }
+        
+        characterTextView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(120)
         }
     }
 }
