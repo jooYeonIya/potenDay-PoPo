@@ -22,6 +22,11 @@
 		0ADFB54D2C5095B6004FB1BA /* UhBee Se_hyun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ADFB54C2C5095B6004FB1BA /* UhBee Se_hyun.ttf */; };
 		0ADFB54F2C5095CD004FB1BA /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0ADFB54E2C5095CD004FB1BA /* Pretendard-Bold.otf */; };
 		0ADFB5512C5095E4004FB1BA /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0ADFB5502C5095E4004FB1BA /* Pretendard-Regular.otf */; };
+		0ADFB5542C509921004FB1BA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5532C509921004FB1BA /* HomeView.swift */; };
+		0ADFB5562C509943004FB1BA /* SegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5552C509943004FB1BA /* SegmentedView.swift */; };
+		0ADFB5582C50995E004FB1BA /* MiddleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5572C50995E004FB1BA /* MiddleView.swift */; };
+		0ADFB55A2C509969004FB1BA /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5592C509969004FB1BA /* TabBarView.swift */; };
+		0ADFB55D2C509993004FB1BA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB55C2C509993004FB1BA /* HomeViewController.swift */; };
 		0AF68BB72C4FF7BD00CE0EC1 /* UILable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BB62C4FF7BD00CE0EC1 /* UILable+Extension.swift */; };
 		0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */; };
 		0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */; };
@@ -46,6 +51,11 @@
 		0ADFB54C2C5095B6004FB1BA /* UhBee Se_hyun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Se_hyun.ttf"; sourceTree = "<group>"; };
 		0ADFB54E2C5095CD004FB1BA /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		0ADFB5502C5095E4004FB1BA /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		0ADFB5532C509921004FB1BA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0ADFB5552C509943004FB1BA /* SegmentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedView.swift; sourceTree = "<group>"; };
+		0ADFB5572C50995E004FB1BA /* MiddleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleView.swift; sourceTree = "<group>"; };
+		0ADFB5592C509969004FB1BA /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		0ADFB55C2C509993004FB1BA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0AF68BB62C4FF7BD00CE0EC1 /* UILable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILable+Extension.swift"; sourceTree = "<group>"; };
 		0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -107,6 +117,7 @@
 		0AADD1192C4E538900A2C7A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0ADFB5522C509910004FB1BA /* Home */,
 				0AF68BBE2C502DAC00CE0EC1 /* Onboarding */,
 				0AF68BB32C4FF61900CE0EC1 /* LaunchScreen */,
 			);
@@ -116,6 +127,7 @@
 		0AADD11A2C4E53B100A2C7A4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0ADFB55B2C509983004FB1BA /* Homve */,
 				0AF68BC12C502DCB00CE0EC1 /* Onboarding */,
 			);
 			path = Controller;
@@ -162,6 +174,7 @@
 		0AADD1202C4E54A800A2C7A4 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				0ADFB5592C509969004FB1BA /* TabBarView.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -196,6 +209,24 @@
 				0AF68BBC2C50039700CE0EC1 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		0ADFB5522C509910004FB1BA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0ADFB5532C509921004FB1BA /* HomeView.swift */,
+				0ADFB5552C509943004FB1BA /* SegmentedView.swift */,
+				0ADFB5572C50995E004FB1BA /* MiddleView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0ADFB55B2C509983004FB1BA /* Homve */ = {
+			isa = PBXGroup;
+			children = (
+				0ADFB55C2C509993004FB1BA /* HomeViewController.swift */,
+			);
+			path = Homve;
 			sourceTree = "<group>";
 		};
 		0AF68BB32C4FF61900CE0EC1 /* LaunchScreen */ = {
@@ -308,18 +339,23 @@
 			files = (
 				0AF68BC32C502DE600CE0EC1 /* OnboardingViewController.swift in Sources */,
 				0AF68BC92C506F0900CE0EC1 /* AgePageCollectionViewCell.swift in Sources */,
+				0ADFB55D2C509993004FB1BA /* HomeViewController.swift in Sources */,
 				0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */,
+				0ADFB5542C509921004FB1BA /* HomeView.swift in Sources */,
 				0AADD1682C4FD77100A2C7A4 /* UIFont+Extension.swift in Sources */,
+				0ADFB5562C509943004FB1BA /* SegmentedView.swift in Sources */,
 				0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */,
 				0A34A5F72C4D3CBA0023C8C7 /* LaunchScreenViewController.swift in Sources */,
 				0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */,
 				0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */,
+				0ADFB55A2C509969004FB1BA /* TabBarView.swift in Sources */,
 				0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */,
 				0AF68BB72C4FF7BD00CE0EC1 /* UILable+Extension.swift in Sources */,
 				0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */,
 				0AF68BC02C502DBF00CE0EC1 /* OnboardingView.swift in Sources */,
 				0AF68BBD2C50039700CE0EC1 /* UIImage+Extension.swift in Sources */,
 				0A34A5F52C4D3CBA0023C8C7 /* SceneDelegate.swift in Sources */,
+				0ADFB5582C50995E004FB1BA /* MiddleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

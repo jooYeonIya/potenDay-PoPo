@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class OnboardingViewController: BaseViewController {
     
     // MARK: - Component
     lazy var baseView = OnboardingView()
     
+    private let disposebag = DisposeBag()
     
     // MARK: - LifeCycle
     override func loadView() {
@@ -22,5 +25,19 @@ class OnboardingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         baseView.configure()
+    }
+    
+    override func setupEvent() {
+        baseView.doneButton.rx.tap
+            .bind { [weak self] _ in
+                self?.moveToHomeView()
+            }
+            .disposed(by: disposebag)
+    }
+    
+    private func moveToHomeView() {
+        let homeView = HomeViewController()
+        homeView.modalPresentationStyle = .fullScreen
+        present(homeView, animated: true, completion: nil)
     }
 }
