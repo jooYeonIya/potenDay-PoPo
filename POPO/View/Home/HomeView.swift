@@ -14,6 +14,7 @@ class HomeView: BaseView {
     
     lazy var segmentedView = SegmentedView()
     lazy var middleView = MiddleView()
+    lazy var tabBarView = TabBarView()
 
     override func configure() {
         super.configure()
@@ -22,13 +23,14 @@ class HomeView: BaseView {
     
     override func setupUI() {
         addSubviews([pinkCircleView, greenCircleView, viewBlurEffect, 
-                     segmentedView, middleView])
+                     segmentedView, middleView, tabBarView])
         
         viewBlurEffect.effect = UIBlurEffect(style: .light)
         applyCircleViews()
         
         segmentedView.configure()
         middleView.configure()
+        tabBarView.configure()
     }
     
     private func applyCircleViews() {
@@ -67,6 +69,13 @@ class HomeView: BaseView {
             make.top.equalTo(segmentedView.snp.bottom).offset(54)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
+        }
+        
+        tabBarView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
+            make.height.equalTo(80)
         }
     }
 }
