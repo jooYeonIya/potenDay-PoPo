@@ -59,7 +59,7 @@ class MiddleView: BaseView {
         speechBubbleImageView.image = UIImage(named: "SpeechBalloon")
         speechBubbleImageView.addSubviews([characterTextView, characterTextView])
         
-        characterImageView.image = UIImage(named: "MainCharactor")
+        characterImageView.image = UIImage(named: "Charactor_Main")
         
         characterTextView.text = """
                                 안녕? 내 이름은 포포(PoPo)
