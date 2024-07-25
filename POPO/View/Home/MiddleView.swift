@@ -47,9 +47,10 @@ class MiddleView: BaseView {
         inputTextView.addSubview(inputePlaceholderLabel)
         
         let option = BasicButtonOtpion(backgroundColor: .userGray(8),
-                          borderColor: .userGray(6),
-                          text: "얍",
-                          image: UIImage(named: "Clover_Deselected")!)
+                                       borderColor: .userGray(6), 
+                                       fontColor: .userGray(4),
+                                       text: "얍",
+                                       image: UIImage(named: "Clover_Deselected")!)
         
         actionButton.applyBasicButton(option)
     }

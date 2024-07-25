@@ -11,6 +11,7 @@ import SnapKit
 struct BasicButtonOtpion {
     let backgroundColor: UIColor
     let borderColor: UIColor
+    let fontColor: UIColor
     let text: String
     let image: UIImage
 }
@@ -45,30 +46,19 @@ extension UIButton {
     }
     
     func applyBasicButton(_ option: BasicButtonOtpion) {
-        let imageView = UIImageView()
-        imageView.image = option.image
         
-        let titleLabel = UILabel()
-        titleLabel.text = option.text
-        titleLabel.font = .bodyBold(ofSize: 13)
-        titleLabel.textColor = .userGray(4)
+        var configuration = UIButton.Configuration.plain()
         
-        addSubviews([imageView, titleLabel])
+        let attributedString = NSAttributedString(string: option.text, attributes: [.font: UIFont.body(ofSize: 13), .foregroundColor: option.fontColor])
         
-        imageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(2)
-
-            let offset = titleLabel.intrinsicContentSize.width
-            make.centerX.equalToSuperview().offset(offset)
-
-            make.width.height.equalTo(24)
-        }
+        configuration.attributedTitle = AttributedString(attributedString)
+        configuration.image = option.image
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = 4
+                        
         
-        titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalTo(imageView.snp.leading).offset(-4)
-        }
-        
+        self.configuration = configuration
+       
         layer.cornerRadius = 20
         layer.borderColor = option.borderColor.cgColor
         layer.borderWidth = 1.0

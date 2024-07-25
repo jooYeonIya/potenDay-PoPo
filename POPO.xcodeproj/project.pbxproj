@@ -34,6 +34,7 @@
 		0AF68BC02C502DBF00CE0EC1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBF2C502DBF00CE0EC1 /* OnboardingView.swift */; };
 		0AF68BC32C502DE600CE0EC1 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BC22C502DE600CE0EC1 /* OnboardingViewController.swift */; };
 		0AF68BC92C506F0900CE0EC1 /* AgePageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BC82C506F0900CE0EC1 /* AgePageCollectionViewCell.swift */; };
+		0AF68BCB2C527DC800CE0EC1 /* MoveToLackyCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		0AF68BBF2C502DBF00CE0EC1 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		0AF68BC22C502DE600CE0EC1 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		0AF68BC82C506F0900CE0EC1 /* AgePageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgePageCollectionViewCell.swift; sourceTree = "<group>"; };
+		0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToLackyCharmView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				0ADFB5532C509921004FB1BA /* HomeView.swift */,
 				0ADFB5552C509943004FB1BA /* SegmentedView.swift */,
 				0ADFB5572C50995E004FB1BA /* MiddleView.swift */,
+				0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				0ADFB55D2C509993004FB1BA /* HomeViewController.swift in Sources */,
 				0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */,
 				0ADFB5542C509921004FB1BA /* HomeView.swift in Sources */,
+				0AF68BCB2C527DC800CE0EC1 /* MoveToLackyCharmView.swift in Sources */,
 				0AADD1682C4FD77100A2C7A4 /* UIFont+Extension.swift in Sources */,
 				0ADFB5562C509943004FB1BA /* SegmentedView.swift in Sources */,
 				0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */,
