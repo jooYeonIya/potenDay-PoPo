@@ -8,6 +8,11 @@
 import UIKit
 import SnapKit
 
+enum ActionButtonOtpion: Int {
+    case selected
+    case deselected
+}
+
 class MiddleView: BaseView {
     lazy var inputePlaceholderLabel = CustomLabel(text: "포포한테 알려줘", font: .body(ofSize: 17))
     lazy var inputTextBackgroundView = UIView()
@@ -46,15 +51,14 @@ class MiddleView: BaseView {
         inputTextView.delegate = self
         inputTextView.addSubview(inputePlaceholderLabel)
         
-        actionButton.applyDeselectedButton(withImgae: UIImage(named: "DeselectedClover")!,
-                                           withText: "얍")
+        toggleActionButton(.deselected)
     }
 
     private func setupCharactorView() {
         speechBubbleImageView.image = UIImage(named: "SpeechBalloon")
         speechBubbleImageView.addSubviews([characterTextView, characterTextView])
         
-        characterImageView.image = UIImage(named: "MainCharactor")
+        characterImageView.image = UIImage(named: "Charactor_Main")
         
         characterTextView.text = """
                                 안녕? 내 이름은 포포(PoPo)
@@ -107,6 +111,27 @@ class MiddleView: BaseView {
         characterTextView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(120)
+        }
+    }
+    
+    func toggleActionButton(_ option: ActionButtonOtpion) {
+        switch option {
+            
+        case .deselected:
+            let buttonOption = BasicButtonOtpion(backgroundColor: .userGray(8),
+                                           borderColor: .userGray(6),
+                                           fontColor: .userGray(4),
+                                           text: "얍",
+                                           image: UIImage(named: "Clover_Deselected")!)
+            actionButton.applyBasicButton(buttonOption)
+            
+        case .selected:
+            let buttonOption = BasicButtonOtpion(backgroundColor: .white,
+                                           borderColor: .userGreen,
+                                           fontColor: .userGray(1),
+                                           text: "얍",
+                                           image: UIImage(named: "Clover_Selected")!)
+            actionButton.applyBasicButton(buttonOption)
         }
     }
 }

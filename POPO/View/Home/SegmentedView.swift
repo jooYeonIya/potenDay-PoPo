@@ -17,6 +17,13 @@ enum SegmentedOption: Int {
         case .viki: return "비키"
         }
     }
+    
+    var imageName: String {
+        switch self {
+        case .popo: return "Charactor_Main"
+        case .viki: return "Charactor_Viki"
+        }
+    }
 }
 
 class SegmentedView: BaseView {
@@ -52,7 +59,8 @@ class SegmentedView: BaseView {
     }
     
     override func setupLayout() {
-        segmentControl.snp.makeConstraints { make in            make.center.width.height.equalToSuperview()
+        segmentControl.snp.makeConstraints { make in            
+            make.center.width.height.equalToSuperview()
         }
     }
 }

@@ -8,8 +8,17 @@
 import UIKit
 import SnapKit
 
+struct BasicButtonOtpion {
+    let backgroundColor: UIColor
+    let borderColor: UIColor
+    let fontColor: UIColor
+    let text: String
+    let image: UIImage
+}
+
 extension UIButton {
     
+    // 재활용할 수 있도록 좀 더 생각해보자
     func applyBlurButton(withImage image: UIImage, withText text: String, fontSize: CGFloat) {
         
         setBackgroundImage(UIImage(named: "BlurButton"), for: .normal)
@@ -36,36 +45,25 @@ extension UIButton {
         }
     }
     
-    func applyDeselectedButton(withImgae image: UIImage, withText text: String) {
-        let imageView = UIImageView()
-        imageView.image = image
+    func applyBasicButton(_ option: BasicButtonOtpion) {
         
-        let titleLabel = UILabel()
-        titleLabel.text = text
-        titleLabel.font = .bodyBold(ofSize: 13)
-        titleLabel.textColor = .userGray(4)
+        var configuration = UIButton.Configuration.plain()
         
-        addSubviews([imageView, titleLabel])
+        let attributedString = NSAttributedString(string: option.text, attributes: [.font: UIFont.body(ofSize: 13), .foregroundColor: option.fontColor])
         
-        imageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(2)
-
-            let offset = titleLabel.intrinsicContentSize.width
-            make.centerX.equalToSuperview().offset(offset)
-
-            make.width.height.equalTo(24)
-        }
+        configuration.attributedTitle = AttributedString(attributedString)
+        configuration.image = option.image
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = 4
+                        
         
-        titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalTo(imageView.snp.leading).offset(-4)
-        }
-        
+        self.configuration = configuration
+       
         layer.cornerRadius = 20
-        layer.borderColor = UIColor.userGray(6).cgColor
+        layer.borderColor = option.borderColor.cgColor
         layer.borderWidth = 1.0
         
-        backgroundColor = .userGray(8)
+        backgroundColor = option.backgroundColor
         
         layer.shadowColor = UIColor.userGray(6).cgColor
         layer.shadowOpacity = 0.8
