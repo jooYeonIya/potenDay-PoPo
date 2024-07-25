@@ -31,7 +31,7 @@ class LaunchScreenViewController: UIViewController {
         captionLable.textColor = .userGray(6)
         subTitleLabel.textColor = .userGray(4)
         
-        button.applyBlurButton(withImage: UIImage(named: "Clover")!, withText: "무엇이든 긍정적으로 바꿔봐!", fontSize: 15)
+        button.applyBlurButton(withImage: UIImage(named: "Clover_Selected")!, withText: "무엇이든 긍정적으로 바꿔봐!", fontSize: 15)
         button.addTarget(self, action: #selector(moveToNextView), for: .touchUpInside)        
         
         applyRadialGradientBackground()

@@ -84,7 +84,7 @@ class OnboardingView: BaseView {
         
         errorLabel.isHidden = true
         
-        doneButton.applyBlurButton(withImage: UIImage(named: "Clover")!, withText: "준비 끝!", fontSize: 15)
+        doneButton.applyBlurButton(withImage: UIImage(named: "Clover_Selected")!, withText: "준비 끝!", fontSize: 15)
         doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         
         addSubviews([scrollView, pageControl, errorLabel, doneButton])
