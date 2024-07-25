@@ -21,6 +21,8 @@ class QnATableViewCell: UITableViewCell {
     private func setupUI() {
         contentView.addSubviews([QLabel, ALabel, answerLabel, dateLabel])
         
+        contentView.backgroundColor = .userGray(9)
+        
         QLabel.text = "버스를 놓쳤어"
         QLabel.font = .body(ofSize: 13)
         QLabel.textColor = .userGray(4)

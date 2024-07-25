@@ -10,20 +10,24 @@ import UIKit
 class MyPageView: BaseView {
     
     lazy var titleView = TitleView(title: "마이페이지")
-    lazy var myInfoView = UserInfoView()
+    lazy var userInfoView = UserInfoView()
     lazy var topBackgroundView = UIView()
+    lazy var greenCircleView = UIView()
     lazy var blurView = UIVisualEffectView()
     lazy var QnATableView = UITableView()
     
     override func configure() {
         super.configure()
-        backgroundColor = .userLightGreen
+        backgroundColor = .userGray(9)
     }
     
     override func setupUI() {
-        addSubviews([topBackgroundView, blurView, titleView, myInfoView, QnATableView])
+        addSubviews([topBackgroundView, greenCircleView, blurView, titleView, userInfoView, QnATableView])
         
         topBackgroundView.backgroundColor = .userGray(9)
+        
+        greenCircleView.layer.cornerRadius = 411 / 2
+        greenCircleView.backgroundColor = .userLightGreen
 
         blurView.effect = UIBlurEffect(style: .extraLight)
         
@@ -32,8 +36,8 @@ class MyPageView: BaseView {
         QnATableView.separatorStyle = .none
         QnATableView.showsVerticalScrollIndicator = false
         
-        myInfoView.nickname = "나는야럭키걸"
-        myInfoView.configure()
+        userInfoView.nickname = "나는야럭키걸"
+        userInfoView.configure()
     }
 
     override func setupDelegate() {
@@ -44,12 +48,18 @@ class MyPageView: BaseView {
     override func setupLayout() {
         topBackgroundView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(myInfoView.snp.bottom).offset(12)
+            make.bottom.equalTo(userInfoView.snp.bottom).offset(12)
+        }
+        
+        greenCircleView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(411)
         }
 
         blurView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(myInfoView.snp.bottom).offset(80)
+//            make.top.leading.trailing.equalToSuperview()
+//            make.bottom.equalTo(userInfoView.snp.bottom).offset(80)
+            make.edges.equalToSuperview()
         }
 
         titleView.snp.makeConstraints { make in
@@ -58,14 +68,14 @@ class MyPageView: BaseView {
             make.height.equalTo(80)
         }
         
-        myInfoView.snp.makeConstraints { make in
-            make.top.equalTo(titleView.snp.bottom).offset(20)
+        userInfoView.snp.makeConstraints { make in
+            make.top.equalTo(titleView.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(76)
         }
         
         QnATableView.snp.makeConstraints { make in
-            make.top.equalTo(myInfoView.snp.bottom).offset(12)
+            make.top.equalTo(userInfoView.snp.bottom).offset(16)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
