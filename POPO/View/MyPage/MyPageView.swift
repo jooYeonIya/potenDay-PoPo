@@ -13,6 +13,7 @@ class MyPageView: BaseView {
     lazy var myInfoView = UserInfoView()
     lazy var topBackgroundView = UIView()
     lazy var blurView = UIVisualEffectView()
+    lazy var QnATableView = UITableView()
     
     override func configure() {
         super.configure()
@@ -20,14 +21,24 @@ class MyPageView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([topBackgroundView, blurView, titleView, myInfoView])
+        addSubviews([topBackgroundView, blurView, titleView, myInfoView, QnATableView])
         
         topBackgroundView.backgroundColor = .userGray(9)
 
         blurView.effect = UIBlurEffect(style: .extraLight)
         
+        QnATableView.register(QnATableViewCell.self, forCellReuseIdentifier: "QnATableViewCell")
+        QnATableView.backgroundColor = .clear
+        QnATableView.separatorStyle = .none
+        QnATableView.showsVerticalScrollIndicator = false
+        
         myInfoView.nickname = "나는야럭키걸"
         myInfoView.configure()
+    }
+
+    override func setupDelegate() {
+        QnATableView.delegate = self
+        QnATableView.dataSource = self
     }
     
     override func setupLayout() {
@@ -52,5 +63,36 @@ class MyPageView: BaseView {
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(76)
         }
+        
+        QnATableView.snp.makeConstraints { make in
+            make.top.equalTo(myInfoView.snp.bottom).offset(12)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
     }
+}
+
+extension MyPageView: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "QnATableViewCell", for: indexPath) as? QnATableViewCell else { return UITableViewCell() }
+        cell.configure()
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+         let footerView = UIView()
+         footerView.backgroundColor = .clear
+         return footerView
+     }
+     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+         return 8
+     }
 }
