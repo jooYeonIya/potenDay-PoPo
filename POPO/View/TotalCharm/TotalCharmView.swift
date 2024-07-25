@@ -13,6 +13,7 @@ class TotalCharmView: BaseView {
     lazy var titleView = TitleView(title: "행운 부적 모음집")
     lazy var topBackgroundView = UIView()
     lazy var blurView = UIVisualEffectView()
+    lazy var tabBarView = TabBarView()
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 4, bottom: 8, right: 4)
@@ -36,11 +37,13 @@ class TotalCharmView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([topBackgroundView, blurView, titleView, collectionView])
+        addSubviews([topBackgroundView, blurView, titleView, collectionView, tabBarView])
         
         topBackgroundView.backgroundColor = .userGray(9)
 
         blurView.effect = UIBlurEffect(style: .extraLight)
+        
+        tabBarView.configure()
     }
     
     override func setupLayout() {
@@ -63,6 +66,13 @@ class TotalCharmView: BaseView {
             make.top.equalTo(titleView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(30)
             make.bottom.equalTo(safeAreaLayoutGuide)
+        }
+        
+        tabBarView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
+            make.height.equalTo(80)
         }
     }
 }
