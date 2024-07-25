@@ -14,6 +14,10 @@
 		0A34A5FF2C4D3CBB0023C8C7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0A34A5FE2C4D3CBB0023C8C7 /* Base */; };
 		0A79962A2C524012000E544A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 0A7996292C524012000E544A /* Moya */; };
 		0A79962C2C524012000E544A /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0A79962B2C524012000E544A /* RxMoya */; };
+		0A79962F2C5240B5000E544A /* ClovaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A79962E2C5240B5000E544A /* ClovaAPI.swift */; };
+		0A7996312C5240E3000E544A /* ClovaAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7996302C5240E3000E544A /* ClovaAPIService.swift */; };
+		0A7996362C524E24000E544A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7996352C524E24000E544A /* UserInfo.swift */; };
+		0A7996382C5251EA000E544A /* MessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7996372C5251EA000E544A /* MessageRequest.swift */; };
 		0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1252C4E5B4C00A2C7A4 /* BaseViewController.swift */; };
 		0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD12E2C4E5ECB00A2C7A4 /* BaseView.swift */; };
 		0AADD15D2C4FD20400A2C7A4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0AADD15C2C4FD20400A2C7A4 /* SnapKit */; };
@@ -54,6 +58,10 @@
 		0A34A5FB2C4D3CBB0023C8C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A34A5FE2C4D3CBB0023C8C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A34A6002C4D3CBB0023C8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A79962E2C5240B5000E544A /* ClovaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClovaAPI.swift; sourceTree = "<group>"; };
+		0A7996302C5240E3000E544A /* ClovaAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClovaAPIService.swift; sourceTree = "<group>"; };
+		0A7996352C524E24000E544A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		0A7996372C5251EA000E544A /* MessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRequest.swift; sourceTree = "<group>"; };
 		0AADD1252C4E5B4C00A2C7A4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0AADD12E2C4E5ECB00A2C7A4 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		0AADD1672C4FD77100A2C7A4 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -118,6 +126,7 @@
 		0A34A5F12C4D3CBA0023C8C7 /* POPO */ = {
 			isa = PBXGroup;
 			children = (
+				0A79962D2C5240A4000E544A /* Network */,
 				0AADD11C2C4E543400A2C7A4 /* Global */,
 				0AADD11B2C4E541C00A2C7A4 /* Application */,
 				0AADD11A2C4E53B100A2C7A4 /* Controller */,
@@ -127,9 +136,20 @@
 			path = POPO;
 			sourceTree = "<group>";
 		};
+		0A79962D2C5240A4000E544A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0A79962E2C5240B5000E544A /* ClovaAPI.swift */,
+				0A7996302C5240E3000E544A /* ClovaAPIService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		0AADD1182C4E538200A2C7A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0A7996352C524E24000E544A /* UserInfo.swift */,
+				0A7996372C5251EA000E544A /* MessageRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -402,13 +422,17 @@
 			files = (
 				0AF68BC32C502DE600CE0EC1 /* OnboardingViewController.swift in Sources */,
 				0AF68BC92C506F0900CE0EC1 /* AgePageCollectionViewCell.swift in Sources */,
+				0A7996312C5240E3000E544A /* ClovaAPIService.swift in Sources */,
 				0ADFB55D2C509993004FB1BA /* HomeViewController.swift in Sources */,
+				0A7996382C5251EA000E544A /* MessageRequest.swift in Sources */,
 				0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */,
 				0AE6CEFF2C522066005B94B3 /* TotalCharmView.swift in Sources */,
 				0ADFB5542C509921004FB1BA /* HomeView.swift in Sources */,
 				0AADD1682C4FD77100A2C7A4 /* UIFont+Extension.swift in Sources */,
 				0ADFB5562C509943004FB1BA /* SegmentedView.swift in Sources */,
 				0AE6CF042C5222BE005B94B3 /* TotalCharmCollectionViewCell.swift in Sources */,
+				0A79962F2C5240B5000E544A /* ClovaAPI.swift in Sources */,
+				0A7996362C524E24000E544A /* UserInfo.swift in Sources */,
 				0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */,
 				0A34A5F72C4D3CBA0023C8C7 /* LaunchScreenViewController.swift in Sources */,
 				0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */,
