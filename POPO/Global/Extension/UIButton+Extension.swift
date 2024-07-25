@@ -8,8 +8,16 @@
 import UIKit
 import SnapKit
 
+struct BasicButtonOtpion {
+    let backgroundColor: UIColor
+    let borderColor: UIColor
+    let text: String
+    let image: UIImage
+}
+
 extension UIButton {
     
+    // 재활용할 수 있도록 좀 더 생각해보자
     func applyBlurButton(withImage image: UIImage, withText text: String, fontSize: CGFloat) {
         
         setBackgroundImage(UIImage(named: "BlurButton"), for: .normal)
@@ -36,12 +44,12 @@ extension UIButton {
         }
     }
     
-    func applyDeselectedButton(withImgae image: UIImage, withText text: String) {
+    func applyBasicButton(_ option: BasicButtonOtpion) {
         let imageView = UIImageView()
-        imageView.image = image
+        imageView.image = option.image
         
         let titleLabel = UILabel()
-        titleLabel.text = text
+        titleLabel.text = option.text
         titleLabel.font = .bodyBold(ofSize: 13)
         titleLabel.textColor = .userGray(4)
         
@@ -62,10 +70,10 @@ extension UIButton {
         }
         
         layer.cornerRadius = 20
-        layer.borderColor = UIColor.userGray(6).cgColor
+        layer.borderColor = option.borderColor.cgColor
         layer.borderWidth = 1.0
         
-        backgroundColor = .userGray(8)
+        backgroundColor = option.backgroundColor
         
         layer.shadowColor = UIColor.userGray(6).cgColor
         layer.shadowOpacity = 0.8

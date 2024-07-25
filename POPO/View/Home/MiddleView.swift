@@ -46,8 +46,12 @@ class MiddleView: BaseView {
         inputTextView.delegate = self
         inputTextView.addSubview(inputePlaceholderLabel)
         
-        actionButton.applyDeselectedButton(withImgae: UIImage(named: "DeselectedClover")!,
-                                           withText: "얍")
+        let option = BasicButtonOtpion(backgroundColor: .userGray(8),
+                          borderColor: .userGray(6),
+                          text: "얍",
+                          image: UIImage(named: "Clover_Deselected")!)
+        
+        actionButton.applyBasicButton(option)
     }
 
     private func setupCharactorView() {
