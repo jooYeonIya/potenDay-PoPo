@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class MakeCharmViewController: UIViewController {
+class MakeCharmViewController: BaseViewController {
 
-    
     lazy var baseView = MakeCharmView()
+    
+    private let disposeBag = DisposeBag()
 
     override func loadView() {
         super.loadView()
@@ -22,5 +25,13 @@ class MakeCharmViewController: UIViewController {
 
         baseView.configure()
     }
-
+    
+    override func setupEvent() {
+        baseView.closeButton.rx
+            .tap
+            .bind { [weak self] _ in
+                self?.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
 }
