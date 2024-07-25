@@ -35,5 +35,15 @@ class HomeViewController: BaseViewController {
                 self?.baseView.middleView.characterTextView.text = option.title
             })
             .disposed(by: disposeBag)
+        
+        baseView.middleView.actionButton.rx
+            .tap
+            .bind { [weak self] button in
+                guard let button = self?.baseView.middleView.actionButton else { return }
+                button.tag = button.tag == 0 ? 1 : 0
+                let option = ActionButtonOtpion(rawValue: button.tag)
+                self?.baseView.middleView.toggleActionButton(option!)
+            }
+            .disposed(by: disposeBag)
     }
 }
