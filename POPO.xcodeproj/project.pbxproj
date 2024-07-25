@@ -34,6 +34,7 @@
 		0AE6CEFC2C521469005B94B3 /* QnATableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6CEFB2C521469005B94B3 /* QnATableViewCell.swift */; };
 		0AE6CEFF2C522066005B94B3 /* TotalCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6CEFE2C522066005B94B3 /* TotalCharmView.swift */; };
 		0AE6CF012C522098005B94B3 /* TotalCharmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6CF002C522098005B94B3 /* TotalCharmViewController.swift */; };
+		0AE6CF042C5222BE005B94B3 /* TotalCharmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6CF032C5222BE005B94B3 /* TotalCharmCollectionViewCell.swift */; };
 		0AF68BB72C4FF7BD00CE0EC1 /* UILable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BB62C4FF7BD00CE0EC1 /* UILable+Extension.swift */; };
 		0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */; };
 		0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */; };
@@ -70,6 +71,7 @@
 		0AE6CEFB2C521469005B94B3 /* QnATableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnATableViewCell.swift; sourceTree = "<group>"; };
 		0AE6CEFE2C522066005B94B3 /* TotalCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCharmView.swift; sourceTree = "<group>"; };
 		0AE6CF002C522098005B94B3 /* TotalCharmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCharmViewController.swift; sourceTree = "<group>"; };
+		0AE6CF032C5222BE005B94B3 /* TotalCharmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCharmCollectionViewCell.swift; sourceTree = "<group>"; };
 		0AF68BB62C4FF7BD00CE0EC1 /* UILable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILable+Extension.swift"; sourceTree = "<group>"; };
 		0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				0AE6CEFE2C522066005B94B3 /* TotalCharmView.swift */,
+				0AE6CF032C5222BE005B94B3 /* TotalCharmCollectionViewCell.swift */,
 			);
 			path = TotalCharm;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				0ADFB5542C509921004FB1BA /* HomeView.swift in Sources */,
 				0AADD1682C4FD77100A2C7A4 /* UIFont+Extension.swift in Sources */,
 				0ADFB5562C509943004FB1BA /* SegmentedView.swift in Sources */,
+				0AE6CF042C5222BE005B94B3 /* TotalCharmCollectionViewCell.swift in Sources */,
 				0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */,
 				0A34A5F72C4D3CBA0023C8C7 /* LaunchScreenViewController.swift in Sources */,
 				0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */,

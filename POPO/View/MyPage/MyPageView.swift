@@ -57,8 +57,6 @@ class MyPageView: BaseView {
         }
 
         blurView.snp.makeConstraints { make in
-//            make.top.leading.trailing.equalToSuperview()
-//            make.bottom.equalTo(userInfoView.snp.bottom).offset(80)
             make.edges.equalToSuperview()
         }
 
