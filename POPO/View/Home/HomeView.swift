@@ -24,7 +24,7 @@ class HomeView: BaseView {
         addSubviews([pinkCircleView, greenCircleView, viewBlurEffect, 
                      segmentedView, middleView])
         
-        viewBlurEffect.effect = UIBlurEffect(style: .light)
+        viewBlurEffect.effect = UIBlurEffect(style: .extraLight)
         applyCircleViews()
         
         segmentedView.configure()
