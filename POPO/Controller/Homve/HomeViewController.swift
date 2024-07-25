@@ -45,5 +45,14 @@ class HomeViewController: BaseViewController {
                 self?.baseView.middleView.toggleActionButton(option!)
             }
             .disposed(by: disposeBag)
+        
+        baseView.moveTolackyCharmView.button.rx
+            .tap
+            .bind { [weak self] _ in
+                let vc = MakeCharmViewController()
+                vc.modalPresentationStyle = .fullScreen
+                self?.present(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }

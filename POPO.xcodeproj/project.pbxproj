@@ -49,6 +49,8 @@
 		0AF68BC32C502DE600CE0EC1 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BC22C502DE600CE0EC1 /* OnboardingViewController.swift */; };
 		0AF68BC92C506F0900CE0EC1 /* AgePageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BC82C506F0900CE0EC1 /* AgePageCollectionViewCell.swift */; };
 		0AF68BCB2C527DC800CE0EC1 /* MoveToLackyCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */; };
+		0AF68BD02C52985700CE0EC1 /* MakeCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BCF2C52985700CE0EC1 /* MakeCharmView.swift */; };
+		0AF68BD32C52987700CE0EC1 /* MakeCharmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BD22C52987700CE0EC1 /* MakeCharmViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +93,8 @@
 		0AF68BC22C502DE600CE0EC1 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		0AF68BC82C506F0900CE0EC1 /* AgePageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgePageCollectionViewCell.swift; sourceTree = "<group>"; };
 		0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToLackyCharmView.swift; sourceTree = "<group>"; };
+		0AF68BCF2C52985700CE0EC1 /* MakeCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmView.swift; sourceTree = "<group>"; };
+		0AF68BD22C52987700CE0EC1 /* MakeCharmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,7 @@
 		0AADD1192C4E538900A2C7A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0AF68BCE2C52984700CE0EC1 /* MakeCharm */,
 				0AE6CEFD2C522050005B94B3 /* TotalCharm */,
 				0AE6CEF12C51FC76005B94B3 /* MyPage */,
 				0ADFB5522C509910004FB1BA /* Home */,
@@ -171,6 +176,7 @@
 		0AADD11A2C4E53B100A2C7A4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0AF68BD12C52986800CE0EC1 /* MakeCharm */,
 				0AE6CF022C52209D005B94B3 /* TotalCharm */,
 				0AE6CEF42C51FCA4005B94B3 /* MyPage */,
 				0ADFB55B2C509983004FB1BA /* Homve */,
@@ -338,6 +344,22 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		0AF68BCE2C52984700CE0EC1 /* MakeCharm */ = {
+			isa = PBXGroup;
+			children = (
+				0AF68BCF2C52985700CE0EC1 /* MakeCharmView.swift */,
+			);
+			path = MakeCharm;
+			sourceTree = "<group>";
+		};
+		0AF68BD12C52986800CE0EC1 /* MakeCharm */ = {
+			isa = PBXGroup;
+			children = (
+				0AF68BD22C52987700CE0EC1 /* MakeCharmViewController.swift */,
+			);
+			path = MakeCharm;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -437,8 +459,10 @@
 				0AE6CF042C5222BE005B94B3 /* TotalCharmCollectionViewCell.swift in Sources */,
 				0A79962F2C5240B5000E544A /* ClovaAPI.swift in Sources */,
 				0A7996362C524E24000E544A /* UserInfo.swift in Sources */,
+				0AF68BD32C52987700CE0EC1 /* MakeCharmViewController.swift in Sources */,
 				0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */,
 				0A34A5F72C4D3CBA0023C8C7 /* LaunchScreenViewController.swift in Sources */,
+				0AF68BD02C52985700CE0EC1 /* MakeCharmView.swift in Sources */,
 				0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */,
 				0AE6CEFA2C5200BB005B94B3 /* UserInfoView.swift in Sources */,
 				0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */,
