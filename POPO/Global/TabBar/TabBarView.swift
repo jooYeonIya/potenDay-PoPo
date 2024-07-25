@@ -106,7 +106,7 @@ class TabBarView: BaseView {
             }
         }
     }
-    
+
     override func setupLayout() {
         backgroundImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

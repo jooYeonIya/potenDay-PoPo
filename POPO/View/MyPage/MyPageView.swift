@@ -15,6 +15,7 @@ class MyPageView: BaseView {
     lazy var greenCircleView = UIView()
     lazy var blurView = UIVisualEffectView()
     lazy var QnATableView = UITableView()
+    lazy var tabBarView = TabBarView()
     
     override func configure() {
         super.configure()
@@ -22,7 +23,7 @@ class MyPageView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([topBackgroundView, greenCircleView, blurView, titleView, userInfoView, QnATableView])
+        addSubviews([topBackgroundView, greenCircleView, blurView, titleView, userInfoView, QnATableView, tabBarView])
         
         topBackgroundView.backgroundColor = .userGray(9)
         
@@ -38,6 +39,8 @@ class MyPageView: BaseView {
         
         userInfoView.nickname = "나는야럭키걸"
         userInfoView.configure()
+        
+        tabBarView.configure()
     }
 
     override func setupDelegate() {
@@ -75,6 +78,13 @@ class MyPageView: BaseView {
         QnATableView.snp.makeConstraints { make in
             make.top.equalTo(userInfoView.snp.bottom).offset(16)
             make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        tabBarView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
+            make.height.equalTo(80)
         }
     }
 }
