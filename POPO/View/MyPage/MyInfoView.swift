@@ -33,6 +33,7 @@ class MyInfoView: BaseView {
         
         modifyButton.setImage(UIImage(named: "ModifyUserInfo_Unselected"), for: .normal)
         modifyButton.setImage(UIImage(named: "ModifyUserInfo_Selected"), for: .selected)
+        modifyButton.addTarget(self, action: #selector(modifyButtonTapped), for: .touchUpInside)
     }
     
     override func setupLayout() {
@@ -54,6 +55,18 @@ class MyInfoView: BaseView {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-16)
             make.width.height.equalTo(24)
+        }
+    }
+    
+    @objc private func modifyButtonTapped() {
+        modifyButton.isSelected.toggle()
+        
+        if modifyButton.isSelected {
+            nicknameTextField.isUserInteractionEnabled = true
+            nicknameTextField.becomeFirstResponder()
+        } else {
+            nicknameTextField.isUserInteractionEnabled = false
+            nicknameTextField.resignFirstResponder()
         }
     }
 }
