@@ -1,5 +1,5 @@
 //
-//  MyInfoView.swift
+//  UserInfoView.swift
 //  POPO
 //
 //  Created by 강주연 on 7/25/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyInfoView: BaseView {
+class UserInfoView: BaseView {
     lazy var imageView = UIImageView()
     lazy var titleLabel = CustomLabel(text: "행운의 주인공", font: .body(ofSize: 15))
     lazy var nicknameTextField = UITextField()

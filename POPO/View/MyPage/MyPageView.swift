@@ -10,7 +10,7 @@ import UIKit
 class MyPageView: BaseView {
     
     lazy var titleView = TitleView(title: "마이페이지")
-    lazy var myInfoView = MyInfoView()
+    lazy var myInfoView = UserInfoView()
     lazy var topBackgroundView = UIView()
     lazy var blurView = UIVisualEffectView()
     

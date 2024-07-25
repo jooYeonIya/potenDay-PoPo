@@ -30,7 +30,7 @@
 		0AE6CEF32C51FC82005B94B3 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6CEF22C51FC82005B94B3 /* MyPageView.swift */; };
 		0AE6CEF62C51FCAE005B94B3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6CEF52C51FCAE005B94B3 /* MyPageViewController.swift */; };
 		0AE6CEF82C51FDAC005B94B3 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6CEF72C51FDAC005B94B3 /* TitleView.swift */; };
-		0AE6CEFA2C5200BB005B94B3 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6CEF92C5200BB005B94B3 /* MyInfoView.swift */; };
+		0AE6CEFA2C5200BB005B94B3 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6CEF92C5200BB005B94B3 /* UserInfoView.swift */; };
 		0AF68BB72C4FF7BD00CE0EC1 /* UILable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BB62C4FF7BD00CE0EC1 /* UILable+Extension.swift */; };
 		0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */; };
 		0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */; };
@@ -63,7 +63,7 @@
 		0AE6CEF22C51FC82005B94B3 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		0AE6CEF52C51FCAE005B94B3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		0AE6CEF72C51FDAC005B94B3 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
-		0AE6CEF92C5200BB005B94B3 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
+		0AE6CEF92C5200BB005B94B3 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		0AF68BB62C4FF7BD00CE0EC1 /* UILable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILable+Extension.swift"; sourceTree = "<group>"; };
 		0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				0AE6CEF22C51FC82005B94B3 /* MyPageView.swift */,
-				0AE6CEF92C5200BB005B94B3 /* MyInfoView.swift */,
+				0AE6CEF92C5200BB005B94B3 /* UserInfoView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -375,7 +375,7 @@
 				0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */,
 				0A34A5F72C4D3CBA0023C8C7 /* LaunchScreenViewController.swift in Sources */,
 				0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */,
-				0AE6CEFA2C5200BB005B94B3 /* MyInfoView.swift in Sources */,
+				0AE6CEFA2C5200BB005B94B3 /* UserInfoView.swift in Sources */,
 				0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */,
 				0ADFB55A2C509969004FB1BA /* TabBarView.swift in Sources */,
 				0AE6CEF82C51FDAC005B94B3 /* TitleView.swift in Sources */,
