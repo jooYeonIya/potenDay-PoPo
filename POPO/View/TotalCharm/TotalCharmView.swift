@@ -16,17 +16,17 @@ class TotalCharmView: BaseView {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 4, bottom: 8, right: 4)
-                
+
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.register(TotalCharmCollectionViewCell.self, forCellWithReuseIdentifier: "TotalCharmCollectionViewCell")
+
         return collectionView
     }()
     
-    private var collectionViewHeightConstraint: Constraint?
     private var cellHeights: [IndexPath: CGFloat] = [:]
     
     override func configure() {
@@ -63,28 +63,36 @@ class TotalCharmView: BaseView {
             make.top.equalTo(titleView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(30)
             make.bottom.equalTo(safeAreaLayoutGuide)
-            self.collectionViewHeightConstraint = make.height.equalTo(100).constraint
         }
     }
 }
 
 extension TotalCharmView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 11
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TotalCharmCollectionViewCell", for: indexPath) as? TotalCharmCollectionViewCell else {
             return UICollectionViewCell()
         }
+        cell.delegate = self
 
-        cell.configure()
+        cell.configure(for: indexPath)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width / 2) - 16
-        return CGSize(width: width, height: 400)
+        let height = cellHeights[indexPath] ?? 100
+        return CGSize(width: width, height: height)
+    }
+}
+
+extension TotalCharmView: TotalCharmCollectionViewCellDelegate {
+    func didCalculateHeight(_ height: CGFloat, for indexPath: IndexPath) {
+        cellHeights[indexPath] = height
+        collectionView.reloadData()
     }
 }
 
