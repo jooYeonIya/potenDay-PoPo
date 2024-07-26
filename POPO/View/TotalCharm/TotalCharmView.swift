@@ -73,7 +73,7 @@ class TotalCharmView: BaseView {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(titleView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(30)
-            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.bottom.equalTo(tabBarView.snp.top)
         }
         
         tabBarView.snp.makeConstraints { make in
@@ -94,7 +94,6 @@ extension TotalCharmView: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TotalCharmCollectionViewCell", for: indexPath) as? TotalCharmCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.delegate = self
 
         cell.configure(for: indexPath)
         return cell
@@ -102,15 +101,8 @@ extension TotalCharmView: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width / 2) - 16
-        let height = cellHeights[indexPath] ?? 100
+        let height = width * 1.8
         return CGSize(width: width, height: height)
-    }
-}
-
-extension TotalCharmView: TotalCharmCollectionViewCellDelegate {
-    func didCalculateHeight(_ height: CGFloat, for indexPath: IndexPath) {
-        cellHeights[indexPath] = height
-        collectionView.reloadData()
     }
 }
 

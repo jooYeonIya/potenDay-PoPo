@@ -9,22 +9,25 @@ import UIKit
 
 class MakeCharmView: BaseView {
 
+    lazy var blurView = UIVisualEffectView()
     lazy var titleView = TitleView(title: "행운부적")
-    let cardImageView = UIImageView(image: UIImage(named: "DummyCharm"))
-    let bottomLabel = UILabel()
-    let closeButton = UIButton(type: .system)
-    let saveButton = UIButton(type: .system)
-    let shareButton = UIButton()
+    lazy var cardImageView = UIImageView(image: UIImage(named: "DummyCharm"))
+    lazy var closeButton = UIButton(type: .system)
+    lazy var saveButton = UIButton(type: .system)
+    lazy var shareButton = UIButton()
     
     
     override func configure() {
         super.configure()
-        backgroundColor = .userLightGreen
     }
     
     override func setupUI() {
-        addSubviews([titleView, cardImageView, bottomLabel, saveButton, closeButton, shareButton])
+        addSubviews([blurView, titleView, cardImageView, saveButton, closeButton, shareButton])
 
+//        blurView.backgroundColor = .userLightGreen
+        blurView.alpha = 0.7
+        blurView.effect = UIBlurEffect(style: .extraLight)
+        
         cardImageView.contentMode = .scaleAspectFit
         cardImageView.layer.shadowColor = UIColor.userGray(1).cgColor
         cardImageView.layer.shadowOpacity = 0.4
@@ -34,10 +37,6 @@ class MakeCharmView: BaseView {
         // 이미지 선택은 랜덤(?)
         // 그 이미지에 따라 좌표값과 가로세로 값이 다르기 때문에 어딘가 저장해두는 게 좋을 것 같다
         makeCharmImage()
-        
-        bottomLabel.text = "다음 버스가 빨리 오기를 빌어줄게!🍀"
-        bottomLabel.font = .body(ofSize: 15)
-        bottomLabel.textColor = .userGray(1)
         
         var configuration = UIButton.Configuration.plain()
         configuration.image = UIImage(named: "Clover_Selected")
@@ -62,6 +61,10 @@ class MakeCharmView: BaseView {
     }
     
     override func setupLayout() {
+        
+        blurView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
 
         titleView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
@@ -75,17 +78,12 @@ class MakeCharmView: BaseView {
             make.width.equalTo(270)
             make.height.equalTo(480)
         }
-        
-        bottomLabel.snp.makeConstraints { make in
-            make.top.equalTo(cardImageView.snp.bottom).offset(24)
-            make.centerX.equalToSuperview()
-        }
-        
-        saveButton.snp.makeConstraints { make in
-            make.top.equalTo(bottomLabel.snp.bottom).offset(24)
-            make.height.equalTo(80)
-            make.trailing.equalToSuperview().offset(-32)
-        }
+//        
+//        saveButton.snp.makeConstraints { make in
+//            make.top.equalTo(cardImageView.snp.bottom).offset(24)
+//            make.height.equalTo(80)
+//            make.trailing.equalToSuperview().offset(-32)
+//        }
         
         shareButton.snp.makeConstraints { make in
             make.top.equalTo(saveButton.snp.top)
