@@ -14,7 +14,7 @@ enum ActionButtonOtpion: Int {
 }
 
 class MiddleView: BaseView {
-    lazy var inputePlaceholderLabel = CustomLabel(text: "포포한테 알려줘", font: .body(ofSize: 17))
+    lazy var inputePlaceholderLabel = CustomLabel(text: "포포에게 알려줘", font: .body(ofSize: 17))
     lazy var inputTextBackgroundView = UIView()
     lazy var inputTextView = UITextView()
     lazy var actionButton = UIButton()
@@ -60,7 +60,11 @@ class MiddleView: BaseView {
         
         characterImageView.image = UIImage(named: "Charactor_Main")
         
-        characterTextView.text = "안녕? 내 이름은 포포(PoPo) 긍정의 힘에서 따온 말이래. 무엇이든 긍적으로 바꿔줄게!으으으으으 어어어어어어 럭키비키 정말 최고의 ..아니 우리의 포포가 최고의 앱 한 줄 더 써야 하는데 무슨 말을 하지.. 저 오늘 맥도날드 가서 상하이 치킨 버거 먹었습니다 왜냐면 오늘은 중복이기 떄문이죠! "
+        characterTextView.text = """
+                                안녕? 내 이름은 포포(PoPo).
+                                긍정의 힘에서 따온 말이래.
+                                무엇이든 긍적으로 바꿔줄게!
+                                """
         characterTextView.font = .point(ofSize: 15)
         characterTextView.textAlignment = .center
         
@@ -74,7 +78,7 @@ class MiddleView: BaseView {
         
         inputTextBackgroundView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(38)
             make.height.equalTo(200)
         }
         
@@ -98,7 +102,7 @@ class MiddleView: BaseView {
         
         characterImageView.snp.makeConstraints{ make in
             make.top.equalTo(speechBubbleImageView.snp.bottom).offset(-16)
-            make.trailing.equalToSuperview()
+            make.trailing.equalTo(inputTextBackgroundView.snp.trailing)
             make.width.height.equalTo(100)
         }
         

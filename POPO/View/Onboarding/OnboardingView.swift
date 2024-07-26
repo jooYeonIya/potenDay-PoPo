@@ -20,7 +20,7 @@ class OnboardingView: BaseView {
     
     lazy var rightButton = UIButton()
     
-    lazy var errorLabel = CustomLabel(text: "10자 이내로 입력해줘!", font: .body(ofSize: 15))
+    lazy var errorLabel = CustomLabel(text: "닉네임은 10글자 내로 부탁할게~", font: .body(ofSize: 11))
     
     lazy var doneButton = UIButton()
     
@@ -54,6 +54,7 @@ class OnboardingView: BaseView {
         pageControl.setIndicatorImage(indicatorImage, forPage: 1)
         
         errorLabel.isHidden = true
+        errorLabel.textColor = .systemRed
         
         doneButton.applyBlurButton(withImage: UIImage(named: "Clover_Selected")!, withText: "준비 끝!", fontSize: 15)
         doneButton.isHidden = isNotAgeView
@@ -153,7 +154,7 @@ class OnboardingView: BaseView {
         
         errorLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(pageControl.snp.top).offset(-12)
+            make.bottom.equalTo(pageControl.snp.top)
         }
         
         namePageView.snp.makeConstraints { make in

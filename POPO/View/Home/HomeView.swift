@@ -61,10 +61,10 @@ class HomeView: BaseView {
         }
         
         segmentedView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide)
+            make.top.equalTo(safeAreaLayoutGuide).offset(16)
             make.centerX.equalToSuperview()
             make.height.equalTo(40)
-            make.width.equalTo(120)
+            make.width.equalTo(92)
         }
         
         middleView.snp.makeConstraints { make in
