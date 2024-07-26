@@ -8,8 +8,8 @@
 import Foundation
 
 struct MessageData: Codable {
-    let clovaMood: String
-    let vickyMood: String
+    let clovaMood: String?
+    let vickyMood: String?
     
     enum CodingKeys: String, CodingKey {
         case clovaMood = "clova_mood"

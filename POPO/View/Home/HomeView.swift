@@ -18,6 +18,18 @@ class HomeView: BaseView {
     lazy var middleView = MiddleView()
     lazy var tabBarView = TabBarView()
     lazy var moveTolackyCharmView = MoveToLackyCharmView()
+    
+    var vikiAnswer: String? = SegmentedOption.viki.description {
+        willSet {
+            middleView.characterTextView.text = newValue
+        }
+    }
+    
+    var popoAnswer: String? = SegmentedOption.popo.description {
+        willSet {
+            middleView.characterTextView.text = newValue
+        }
+    }
 
     override func configure() {
         super.configure()
@@ -57,9 +69,15 @@ class HomeView: BaseView {
         // 메인 컴에서 퍼스트런칭 처리 넣어야함
         toolTip.isHidden = option == .viki ? false : true
         
-        middleView.characterTextView.text = option.description
         middleView.characterImageView.image = UIImage(named: option.imageName)
         middleView.inputePlaceholderLabel.text = "\(option.title)에게 알려줘!"
+        
+        switch option {
+        case .popo:
+            middleView.characterTextView.text = popoAnswer
+        case .viki:
+            middleView.characterTextView.text = vikiAnswer
+        }
     }
     
     override func setupLayout() {

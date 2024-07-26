@@ -56,6 +56,9 @@ class HomeViewController: BaseViewController {
                         self?.updateUI(response: messageResponse)
                     case .failure(let error):
                         print(error)
+                        // 기획자님 메세지 확인할 것
+                        self?.showAlertOneButton(title: "", message: "한 번 더")
+                        self?.baseView.middleView.toggleActionButton(.selected)
                     }
                 }
             }
@@ -72,7 +75,9 @@ class HomeViewController: BaseViewController {
     }
     
     private func updateUI(response: MessageResponse) {
-        baseView.middleView.characterTextView.text = response.data.clovaMood
+        baseView.popoAnswer = response.data.clovaMood
+        baseView.vikiAnswer = response.data.vickyMood
+
         baseView.middleView.updateAcionButtonRepeat()
     }
 }
