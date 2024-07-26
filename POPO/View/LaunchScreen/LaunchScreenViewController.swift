@@ -66,12 +66,18 @@ class LaunchScreenViewController: UIViewController {
     }
     
     @objc private func moveToNextView() {
-        // 첫 실행인지 아닌지에 따라서 뷰 이동 따로따로 해야함
         
-        // 첫 실행 시 - 온보딩 뷰
-        let onboardingView = OnboardingViewController()
-        onboardingView.modalPresentationStyle = .fullScreen
-        present(onboardingView, animated: true, completion: nil)
+        let isOnboardingCompleted = UserDefaults.standard.bool(forKey: "isOnboardingCompleted")
+        
+        if isOnboardingCompleted {
+            let homeView = HomeViewController()
+            homeView.modalPresentationStyle = .fullScreen
+            present(homeView, animated: false)
+        } else {
+            let onboardingView = OnboardingViewController()
+            onboardingView.modalPresentationStyle = .fullScreen
+            present(onboardingView, animated: false)
+        }
     }
 }
 
