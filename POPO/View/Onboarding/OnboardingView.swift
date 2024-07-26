@@ -280,4 +280,14 @@ extension OnboardingView: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.configure(text: Ages.from(number: indexPath.row)?.description ?? "")
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! AgePageCollectionViewCell
+        cell.configure(text: Ages.from(number: indexPath.row)?.description ?? "")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! AgePageCollectionViewCell
+        cell.configure(text: Ages.from(number: indexPath.row)?.description ?? "")
+    }
 }
