@@ -49,7 +49,7 @@ extension UIButton {
         
         var configuration = UIButton.Configuration.plain()
         
-        let attributedString = NSAttributedString(string: option.text, attributes: [.font: UIFont.body(ofSize: 13), .foregroundColor: option.fontColor])
+        let attributedString = NSAttributedString(string: option.text, attributes: [.font: UIFont.bodyBold(ofSize: 13), .foregroundColor: option.fontColor])
         
         configuration.attributedTitle = AttributedString(attributedString)
         configuration.image = option.image
