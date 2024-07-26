@@ -30,9 +30,22 @@ class OnboardingViewController: BaseViewController {
     override func setupEvent() {
         baseView.doneButton.rx.tap
             .bind { [weak self] _ in
-                self?.moveToHomeView()
+                self?.saveUserInfo()
             }
             .disposed(by: disposebag)
+    }
+    
+    private func saveUserInfo() {
+        let userName = baseView.nameTextField.text
+        let userAge = Ages(rawValue: baseView.selecetedUserAge)?.userAsge
+        let UUID = "test id"
+        
+        if userName == "" || baseView.selecetedUserAge == 99 {
+            showAlertOneButton(title: "이름 및 나이를 확인해 주세요", message: "확인혀~")
+        } else {
+            let userInfo = UserInfo(age: userAge!, name: userName!, deviceId: UUID)
+            ClovaAPIService.share.submitOnboard(request: userInfo)
+        }
     }
     
     private func moveToHomeView() {

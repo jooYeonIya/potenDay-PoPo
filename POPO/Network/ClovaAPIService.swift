@@ -9,6 +9,7 @@ import Moya
 import Foundation
 
 class ClovaAPIService {
+    static let share = ClovaAPIService()
     private let provider = MoyaProvider<ClovaAPI>()
     
     func checkHealth() {
@@ -43,6 +44,7 @@ class ClovaAPIService {
         }
     }
     
+    // 온보딩 페이지에서 사용
     func submitOnboard(request: UserInfo) {
         provider.request(.onboard(request: request)) { result in
             switch result {

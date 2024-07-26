@@ -8,51 +8,14 @@
 import UIKit
 import SnapKit
 
-enum Ages: Int, CaseIterable {
-    case age0to9
-    case age10to14
-    case age15to19
-    case age20to24
-    case age25to29
-    case age30to34
-    case age35to39
-    case age40
-    case age50
-    
-    var description: String {
-        switch self {
-        case .age0to9:
-            return "0-9"
-        case .age10to14:
-            return "10-14"
-        case .age15to19:
-            return "15-19"
-        case .age20to24:
-            return "20-24"
-        case .age25to29:
-            return "25-29"
-        case .age30to34:
-            return "30-34"
-        case .age35to39:
-            return "35-39"
-        case .age40:
-            return "40대"
-        case .age50:
-            return "50대 이상"
-        }
-    }
-    
-    static func from(number: Int) -> Ages? {
-        return Ages(rawValue: number)
-    }
-}
-
 class OnboardingView: BaseView {
     
     lazy var scrollView = UIScrollView()
     lazy var pageControl = UIPageControl()
     
     lazy var namePageView = UIView()
+    lazy var nameTextField = UITextField()
+
     lazy var agePageView = UIView()
     
     lazy var rightButton = UIButton()
@@ -60,6 +23,8 @@ class OnboardingView: BaseView {
     lazy var errorLabel = CustomLabel(text: "10자 이내로 입력해줘!", font: .body(ofSize: 15))
     
     lazy var doneButton = UIButton()
+    
+    var selecetedUserAge = 99
     
     var isNotAgeView: Bool = true {
         willSet {
@@ -92,7 +57,6 @@ class OnboardingView: BaseView {
         
         doneButton.applyBlurButton(withImage: UIImage(named: "Clover_Selected")!, withText: "준비 끝!", fontSize: 15)
         doneButton.isHidden = isNotAgeView
-        doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         
         addSubviews([scrollView, pageControl, errorLabel, doneButton])
         
@@ -105,7 +69,6 @@ class OnboardingView: BaseView {
     private func setupNamePageView() {
         let nameLabel = CustomLabel(text: "행운이 찾아갈 너의 이름을 알려줘!", font: .point(ofSize: 15))
         
-        let nameTextField = UITextField()
         nameTextField.delegate = self
         nameTextField.background = UIImage(named: "BlurButton")
         nameTextField.textAlignment = .center
@@ -218,10 +181,6 @@ class OnboardingView: BaseView {
         scrollView.setContentOffset(offset, animated: true)
         scrollView.isScrollEnabled = true
     }
-    
-    @objc private func doneButtonTapped() {
-        print("asdfasdf")
-    }
 }
 
 extension OnboardingView: UIScrollViewDelegate {
@@ -284,6 +243,7 @@ extension OnboardingView: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! AgePageCollectionViewCell
         cell.configure(text: Ages.from(number: indexPath.row)?.description ?? "")
+        selecetedUserAge = indexPath.row
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
