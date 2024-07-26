@@ -47,9 +47,10 @@ class OnboardingViewController: BaseViewController {
             let userInfo = UserInfo(age: userAge!, name: userName!, deviceId: UUID)
             ClovaAPIService.share.submitOnboard(request: userInfo) { result in
                 switch result {
-                case .success(let success):
+                case .success(_):
+                    UserDefaults.standard.setValue(UUID, forKey: "deviceID")
                     self.moveToHomeView()
-                case .failure(let error):
+                case .failure(_):
                     self.showAlertOneButton(title: "", message: "다시 한 번 시도해 주세요")
                 }
             }

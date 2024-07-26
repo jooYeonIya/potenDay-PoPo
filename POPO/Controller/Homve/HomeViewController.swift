@@ -30,15 +30,13 @@ class HomeViewController: BaseViewController {
         baseView.segmentedView.segmentControl.rx
             .selectedSegmentIndex
             .bind(onNext: { [weak self] index in
-                guard let option = SegmentedOption(rawValue: index) else { return }
-                self?.baseView.middleView.characterImageView.image = UIImage(named: option.imageName)
-                self?.baseView.middleView.characterTextView.text = option.title
+                self?.baseView.updateUIForSegmentChange(index)
             })
             .disposed(by: disposeBag)
         
         baseView.middleView.actionButton.rx
             .tap
-            .bind { [weak self] button in
+            .bind { [weak self] in
                     
                 self?.baseView.middleView.updateActionButtonLoading()
                 self?.baseView.middleView.inputTextView.resignFirstResponder()

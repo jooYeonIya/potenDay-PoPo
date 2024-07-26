@@ -52,8 +52,6 @@ class MiddleView: BaseView {
         inputTextView.addSubview(inputePlaceholderLabel)
         
         toggleActionButton(.deselected)
-        
-
     }
 
     private func setupCharactorView() {
@@ -62,11 +60,7 @@ class MiddleView: BaseView {
         
         characterImageView.image = UIImage(named: "Charactor_Main")
         
-        characterTextView.text = """
-                                안녕? 내 이름은 포포(PoPo).
-                                긍정의 힘에서 따온 말이래.
-                                무엇이든 긍적으로 바꿔줄게!
-                                """
+        characterTextView.text = SegmentedOption(rawValue: 0)?.description
         characterTextView.font = .point(ofSize: 15)
         characterTextView.textAlignment = .center
     }
@@ -99,6 +93,8 @@ class MiddleView: BaseView {
         speechBubbleImageView.snp.makeConstraints { make in
             make.top.equalTo(inputTextBackgroundView.snp.bottom).offset(16)
             make.leading.trailing.equalTo(inputTextBackgroundView)
+            make.height.equalTo(174)
+            make.width.equalTo(300)
         }
         
         characterImageView.snp.makeConstraints{ make in
@@ -108,8 +104,9 @@ class MiddleView: BaseView {
         }
         
         characterTextView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview().inset(20)
+            make.center.equalToSuperview()
             make.height.equalTo(120)
+            make.width.equalTo(240)
         }
     }
     

@@ -7,32 +7,6 @@
 
 import UIKit
 
-enum SegmentedOption: Int {
-    case popo
-    case viki
-    
-    var title: String {
-        switch self {
-        case .popo: return "포포"
-        case .viki: return "비키"
-        }
-    }
-    
-    var imageName: String {
-        switch self {
-        case .popo: return "Charactor_Main"
-        case .viki: return "Charactor_Viki"
-        }
-    }
-    
-    var apiName: String {
-        switch self {
-        case .popo: return "POPO"
-        case .viki: return "VIKI"
-        }
-    }
-}
-
 class SegmentedView: BaseView {
     lazy var segmentControl: UISegmentedControl = {
         let items = [SegmentedOption.popo.title, SegmentedOption.viki.title]
