@@ -61,6 +61,12 @@ class OnboardingView: BaseView {
     
     lazy var doneButton = UIButton()
     
+    var isNotAgeView: Bool = true {
+        willSet {
+            doneButton.isHidden = newValue
+        }
+    }
+    
     override func configure() {
         super.configure()
         backgroundColor = .userLightGreen
@@ -85,6 +91,7 @@ class OnboardingView: BaseView {
         errorLabel.isHidden = true
         
         doneButton.applyBlurButton(withImage: UIImage(named: "Clover_Selected")!, withText: "준비 끝!", fontSize: 15)
+        doneButton.isHidden = isNotAgeView
         doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         
         addSubviews([scrollView, pageControl, errorLabel, doneButton])
@@ -222,6 +229,10 @@ extension OnboardingView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x / frame.width)
         pageControl.currentPage = Int(pageIndex)
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        isNotAgeView.toggle()
     }
 }
 
