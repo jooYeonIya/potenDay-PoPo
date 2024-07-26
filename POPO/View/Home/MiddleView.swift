@@ -14,7 +14,7 @@ enum ActionButtonOtpion: Int {
 }
 
 class MiddleView: BaseView {
-    lazy var inputePlaceholderLabel = CustomLabel(text: "포포에게 알려줘", font: .body(ofSize: 17))
+    lazy var inputePlaceholderLabel = CustomLabel(text: "포포에게 알려줘!", font: .body(ofSize: 17))
     lazy var inputTextBackgroundView = UIView()
     lazy var inputTextView = UITextView()
     lazy var actionButton = UIButton()
