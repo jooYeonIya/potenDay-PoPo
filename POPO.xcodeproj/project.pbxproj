@@ -55,6 +55,7 @@
 		0AF68BDE2C52A3B800CE0EC1 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 0AF68BDD2C52A3B800CE0EC1 /* Moya */; };
 		0AF68BE02C52A3B800CE0EC1 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0AF68BDF2C52A3B800CE0EC1 /* RxMoya */; };
 		0AF68BE52C52D76300CE0EC1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AF68BE42C52D76300CE0EC1 /* IQKeyboardManagerSwift */; };
+		0AF68BE72C53E6E900CE0EC1 /* CharmImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BE62C53E6E900CE0EC1 /* CharmImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToLackyCharmView.swift; sourceTree = "<group>"; };
 		0AF68BCF2C52985700CE0EC1 /* MakeCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmView.swift; sourceTree = "<group>"; };
 		0AF68BD22C52987700CE0EC1 /* MakeCharmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmViewController.swift; sourceTree = "<group>"; };
+		0AF68BE62C53E6E900CE0EC1 /* CharmImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharmImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				0A7996372C5251EA000E544A /* MessageRequest.swift */,
 				0A24E7AA2C5376FB00F2CE90 /* MessageResponse.swift */,
 				0A24E7AC2C53849E00F2CE90 /* SegmentedOption.swift */,
+				0AF68BE62C53E6E900CE0EC1 /* CharmImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				0AE6CEFF2C522066005B94B3 /* TotalCharmView.swift in Sources */,
 				0ADFB5542C509921004FB1BA /* HomeView.swift in Sources */,
 				0AF68BCB2C527DC800CE0EC1 /* MoveToLackyCharmView.swift in Sources */,
+				0AF68BE72C53E6E900CE0EC1 /* CharmImage.swift in Sources */,
 				0AADD1682C4FD77100A2C7A4 /* UIFont+Extension.swift in Sources */,
 				0ADFB5562C509943004FB1BA /* SegmentedView.swift in Sources */,
 				0AE6CF042C5222BE005B94B3 /* TotalCharmCollectionViewCell.swift in Sources */,
