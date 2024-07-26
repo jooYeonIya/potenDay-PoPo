@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct MessageRequest: Codable{
+struct MessageRequest: Codable {
     let message: String
     let deviceId: String
+    let character: String
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A24E7A82C5347E100F2CE90 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24E7A72C5347E100F2CE90 /* UIDevice.swift */; };
+		0A24E7AB2C5376FB00F2CE90 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24E7AA2C5376FB00F2CE90 /* MessageResponse.swift */; };
 		0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F22C4D3CBA0023C8C7 /* AppDelegate.swift */; };
 		0A34A5F52C4D3CBA0023C8C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F42C4D3CBA0023C8C7 /* SceneDelegate.swift */; };
 		0A34A5F72C4D3CBA0023C8C7 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F62C4D3CBA0023C8C7 /* LaunchScreenViewController.swift */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		0A24E7A72C5347E100F2CE90 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		0A24E7AA2C5376FB00F2CE90 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 		0A34A5EF2C4D3CBA0023C8C7 /* POPO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POPO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A34A5F22C4D3CBA0023C8C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../Application/AppDelegate.swift; sourceTree = "<group>"; };
 		0A34A5F42C4D3CBA0023C8C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = ../Application/SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				0A7996352C524E24000E544A /* UserInfo.swift */,
 				0A7996372C5251EA000E544A /* MessageRequest.swift */,
+				0A24E7AA2C5376FB00F2CE90 /* MessageResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				0AF68BC92C506F0900CE0EC1 /* AgePageCollectionViewCell.swift in Sources */,
 				0A7996312C5240E3000E544A /* ClovaAPIService.swift in Sources */,
 				0ADFB55D2C509993004FB1BA /* HomeViewController.swift in Sources */,
+				0A24E7AB2C5376FB00F2CE90 /* MessageResponse.swift in Sources */,
 				0A24E7A82C5347E100F2CE90 /* UIDevice.swift in Sources */,
 				0A7996382C5251EA000E544A /* MessageRequest.swift in Sources */,
 				0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */,

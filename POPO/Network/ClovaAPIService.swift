@@ -60,14 +60,16 @@ class ClovaAPIService {
         }
     }
     
-    func submitMessage(request: MessageRequest) {
+    // 홈 화면에서 사용
+    func submitMessage(request: MessageRequest, completion: @escaping (Result<MessageResponse, Error>) -> Void) {
         provider.request(.message(request: request)) { result in
             switch result {
             case let .success(response):
-                if let responseString = String(data: response.data, encoding: .utf8) {
-                    print("Onboard Response: \(responseString)")
-                } else {
-                    print("Failed to convert response data to string.")
+                do {
+                    let messageResponse = try JSONDecoder().decode(MessageResponse.self, from: response.data)
+                    completion(.success(messageResponse))
+                } catch {
+                    completion(.failure(error))
                 }
             case let .failure(error):
                 print(error.localizedDescription)

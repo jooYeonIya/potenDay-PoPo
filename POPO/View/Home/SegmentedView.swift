@@ -24,6 +24,13 @@ enum SegmentedOption: Int {
         case .viki: return "Charactor_Viki"
         }
     }
+    
+    var apiName: String {
+        switch self {
+        case .popo: return "POPO"
+        case .viki: return "VIKI"
+        }
+    }
 }
 
 class SegmentedView: BaseView {

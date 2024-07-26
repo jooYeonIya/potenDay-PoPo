@@ -39,10 +39,26 @@ class HomeViewController: BaseViewController {
         baseView.middleView.actionButton.rx
             .tap
             .bind { [weak self] button in
-                guard let button = self?.baseView.middleView.actionButton else { return }
-                button.tag = button.tag == 0 ? 1 : 0
-                let option = ActionButtonOtpion(rawValue: button.tag)
-                self?.baseView.middleView.toggleActionButton(option!)
+                    
+                self?.baseView.middleView.updateActionButtonLoading()
+                
+                let message = self?.baseView.middleView.inputTextView.text
+                let character = SegmentedOption(rawValue: self?.baseView.segmentedView.segmentControl.selectedSegmentIndex ?? 1)?.apiName
+//                let deviceId = UserDefaults.standard.string(forKey: "deviceId")
+                let deviceId = "test Id"
+                
+                let messageRequest = MessageRequest(message: message ?? "",
+                                                    deviceId: deviceId,
+                                                    character: character ?? "POPO")
+                
+                ClovaAPIService.share.submitMessage(request: messageRequest) { result in
+                    switch result {
+                    case .success(let messageResponse):
+                        self?.updateUI(response: messageResponse)
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
             }
             .disposed(by: disposeBag)
         
@@ -54,5 +70,10 @@ class HomeViewController: BaseViewController {
                 self?.present(vc, animated: true)
             }
             .disposed(by: disposeBag)
+    }
+    
+    private func updateUI(response: MessageResponse) {
+        baseView.middleView.characterTextView.text = response.data.clovaMood
+        baseView.middleView.updateAcionButtonRepeat()
     }
 }

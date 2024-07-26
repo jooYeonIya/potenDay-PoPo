@@ -52,6 +52,8 @@ class MiddleView: BaseView {
         inputTextView.addSubview(inputePlaceholderLabel)
         
         toggleActionButton(.deselected)
+        
+
     }
 
     private func setupCharactorView() {
@@ -93,7 +95,7 @@ class MiddleView: BaseView {
             make.height.equalTo(40)
             make.width.equalTo(120)
         }
-        
+
         speechBubbleImageView.snp.makeConstraints { make in
             make.top.equalTo(inputTextBackgroundView.snp.bottom).offset(16)
             make.leading.trailing.equalTo(inputTextBackgroundView)
@@ -130,6 +132,27 @@ class MiddleView: BaseView {
                                            image: UIImage(named: "Clover_Selected")!)
             actionButton.applyBasicButton(buttonOption)
         }
+    }
+    
+    func updateActionButtonLoading() {
+        let buttonOption = BasicButtonOtpion(backgroundColor: .userGray(8),
+                                       borderColor: .userGray(6),
+                                       fontColor: .userGray(4),
+                                       text: "로딩중..",
+                                       image: UIImage(named: "Loading")!)
+        
+        actionButton.applyBasicButton(buttonOption)
+        actionButton.isEnabled = true
+    }
+    
+    func updateAcionButtonRepeat() {
+        let buttonOption = BasicButtonOtpion(backgroundColor: .white,
+                                       borderColor: .userGreen,
+                                       fontColor: .userGray(1),
+                                       text: "다시하기",
+                                       image: UIImage(named: "Clover_Selected")!)
+        actionButton.applyBasicButton(buttonOption)
+        actionButton.isEnabled = true
     }
 }
 
