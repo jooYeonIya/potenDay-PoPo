@@ -170,7 +170,10 @@ class OnboardingView: BaseView {
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().multipliedBy(0.8)
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalToSuperview().multipliedBy(0.2)
+            
+            let deviceHasHomeButton = UIDevice.current.hasHomeButton
+            let number = deviceHasHomeButton ? 0.25 : 0.2
+            make.height.equalToSuperview().multipliedBy(number)
         }
         
         pageControl.snp.makeConstraints { make in
