@@ -31,6 +31,7 @@ class OnboardingViewController: BaseViewController {
         baseView.doneButton.rx.tap
             .bind { [weak self] _ in
                 self?.saveUserInfo()
+                self?.moveToHomeView()
             }
             .disposed(by: disposebag)
     }
@@ -38,17 +39,27 @@ class OnboardingViewController: BaseViewController {
     private func saveUserInfo() {
         let userName = baseView.nameTextField.text
         let userAge = Ages(rawValue: baseView.selecetedUserAge)?.userAsge
-        let UUID = "test id"
+        let UUID = UUID().uuidString
         
         if userName == "" || baseView.selecetedUserAge == 99 {
             showAlertOneButton(title: "이름 및 나이를 확인해 주세요", message: "확인혀~")
         } else {
             let userInfo = UserInfo(age: userAge!, name: userName!, deviceId: UUID)
-            ClovaAPIService.share.submitOnboard(request: userInfo)
+            ClovaAPIService.share.submitOnboard(request: userInfo) { result in
+                switch result {
+                case .success(let success):
+                    self.moveToHomeView()
+                case .failure(let error):
+                    self.showAlertOneButton(title: "", message: "다시 한 번 시도해 주세요")
+                }
+            }
         }
     }
     
     private func moveToHomeView() {
+        // 메인컴에서 키 값 확인하고 추가하기
+        UserDefaults.standard.setValue(true, forKey: "")
+        
         let homeView = HomeViewController()
         homeView.modalPresentationStyle = .fullScreen
         present(homeView, animated: true, completion: nil)

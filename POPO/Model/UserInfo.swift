@@ -56,7 +56,7 @@ enum Ages: Int, CaseIterable {
         case .age15to19:
             return "LATE_TEEN"
         case .age20to24:
-            return "EALRY_TWENTY"
+            return "EARLY_TWENTY"
         case .age25to29:
             return "LATE_TWENTY"
         case .age30to34:

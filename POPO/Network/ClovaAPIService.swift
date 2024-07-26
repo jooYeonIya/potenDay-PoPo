@@ -45,7 +45,7 @@ class ClovaAPIService {
     }
     
     // 온보딩 페이지에서 사용
-    func submitOnboard(request: UserInfo) {
+    func submitOnboard(request: UserInfo, completion: @escaping (Result<String, Error>) -> Void) {
         provider.request(.onboard(request: request)) { result in
             switch result {
             case let .success(response):
