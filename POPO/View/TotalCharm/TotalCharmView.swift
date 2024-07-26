@@ -16,7 +16,7 @@ class TotalCharmView: BaseView {
     
     lazy var titleView = TitleView(title: "행운 부적 모음집")
     lazy var topBackgroundView = UIView()
-    lazy var blurView = UIVisualEffectView()
+    lazy var blurImageView = UIImageView()
     lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.totalCharm.rawValue)
     weak var delegate: TotalCharmViewDelegate?
 
@@ -43,13 +43,13 @@ class TotalCharmView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([topBackgroundView, blurView, titleView, collectionView, tabBarView])
+        addSubviews([topBackgroundView, titleView, collectionView, tabBarView, blurImageView])
         
         topBackgroundView.backgroundColor = .userGray(9)
 
-        blurView.effect = UIBlurEffect(style: .extraLight)
-
         tabBarView.delegate = self
+        
+        blurImageView.image = UIImage(named: "BlurView")
     }
     
     override func setupLayout() {
@@ -58,8 +58,10 @@ class TotalCharmView: BaseView {
             make.bottom.equalTo(titleView.snp.bottom).offset(12)
         }
         
-        blurView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        blurImageView.snp.makeConstraints { make in
+            make.top.equalTo(topBackgroundView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(40)
         }
         
         titleView.snp.makeConstraints { make in
