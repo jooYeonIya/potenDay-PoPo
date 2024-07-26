@@ -59,7 +59,7 @@ class HomeView: BaseView {
         tabBarView.delegate = self
         
         moveTolackyCharmView.configure()
-        moveTolackyCharmView.isHidden = true
+        moveTolackyCharmView.isHidden = false
     }
     
     private func applyCircleViews() {

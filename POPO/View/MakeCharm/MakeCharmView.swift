@@ -16,6 +16,8 @@ class MakeCharmView: BaseView {
     lazy var saveButton = UIButton(type: .system)
     lazy var shareButton = UIButton()
     
+    var message1 = ""
+    var message2 = ""
     
     override func configure() {
         super.configure()
@@ -24,7 +26,6 @@ class MakeCharmView: BaseView {
     override func setupUI() {
         addSubviews([blurView, titleView, cardImageView, saveButton, closeButton, shareButton])
 
-//        blurView.backgroundColor = .userLightGreen
         blurView.alpha = 0.7
         blurView.effect = UIBlurEffect(style: .extraLight)
         
@@ -33,10 +34,6 @@ class MakeCharmView: BaseView {
         cardImageView.layer.shadowOpacity = 0.4
         cardImageView.layer.shadowRadius = 10
         cardImageView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        
-        // 이미지 선택은 랜덤(?)
-        // 그 이미지에 따라 좌표값과 가로세로 값이 다르기 때문에 어딘가 저장해두는 게 좋을 것 같다
-        makeCharmImage()
         
         var configuration = UIButton.Configuration.plain()
         configuration.image = UIImage(named: "Clover_Selected")
@@ -78,12 +75,12 @@ class MakeCharmView: BaseView {
             make.width.equalTo(270)
             make.height.equalTo(480)
         }
-//        
-//        saveButton.snp.makeConstraints { make in
-//            make.top.equalTo(cardImageView.snp.bottom).offset(24)
-//            make.height.equalTo(80)
-//            make.trailing.equalToSuperview().offset(-32)
-//        }
+        
+        saveButton.snp.makeConstraints { make in
+            make.top.equalTo(cardImageView.snp.bottom).offset(24)
+            make.height.equalTo(80)
+            make.trailing.equalToSuperview().offset(-32)
+        }
         
         shareButton.snp.makeConstraints { make in
             make.top.equalTo(saveButton.snp.top)
@@ -98,10 +95,13 @@ class MakeCharmView: BaseView {
         }
     }
     
-    private func makeCharmImage() {
-        guard let image = UIImage(named: "CharmVer1") else { return }
-        let text1 = "코드무쌍"
-        let text2 = "긴장속에서 원하는 대학의 합격을 바랄 수 있을 거야"
+    func makeCharmImage() {
+        let number = Int.random(in: 0...6) + 1
+        
+        guard let charmImage = Images(rawValue: number), let image = UIImage(named: charmImage.name) else { return }
+               
+        let text1 = message1
+        let text2 = message2
         
         let textColor = UIColor.black
         
@@ -110,21 +110,24 @@ class MakeCharmView: BaseView {
         paragraphStyle.lineSpacing = 20
         
         // 자간 및 행간을 포함한 속성 설정
-        let attributedString1 = NSAttributedString(string: text1, attributes: [
+        let attributedString1 = NSAttributedString(string: text1 , attributes: [
             .font: UIFont.bodyBold(ofSize: 108),
             .foregroundColor: textColor,
             .paragraphStyle: paragraphStyle,
             .kern: 1.5
         ])
         
-        let attributedString2 = NSAttributedString(string: text2, attributes: [
+        let attributedString2 = NSAttributedString(string: text2 , attributes: [
             .font: UIFont.bodyBold(ofSize: 68),
             .foregroundColor: textColor,
             .paragraphStyle: paragraphStyle,
         ])
         
-        let textRect1 = CGRect(x: 173, y: 1564, width: 736, height: 160)
-        let textRect2 = CGRect(x: 180, y: 737, width: 720, height: 540)
+        let point1 = charmImage.coordinates.coord1
+        let point2 = charmImage.coordinates.coord2
+        
+        let textRect1 = CGRect(x: point1.x, y: point1.y, width: 736, height: 160)
+        let textRect2 = CGRect(x: point2.x, y: point2.y, width: 720, height: 540)
         
         // 텍스트와 위치 배열 생성
         let texts = [(text: attributedString1, rect: textRect1), (text: attributedString2, rect: textRect2)]
@@ -136,12 +139,14 @@ class MakeCharmView: BaseView {
         cardImageView.image = combinedImage
 
         // 이미지 저장 (JPEG 형식)
-        if let data = combinedImage.jpegData(compressionQuality: 0.8) {
-            let UUID = UUID()
-            let filename = getDocumentsDirectory().appendingPathComponent("\(UUID).jpg")
-            try? data.write(to: filename)
+//        if let data = combinedImage.jpegData(compressionQuality: 0.8) {
+//            let UUID = UUID()
+//            let filename = getDocumentsDirectory().appendingPathComponent("\(UUID).jpg")
+//            try? data.write(to: filename)
 //            print("Image saved to \(filename.path)")
-        }
+//        }
+        
+        // 이미지를 사진첩에 저장
     }
         
     private func drawTextsOnImage(image: UIImage, texts: [(text: NSAttributedString, rect: CGRect)]) -> UIImage {

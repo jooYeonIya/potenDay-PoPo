@@ -17,7 +17,7 @@ struct ImageCoordinates {
     let coord2: Coordinates
 }
 
-enum Images: String {
+enum Images: Int {
     case image1
     case image2
     case image3
@@ -38,7 +38,7 @@ enum Images: String {
         }
     }
     
-    func coordinates() -> ImageCoordinates {
+    var coordinates: ImageCoordinates {
         switch self {
         case .image1:
             return ImageCoordinates(coord1: Coordinates(x: 180, y: 737),

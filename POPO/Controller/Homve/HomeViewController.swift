@@ -65,10 +65,20 @@ class HomeViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        // 부적 만들기 페이지로 이동
         baseView.moveTolackyCharmView.button.rx
             .tap
             .bind { [weak self] _ in
-                let vc = MakeCharmViewController()
+                
+                var message = "로또 당첨"
+                
+//                if self?.baseView.popoAnswer == "" {
+//                    message = self?.baseView.vikiAnswer ?? ""
+//                } else {
+//                    message = self?.baseView.popoAnswer ?? ""
+//                }
+                
+                let vc = MakeCharmViewController(message: message)
                 vc.modalPresentationStyle = .fullScreen
                 self?.present(vc, animated: true)
             }

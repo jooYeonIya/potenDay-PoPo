@@ -13,6 +13,7 @@ enum ClovaAPI {
     case myPage(deviceId: String)
     case onboard(request: UserInfo)
     case message(request: MessageRequest)
+    case charm
 }
 
 extension ClovaAPI: TargetType {
@@ -30,6 +31,8 @@ extension ClovaAPI: TargetType {
             return "/onboard"
         case .message(request: _):
             return "/message"
+        case .charm:
+            return "/charm"
         }
     }
     
@@ -38,6 +41,8 @@ extension ClovaAPI: TargetType {
         case .healthCheck, .myPage(deviceId: _):
             return .get
         case .onboard(request: _), .message(request: _):
+            return .post
+        case .charm:
             return .post
         }
     }
@@ -52,6 +57,8 @@ extension ClovaAPI: TargetType {
             return .requestJSONEncodable(request)
         case let .message(request):
             return .requestJSONEncodable(request)
+        case .charm:
+            return .requestPlain
         }
     }
     

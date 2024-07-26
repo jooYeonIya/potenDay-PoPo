@@ -56,6 +56,7 @@
 		0AF68BE02C52A3B800CE0EC1 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0AF68BDF2C52A3B800CE0EC1 /* RxMoya */; };
 		0AF68BE52C52D76300CE0EC1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AF68BE42C52D76300CE0EC1 /* IQKeyboardManagerSwift */; };
 		0AF68BE72C53E6E900CE0EC1 /* CharmImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BE62C53E6E900CE0EC1 /* CharmImage.swift */; };
+		0AF68BE92C53EA2600CE0EC1 /* CharmReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BE82C53EA2600CE0EC1 /* CharmReponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		0AF68BCF2C52985700CE0EC1 /* MakeCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmView.swift; sourceTree = "<group>"; };
 		0AF68BD22C52987700CE0EC1 /* MakeCharmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmViewController.swift; sourceTree = "<group>"; };
 		0AF68BE62C53E6E900CE0EC1 /* CharmImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharmImage.swift; sourceTree = "<group>"; };
+		0AF68BE82C53EA2600CE0EC1 /* CharmReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharmReponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				0A24E7AA2C5376FB00F2CE90 /* MessageResponse.swift */,
 				0A24E7AC2C53849E00F2CE90 /* SegmentedOption.swift */,
 				0AF68BE62C53E6E900CE0EC1 /* CharmImage.swift */,
+				0AF68BE82C53EA2600CE0EC1 /* CharmReponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				0A34A5F52C4D3CBA0023C8C7 /* SceneDelegate.swift in Sources */,
 				0ADFB5582C50995E004FB1BA /* MiddleView.swift in Sources */,
 				0AE6CF012C522098005B94B3 /* TotalCharmViewController.swift in Sources */,
+				0AF68BE92C53EA2600CE0EC1 /* CharmReponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
