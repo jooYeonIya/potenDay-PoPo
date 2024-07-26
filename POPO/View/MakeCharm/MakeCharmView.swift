@@ -96,7 +96,7 @@ class MakeCharmView: BaseView {
     }
     
     func makeCharmImage() {
-        let number = 0
+        let number = 3
         
         guard let charmImage = Images(rawValue: number), let image = UIImage(named: charmImage.name) else { return }
                
