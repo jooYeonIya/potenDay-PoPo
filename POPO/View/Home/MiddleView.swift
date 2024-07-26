@@ -67,7 +67,6 @@ class MiddleView: BaseView {
                                 """
         characterTextView.font = .point(ofSize: 15)
         characterTextView.textAlignment = .center
-        
     }
     
     override func setupLayout() {
@@ -140,6 +139,14 @@ extension MiddleView: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        inputePlaceholderLabel.isHidden = !textView.text.isEmpty
+        let textIsEmpty = textView.text.isEmpty
+        
+        inputePlaceholderLabel.isHidden = !textIsEmpty
+        
+        if textIsEmpty {
+            toggleActionButton(.deselected)
+        } else {
+            toggleActionButton(.selected)
+        }
     }
 }
