@@ -53,7 +53,7 @@ class MakeCharmViewController: BaseViewController {
 //        }
         
         let message1 = "으하하하"
-        let message2 = "복숭아는 맛있어 달고 맛있어 며칠 전에 복숭아 싸게 샀잖아 럭키비키잖아"
+        let message2 = "푸른 바다와 하늘이 맞닿은 아름다운 해변가에서 휴식을 취했다."
         
         baseView.message1 = message1
         baseView.message2 = message2

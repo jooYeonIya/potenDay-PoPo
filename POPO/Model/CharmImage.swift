@@ -42,7 +42,7 @@ enum Images: Int {
         switch self {
         case .image0:
             return ImageCoordinates(coord1: Coordinates(x: 180, y: 737),
-                                    coord2: Coordinates(x: 173, y: 1564))
+                                    coord2: Coordinates(x: 190, y: 1564))
         case .image1:
             return ImageCoordinates(coord1: Coordinates(x: 203, y: 354),
                                     coord2: Coordinates(x: 187, y: 1180))

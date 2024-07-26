@@ -96,7 +96,7 @@ class MakeCharmView: BaseView {
     }
     
     func makeCharmImage() {
-        let number = Int.random(in: 0...6) + 1
+        let number = 0
         
         guard let charmImage = Images(rawValue: number), let image = UIImage(named: charmImage.name) else { return }
                
@@ -107,24 +107,24 @@ class MakeCharmView: BaseView {
         
         // 행간 설정
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 20
+        paragraphStyle.alignment = .center
         
         // 자간 및 행간을 포함한 속성 설정
         let attributedString1 = NSAttributedString(string: text1 , attributes: [
-            .font: UIFont.bodyBold(ofSize: 108),
+            .font: UIFont.point(ofSize: 108),
             .foregroundColor: textColor,
             .paragraphStyle: paragraphStyle,
-            .kern: 1.5
+            .kern: 64.8
         ])
         
         let attributedString2 = NSAttributedString(string: text2 , attributes: [
-            .font: UIFont.bodyBold(ofSize: 68),
+            .font: UIFont.point(ofSize: 68),
             .foregroundColor: textColor,
             .paragraphStyle: paragraphStyle,
         ])
         
-        let point1 = charmImage.coordinates.coord1
-        let point2 = charmImage.coordinates.coord2
+        let point1 = charmImage == .image0 ? charmImage.coordinates.coord2 : charmImage.coordinates.coord1
+        let point2 = charmImage == .image0 ? charmImage.coordinates.coord1 : charmImage.coordinates.coord2
         
         let textRect1 = CGRect(x: point1.x, y: point1.y, width: 736, height: 160)
         let textRect2 = CGRect(x: point2.x, y: point2.y, width: 720, height: 540)
