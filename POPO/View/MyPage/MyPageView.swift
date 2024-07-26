@@ -19,6 +19,7 @@ class MyPageView: BaseView {
     lazy var greenCircleView = UIView()
     lazy var blurView = UIVisualEffectView()
     lazy var QnATableView = UITableView()
+    lazy var blurImageView = UIImageView()
     lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.myPage.rawValue)
 
     weak var delegate: MyPageViewDelegate?
@@ -29,9 +30,11 @@ class MyPageView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([topBackgroundView, greenCircleView, blurView, titleView, userInfoView, QnATableView, tabBarView])
+        addSubviews([topBackgroundView, greenCircleView, blurView, QnATableView, titleView, userInfoView, tabBarView, blurImageView])
         
         topBackgroundView.backgroundColor = .userGray(9)
+        
+        blurImageView.image = UIImage(named: "BlurView")
         
         greenCircleView.layer.cornerRadius = 411 / 2
         greenCircleView.backgroundColor = .userLightGreen
@@ -61,12 +64,19 @@ class MyPageView: BaseView {
         }
         
         greenCircleView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.width.height.equalTo(411)
+            make.bottom.equalTo(tabBarView.snp.top).offset(-16)
         }
 
         blurView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        blurImageView.snp.makeConstraints { make in
+            make.top.equalTo(userInfoView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(40)
         }
 
         titleView.snp.makeConstraints { make in
@@ -83,7 +93,8 @@ class MyPageView: BaseView {
         
         QnATableView.snp.makeConstraints { make in
             make.top.equalTo(userInfoView.snp.bottom).offset(16)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(tabBarView.snp.top)
         }
         
         tabBarView.snp.makeConstraints { make in
