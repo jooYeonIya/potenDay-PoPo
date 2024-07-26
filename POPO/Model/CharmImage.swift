@@ -47,8 +47,8 @@ enum Images: Int {
             return ImageCoordinates(coord1: Coordinates(x: 203, y: 354),
                                     coord2: Coordinates(x: 187, y: 1180))
         case .image2:
-            return ImageCoordinates(coord1: Coordinates(x: 146, y: 458),
-                                    coord2: Coordinates(x: 244, y: 928))
+            return ImageCoordinates(coord1: Coordinates(x: 200, y: 458),
+                                    coord2: Coordinates(x: 170, y: 928))
         case .image3:
             return ImageCoordinates(coord1: Coordinates(x: 213, y: 297),
                                     coord2: Coordinates(x: 186, y: 681))
