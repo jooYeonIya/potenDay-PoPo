@@ -8,12 +8,18 @@
 import UIKit
 import SnapKit
 
+protocol TotalCharmViewDelegate: AnyObject {
+    func moveToView(index: Int)
+}
+
 class TotalCharmView: BaseView {
     
     lazy var titleView = TitleView(title: "행운 부적 모음집")
     lazy var topBackgroundView = UIView()
     lazy var blurView = UIVisualEffectView()
-    lazy var tabBarView = TabBarView()
+    lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.totalCharm.rawValue)
+    weak var delegate: TotalCharmViewDelegate?
+
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 4, bottom: 8, right: 4)
@@ -42,8 +48,8 @@ class TotalCharmView: BaseView {
         topBackgroundView.backgroundColor = .userGray(9)
 
         blurView.effect = UIBlurEffect(style: .extraLight)
-        
-        tabBarView.configure()
+
+        tabBarView.delegate = self
     }
     
     override func setupLayout() {
@@ -106,3 +112,8 @@ extension TotalCharmView: TotalCharmCollectionViewCellDelegate {
     }
 }
 
+extension TotalCharmView: TabBarViewDelegate {
+    func tabBarButtonTapped(index: Int) {
+        delegate?.moveToView(index: index)
+    }
+}

@@ -20,6 +20,28 @@ class MyPageViewController: BaseViewController {
         super.viewDidLoad()
 
         baseView.configure()
+        baseView.delegate = self
     }
+}
 
+extension MyPageViewController: MyPageViewDelegate {
+    func moveToView(index: Int) {
+        let option = TabBarOption(rawValue: index)
+        
+        switch option {
+        case .totalCharm:
+            let vc = TotalCharmViewController()
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: false)
+        case .home:
+            let vc = HomeViewController()
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: false)
+        case .myPage:
+            let vc = MyPageViewController()
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: false)
+        case .none: break
+        }
+    }
 }

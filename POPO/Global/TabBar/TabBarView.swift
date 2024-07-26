@@ -7,34 +7,8 @@
 
 import UIKit
 
-enum TabBarOption: Int, CaseIterable {
-    case totalCharm
-    case home
-    case myPage
-    
-    var title: String {
-        switch self {
-        case .totalCharm: return "부적 모아보기"
-        case .home: return "홈"
-        case .myPage: return "마이페이지"
-        }
-    }
-    
-    var image: UIImage {
-        switch self {
-        case .totalCharm: return UIImage(named: "Charm_Deselected")!
-        case .home: return UIImage(named: "Home_Deselected")!
-        case .myPage: return UIImage(named: "MyPage_Deselected")!
-        }
-    }
-    
-    var selectedImage: UIImage {
-        switch self {
-        case .totalCharm: return UIImage(named: "Charm")!
-        case .home: return UIImage(named: "Home")!
-        case .myPage: return UIImage(named: "MyPage")!
-        }
-    }
+protocol TabBarViewDelegate: AnyObject {
+    func tabBarButtonTapped(index: Int)
 }
 
 class TabBarView: BaseView {
@@ -42,10 +16,23 @@ class TabBarView: BaseView {
     lazy var backgroundImageView = UIImageView()
     lazy var stackView = UIStackView()
     
-    var selectedIndex: Int = 1 {
+    weak var delegate: TabBarViewDelegate?
+    
+    var selectedIndex: Int {
         didSet {
             updateSelectedTab()
         }
+    }
+    
+    init(selectedIndex: Int) {
+        self.selectedIndex = selectedIndex
+        
+        super.init(frame: .zero)
+        self.configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func configure() {
@@ -72,7 +59,7 @@ class TabBarView: BaseView {
             stackView.addArrangedSubview(imageButton)
         }
         
-        selectedIndex = 1
+        updateSelectedTab()
     }
     
     private func updateSelectedTab() {
@@ -120,5 +107,36 @@ class TabBarView: BaseView {
     
     @objc func tapBarButtonTapped(_ sender: UIButton) {
         selectedIndex = sender.tag
+        delegate?.tabBarButtonTapped(index: sender.tag)
+    }
+}
+
+enum TabBarOption: Int, CaseIterable {
+    case totalCharm
+    case home
+    case myPage
+    
+    var title: String {
+        switch self {
+        case .totalCharm: return "부적 모아보기"
+        case .home: return "홈"
+        case .myPage: return "마이페이지"
+        }
+    }
+    
+    var image: UIImage {
+        switch self {
+        case .totalCharm: return UIImage(named: "Charm_Deselected")!
+        case .home: return UIImage(named: "Home_Deselected")!
+        case .myPage: return UIImage(named: "MyPage_Deselected")!
+        }
+    }
+    
+    var selectedImage: UIImage {
+        switch self {
+        case .totalCharm: return UIImage(named: "Charm")!
+        case .home: return UIImage(named: "Home")!
+        case .myPage: return UIImage(named: "MyPage")!
+        }
     }
 }

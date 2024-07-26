@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol HomeViewDelegate: AnyObject {
+    func moveToView(index: Int)
+}
+
 class HomeView: BaseView {
     lazy var toolTip = UIImageView()
     lazy var toolTipLabel = CustomLabel(text: "비키는 원영이의 영어 이름이야!", font: .body(ofSize: 11))
@@ -16,8 +20,10 @@ class HomeView: BaseView {
     
     lazy var segmentedView = SegmentedView()
     lazy var middleView = MiddleView()
-    lazy var tabBarView = TabBarView()
+    lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.home.rawValue)
     lazy var moveTolackyCharmView = MoveToLackyCharmView()
+    
+    weak var delegate: HomeViewDelegate?
     
     var vikiAnswer: String? = SegmentedOption.viki.description {
         willSet {
@@ -50,7 +56,8 @@ class HomeView: BaseView {
         
         segmentedView.configure()
         middleView.configure()
-        tabBarView.configure()
+        tabBarView.delegate = self
+        
         moveTolackyCharmView.configure()
         moveTolackyCharmView.isHidden = true
     }
@@ -134,5 +141,11 @@ class HomeView: BaseView {
             make.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
             make.height.equalTo(80)
         }
+    }
+}
+
+extension HomeView: TabBarViewDelegate {
+    func tabBarButtonTapped(index: Int) {
+        delegate?.moveToView(index: index)
     }
 }

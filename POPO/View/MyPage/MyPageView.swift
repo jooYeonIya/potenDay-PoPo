@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MyPageViewDelegate: AnyObject {
+    func moveToView(index: Int)
+}
+
 class MyPageView: BaseView {
     
     lazy var titleView = TitleView(title: "마이페이지")
@@ -15,7 +19,9 @@ class MyPageView: BaseView {
     lazy var greenCircleView = UIView()
     lazy var blurView = UIVisualEffectView()
     lazy var QnATableView = UITableView()
-    lazy var tabBarView = TabBarView()
+    lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.myPage.rawValue)
+
+    weak var delegate: MyPageViewDelegate?
     
     override func configure() {
         super.configure()
@@ -39,13 +45,13 @@ class MyPageView: BaseView {
         
         userInfoView.nickname = "나는야럭키걸"
         userInfoView.configure()
-        
-        tabBarView.configure()
     }
 
     override func setupDelegate() {
         QnATableView.delegate = self
         QnATableView.dataSource = self
+        
+        tabBarView.delegate = self
     }
     
     override func setupLayout() {
@@ -113,4 +119,10 @@ extension MyPageView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
          return 8
      }
+}
+
+extension MyPageView: TabBarViewDelegate {
+    func tabBarButtonTapped(index: Int) {
+        delegate?.moveToView(index: index)
+    }
 }
