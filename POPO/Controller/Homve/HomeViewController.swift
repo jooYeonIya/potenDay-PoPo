@@ -41,6 +41,7 @@ class HomeViewController: BaseViewController {
             .bind { [weak self] button in
                     
                 self?.baseView.middleView.updateActionButtonLoading()
+                self?.baseView.middleView.inputTextView.resignFirstResponder()
                 
                 let message = self?.baseView.middleView.inputTextView.text
                 let character = SegmentedOption(rawValue: self?.baseView.segmentedView.segmentControl.selectedSegmentIndex ?? 1)?.apiName
