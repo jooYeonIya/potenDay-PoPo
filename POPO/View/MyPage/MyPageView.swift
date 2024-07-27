@@ -39,6 +39,8 @@ class MyPageView: BaseView {
     var contents: [Content] = [] {
         didSet {
             QnATableView.reloadData()
+            noDataView.isHidden = !contents.isEmpty
+            greenCircleView.isHidden = contents.isEmpty
         }
     }
     
@@ -67,7 +69,6 @@ class MyPageView: BaseView {
         
         greenCircleView.layer.cornerRadius = 411 / 2
         greenCircleView.backgroundColor = .userLightGreen
-        greenCircleView.isHidden = contents.isEmpty
         
         userInfoView.configure()
         
@@ -80,7 +81,7 @@ class MyPageView: BaseView {
         QnATableView.reloadData()
         
         noDataView.configure()
-        noDataView.isHidden = !contents.isEmpty
+        noDataView.isHidden = contents.isEmpty
     }
 
     override func setupDelegate() {

@@ -59,8 +59,8 @@ class MyPageViewController: BaseViewController, UserInfoViewDelegate {
         ClovaAPIService.share.fetchMyPageMessage(deviceId: deviceId) { result in
             switch result {
             case .success(let response):
-                guard let contents = response.data?.content else { return }
-                self.baseView.contents = contents
+                let contents = response.data?.content
+                self.baseView.contents = contents ?? []
                 print(response)
             case .failure(let error):
                 print(error)
