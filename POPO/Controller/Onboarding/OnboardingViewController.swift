@@ -35,6 +35,7 @@ class OnboardingViewController: BaseViewController {
             .disposed(by: disposebag)
     }
     
+    // 유저 정보 등록
     private func saveUserInfo() {
         let userName = baseView.nameTextField.text
         let userAge = Ages(rawValue: baseView.selecetedUserAge)?.userAsge

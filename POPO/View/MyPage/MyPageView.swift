@@ -33,6 +33,11 @@ class MyPageView: BaseView {
 
     // 변수
     weak var delegate: MyPageViewDelegate?
+    var contents: [Content] = [] {
+        didSet {
+            QnATableView.reloadData()
+        }
+    }
     
     override func configure() {
         super.configure()
@@ -66,6 +71,8 @@ class MyPageView: BaseView {
         QnATableView.separatorStyle = .none
         QnATableView.showsVerticalScrollIndicator = false
         QnATableView.alwaysBounceVertical = false
+        
+        QnATableView.reloadData()
     }
 
     override func setupDelegate() {
@@ -126,7 +133,7 @@ class MyPageView: BaseView {
 
 extension MyPageView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        return contents.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -135,7 +142,7 @@ extension MyPageView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "QnATableViewCell", for: indexPath) as? QnATableViewCell else { return UITableViewCell() }
-        cell.configure()
+        cell.configure(content: contents[indexPath.row])
         return cell
     }
     

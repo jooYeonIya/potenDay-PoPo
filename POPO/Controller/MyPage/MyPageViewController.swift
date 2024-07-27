@@ -23,10 +23,9 @@ class MyPageViewController: BaseViewController, UserInfoViewDelegate {
         baseView.userInfoView.delegate = self
         
         fetchUserInfo()
+        fetchMessage()
         
-//        ClovaAPIService.share.fetchMyPageMessage(deviceId: deviceId) { result in
-//            print(result)
-//        }
+
     }
     
     func fetchUserInfo() {
@@ -44,7 +43,6 @@ class MyPageViewController: BaseViewController, UserInfoViewDelegate {
     func modifyName() {
         guard let newName = baseView.userInfoView.nicknameTextField.text,
               let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
-        
         let newUserInfo = ModifyNicknameRequest(name: newName, deviceId: deviceId)
         
         ClovaAPIService.share.modifyName(request: newUserInfo) { result in
@@ -54,6 +52,17 @@ class MyPageViewController: BaseViewController, UserInfoViewDelegate {
             case .failure(let error):
                 print(error)
             }
+        }
+    }
+    
+    func fetchMessage() {
+        guard let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
+
+        ClovaAPIService.share.fetchMyPageMessage(deviceId: deviceId) { result in
+            // 확인 후 변경
+            self.baseView.contents = [Content(id: 47, userMood: "dmkdfndsafnk", clovaMood: "nkfdsndsfakldsfakjlfakjl", character: "POPO", date: "2024-02-02")]
+            print(result)
+            
         }
     }
 }

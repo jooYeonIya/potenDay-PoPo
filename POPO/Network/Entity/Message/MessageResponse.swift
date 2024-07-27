@@ -8,9 +8,9 @@
 import Foundation
 
 struct MessageResponse: Codable {
-    let data: MessageData
-    let code: Int
-    let message: String
+    let data: MessageData?
+    let code: Int?
+    let message: String?
 }
 
 // MARK: - DataClass
