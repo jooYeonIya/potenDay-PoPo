@@ -14,10 +14,10 @@ class MakeCharmViewController: BaseViewController {
     lazy var baseView = MakeCharmView()
     
     private let disposeBag = DisposeBag()
-    private var message = ""
+    private var answer = ""
     
-    init(message: String) {
-        self.message = message
+    init(answer: String) {
+        self.answer = answer
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,30 +36,31 @@ class MakeCharmViewController: BaseViewController {
         baseView.configure()
         
         makeCharmMessage()
- 
     }
     
     private func makeCharmMessage() {
-        // 받아 온 데이터를 뷰에 넘겨주고
-        // 뷰에서는 합성
-        // 화면에 보여주기
-//        ClovaAPIService.share.fetchCharm { result in
-//            switch result {
-//            case .success(let response):
-//                print(response)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
         
-        let message1 = "으하하하"
-        let message2 = "푸른 바다와 하늘이 맞닿은 아름다운 해변가에서 휴식을 취했다."
+        guard let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
+        let request = CharmRequest(message: answer, deviceId: deviceId)
+        
+        ClovaAPIService.share.fetchCharm(request: request) { result in
+            switch result {
+            case .success(let response):
+                self.makeCharmImgae(message: [response.data.fourIdioms, response.data.message])
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func makeCharmImgae(message: [String]) {
+        let message1 = message[0]
+        let message2 = message[1]
         
         baseView.message1 = message1
         baseView.message2 = message2
         
         baseView.makeCharmImage()
-
     }
     
     override func setupEvent() {

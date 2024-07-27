@@ -13,6 +13,8 @@ class HomeViewController: BaseViewController {
     lazy var baseView = HomeBaseView(option: .popo)
     private let disposeBag = DisposeBag()
     
+    var answer = ""
+    
     override func loadView() {
         super.loadView()
         view = baseView
@@ -37,7 +39,6 @@ class HomeViewController: BaseViewController {
         baseView.middleView.actionButton.rx
             .tap
             .bind { [weak self] in
-                print("akjhdsfajhkdsfhkj")
                 self?.baseView.middleView.updateActionButtonLoading()
                 self?.baseView.middleView.inputTextView.resignFirstResponder()
                 
@@ -45,9 +46,7 @@ class HomeViewController: BaseViewController {
                       let character = SegmentedOption(rawValue: self?.baseView.segmentedView.segmentControl.selectedSegmentIndex ?? 1)?.apiName,
                       let deviceId = UserDefaults.standard.string(forKey: "deviceId")
                 else { return }
-                
-                print(character)
-                
+
                 let messageRequest = MessageRequest(message: message,
                                                     deviceId: deviceId,
                                                     character: character)
@@ -70,16 +69,7 @@ class HomeViewController: BaseViewController {
         baseView.moveToMakeCharmButtonView.button.rx
             .tap
             .bind { [weak self] _ in
-                
-                var message = "로또 당첨"
-                
-//                if self?.baseView.popoAnswer == "" {
-//                    message = self?.baseView.vikiAnswer ?? ""
-//                } else {
-//                    message = self?.baseView.popoAnswer ?? ""
-//                }
-                
-                let vc = MakeCharmViewController(message: message)
+                let vc = MakeCharmViewController(answer: self?.answer ?? "")
                 vc.modalPresentationStyle = .fullScreen
                 self?.present(vc, animated: true)
             }
@@ -87,8 +77,10 @@ class HomeViewController: BaseViewController {
     }
     
     private func updateUI(response: AnswerRespons) {
+        answer = response.data.clovaMood
+        
         baseView.middleView.updateAcionButtonRepeat()
-        baseView.middleView.outPutTextView.text = response.data.clovaMood
+        baseView.middleView.outPutTextView.text = answer
         baseView.moveToMakeCharmButtonView.isHidden = false
     }
 }

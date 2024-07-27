@@ -11,7 +11,7 @@ class MakeCharmView: BaseView {
 
     lazy var blurView = UIVisualEffectView()
     lazy var titleView = TitleView(title: "행운부적")
-    lazy var cardImageView = UIImageView(image: UIImage(named: "DummyCharm"))
+    lazy var cardImageView = UIImageView(image: UIImage())
     lazy var closeButton = UIButton(type: .system)
     lazy var saveButton = UIButton(type: .system)
     lazy var shareButton = UIButton()

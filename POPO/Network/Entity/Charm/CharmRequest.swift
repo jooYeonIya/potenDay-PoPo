@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CharmRequest: Codable {
+struct CharmRequest: Codable {
     let message: String
     let deviceId: String
 }
