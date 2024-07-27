@@ -15,6 +15,7 @@ enum ActionButtonOtpion: Int {
 
 protocol MiddleBaseviewDelegate: AnyObject {
     func actionButtonTapped()
+    func dismissMoveToMakeCharmButtonView()
 }
 
 class MiddleBaseView: BaseView {
@@ -31,7 +32,6 @@ class MiddleBaseView: BaseView {
     lazy var outPutSpeechBalloonImageView = UIImageView()
     lazy var outPutTextView = UITextView()
     lazy var outPutCharacterImageView = UIImageView()
-    
     
     // 얍 버튼
     lazy var actionButton = UIButton()
@@ -211,9 +211,18 @@ class MiddleBaseView: BaseView {
     }
     
     @objc func actionButtonTapped() {
-        updateActionButtonLoading()
-        inputTextView.resignFirstResponder()
-        delegate?.actionButtonTapped()
+        let title = actionButton.titleLabel?.text
+        
+        if title == "다시하기" {
+            inputTextView.text = .none
+            inputTextViewPlaceholderLabel.isHidden = false
+            outPutTextView.text = option?.description
+            delegate?.dismissMoveToMakeCharmButtonView()
+        } else {
+            updateActionButtonLoading()
+            inputTextView.resignFirstResponder()
+            delegate?.actionButtonTapped()
+        }
     }
 }
 

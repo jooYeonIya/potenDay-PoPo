@@ -27,7 +27,7 @@ class HomeViewController: BaseViewController {
         baseView.middleView.delegate = self
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        if !UserDefaults.standard.bool(forKey: "isOnboardingCompleted") {
+        if UserDefaults.standard.bool(forKey: "isOnboardingCompleted") {
             baseView.toolTipView.isHidden = true
             baseView.toolTipViewTextLabel.isHidden = true
         } else {
@@ -93,12 +93,16 @@ extension HomeViewController: HomeViewDelegate {
 }
 
 extension HomeViewController: MiddleBaseviewDelegate {
+    func dismissMoveToMakeCharmButtonView() {
+        baseView.moveToMakeCharmButtonView.isHidden = true
+    }
+    
     func actionButtonTapped() {
         guard let message = baseView.middleView.inputTextView.text,
               let character = SegmentedOption(rawValue: self.baseView.segmentedView.segmentControl.selectedSegmentIndex)?.apiName,
               let deviceId = UserDefaults.standard.string(forKey: "deviceId")
         else { return }
-        
+ 
         let messageRequest = MessageRequest(message: message,
                                             deviceId: deviceId,
                                             character: character)

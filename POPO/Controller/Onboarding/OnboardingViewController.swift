@@ -62,6 +62,8 @@ class OnboardingViewController: BaseViewController {
     }
     
     private func moveToHomeView() {        
+        UserDefaults.standard.setValue(true, forKey: "isOnboardingCompleted")
+
         let homeViewController = HomeViewController()
         let navigationController = UINavigationController(rootViewController: homeViewController)
         
@@ -69,7 +71,5 @@ class OnboardingViewController: BaseViewController {
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
         }
-        
-        UserDefaults.standard.setValue(true, forKey: "isOnboardingCompleted")
     }
 }
