@@ -10,12 +10,9 @@ import RxSwift
 import RxCocoa
 
 class HomeViewController: BaseViewController {
-    // MARK: - Component
     lazy var baseView = HomeBaseView(option: .popo)
-    
     private let disposeBag = DisposeBag()
     
-    // MARK: - LifeCycle
     override func loadView() {
         super.loadView()
         view = baseView
@@ -32,26 +29,28 @@ class HomeViewController: BaseViewController {
         baseView.segmentedView.segmentControl.rx
             .selectedSegmentIndex
             .bind(onNext: { [weak self] index in
-                print(":ahjkfdlk")
                 self?.baseView.updateUIForSegmentChange(index)
             })
             .disposed(by: disposeBag)
         
+        // 미들뷰의 얍 버튼을 눌렀을 때
         baseView.middleView.actionButton.rx
             .tap
             .bind { [weak self] in
-                    
+                print("akjhdsfajhkdsfhkj")
                 self?.baseView.middleView.updateActionButtonLoading()
                 self?.baseView.middleView.inputTextView.resignFirstResponder()
                 
-                let message = self?.baseView.middleView.inputTextView.text
-                let character = SegmentedOption(rawValue: self?.baseView.segmentedView.segmentControl.selectedSegmentIndex ?? 1)?.apiName
-//                let deviceId = UserDefaults.standard.string(forKey: "deviceId")
-                let deviceId = "test Id"
+                guard let message = self?.baseView.middleView.inputTextView.text,
+                      let character = SegmentedOption(rawValue: self?.baseView.segmentedView.segmentControl.selectedSegmentIndex ?? 1)?.apiName,
+                      let deviceId = UserDefaults.standard.string(forKey: "deviceId")
+                else { return }
                 
-                let messageRequest = MessageRequest(message: message ?? "",
+                print(character)
+                
+                let messageRequest = MessageRequest(message: message,
                                                     deviceId: deviceId,
-                                                    character: character ?? "POPO")
+                                                    character: character)
                 
                 ClovaAPIService.share.submitMessage(request: messageRequest) { result in
                     switch result {
@@ -87,11 +86,9 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    private func updateUI(response: MessageResponse) {
-//        baseView.popoAnswer = response.data.clovaMood
-//        baseView.vikiAnswer = response.data.vickyMood
-
+    private func updateUI(response: AnswerRespons) {
         baseView.middleView.updateAcionButtonRepeat()
+        baseView.middleView.outPutTextView.text = response.data.clovaMood
     }
 }
 

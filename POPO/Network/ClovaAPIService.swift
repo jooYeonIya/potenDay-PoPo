@@ -66,12 +66,12 @@ class ClovaAPIService {
     }
     
     // 포포 비키 대답 받는 함수
-    func submitMessage(request: MessageRequest, completion: @escaping (Result<MessageResponse, Error>) -> Void) {
+    func submitMessage(request: MessageRequest, completion: @escaping (Result<AnswerRespons, Error>) -> Void) {
         provider.request(.getAnswer(request: request)) { result in
             switch result {
             case let .success(response):
                 do {
-                    let messageResponse = try JSONDecoder().decode(MessageResponse.self, from: response.data)
+                    let messageResponse = try JSONDecoder().decode(AnswerRespons.self, from: response.data)
                     completion(.success(messageResponse))
                 } catch {
                     completion(.failure(error))

@@ -59,6 +59,7 @@
 		0AF68BEF2C54898500CE0EC1 /* UserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BEE2C54898500CE0EC1 /* UserInfoResponse.swift */; };
 		0AF68BF12C548B4800CE0EC1 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BF02C548B4800CE0EC1 /* MessageResponse.swift */; };
 		0AF68BF32C548D0300CE0EC1 /* CharmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BF22C548D0300CE0EC1 /* CharmRequest.swift */; };
+		0AF68BF92C54A90900CE0EC1 /* AnswerRespons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BF82C54A90900CE0EC1 /* AnswerRespons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		0AF68BEE2C54898500CE0EC1 /* UserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponse.swift; sourceTree = "<group>"; };
 		0AF68BF02C548B4800CE0EC1 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 		0AF68BF22C548D0300CE0EC1 /* CharmRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharmRequest.swift; sourceTree = "<group>"; };
+		0AF68BF82C54A90900CE0EC1 /* AnswerRespons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerRespons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +404,7 @@
 			children = (
 				0A7996372C5251EA000E544A /* MessageRequest.swift */,
 				0AF68BF02C548B4800CE0EC1 /* MessageResponse.swift */,
+				0AF68BF82C54A90900CE0EC1 /* AnswerRespons.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				0AF68BC02C502DBF00CE0EC1 /* OnboardingView.swift in Sources */,
 				0AF68BF32C548D0300CE0EC1 /* CharmRequest.swift in Sources */,
 				0AE6CEF62C51FCAE005B94B3 /* MyPageViewController.swift in Sources */,
+				0AF68BF92C54A90900CE0EC1 /* AnswerRespons.swift in Sources */,
 				0AF68BBD2C50039700CE0EC1 /* UIImage+Extension.swift in Sources */,
 				0AE6CEF32C51FC82005B94B3 /* MyPageView.swift in Sources */,
 				0A24E7AD2C53849E00F2CE90 /* SegmentedOption.swift in Sources */,
