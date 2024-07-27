@@ -145,35 +145,37 @@ class MakeCharmViewController: BaseViewController {
     // 저장 버튼 누르기
     private func saveButtonTapped() {
         guard let image = baseView.cardImageView.image else { return }
-        
-        // 사진첩 접근 권한 상태 확인
-          let status = PHPhotoLibrary.authorizationStatus()
-          
-          switch status {
-          case .authorized:
-              saveImageToPhotoLibrary(image)
-          case .denied, .restricted:
-              showAlertOneButton(title: "", message: "사진첩 접근 권한이 필요합니다.")
-          case .notDetermined:
-              PHPhotoLibrary.requestAuthorization { status in
-                  if status == .authorized {
-                      self.saveImageToPhotoLibrary(image)
-                  } else {
-                      print("사진첩 접근 권한이 필요합니다.")
-                  }
-              }
-          case .limited: 
-              break
-          default:
-              fatalError("새로운 상태가 추가되었습니다.")
-          }
-      }
-    
-    
-    func saveImageToPhotoLibrary(_ image: UIImage) {
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+
+        // 사진첩 접근 권한 상태 확인 및 요청
+        PHPhotoLibrary.requestAuthorization { status in
+            DispatchQueue.main.async {
+                switch status {
+                case .authorized, .limited:
+                    self.saveImageToPhotoLibrary(image)
+                case .denied, .restricted:
+                    self.showAlertOneButton(title: "", message: "사진첩 접근 권한이 필요합니다.")
+                case .notDetermined:
+                    // 권한이 아직 결정되지 않은 경우 처리
+                    print("사진첩 접근 권한이 결정되지 않았습니다.")
+                @unknown default:
+                    fatalError("새로운 상태가 추가되었습니다.")
+                }
+            }
+        }
     }
-    
+
+    private func saveImageToPhotoLibrary(_ image: UIImage) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAsset(from: image)
+        }, completionHandler: { success, error in
+            if success {
+                print("이미지가 사진첩에 저장되었습니다.")
+            } else {
+                print("이미지 저장에 실패했습니다: \(String(describing: error))")
+            }
+        })
+    }
+
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             print(error.localizedDescription)

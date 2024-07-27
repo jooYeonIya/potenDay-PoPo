@@ -79,8 +79,10 @@ class MakeCharmView: BaseView {
         configuration.attributedTitle = AttributedString(attributedString)
         
         saveButton.configuration = configuration
+        saveButton.isEnabled = false
         
         shareButton.setBackgroundImage(UIImage(named: "ShareButton"), for: .normal)
+        shareButton.isEnabled = false
         
         // 저장 완료 화면
         shadowBackgroundView.backgroundColor = .black
@@ -204,6 +206,8 @@ class MakeCharmView: BaseView {
         // 이미지 저장 (JPEG 형식)
         saveImageToFolder(combinedImage) {
             self.loadingImageView.isHidden = true
+            self.saveButton.isEnabled = true
+            self.shareButton.isEnabled = true
         }
     }
         
