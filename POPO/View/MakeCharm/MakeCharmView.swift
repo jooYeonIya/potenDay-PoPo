@@ -43,7 +43,7 @@ class MakeCharmView: BaseView {
         configuration.imagePadding = 4
         configuration.background.image = UIImage(named: "SaveButton")
         
-        let attributedString = NSAttributedString(string: "저장하기", attributes: [.font: UIFont.body(ofSize: 15), .foregroundColor: UIColor.userGray(1)])
+        let attributedString = NSAttributedString(string: "저장하기", attributes: [.font: UIFont.bodyBold(ofSize: 15), .foregroundColor: UIColor.userGray(1)])
         configuration.attributedTitle = AttributedString(attributedString)
         
         saveButton.configuration = configuration
