@@ -11,10 +11,10 @@ import SnapKit
 class LaunchScreenViewController: UIViewController {
     
     // MARK: - Component
-    lazy var captionLable = CustomLabel(text: "Powered by HyperCLOVA X", font: .body(ofSize: 11))
     lazy var titleLabel = CustomLabel(text: "PoPo", font: .point(ofSize: 40))
     lazy var subTitleLabel = CustomLabel(text: "클로바가 말아주는 클로버🍀", font: .point(ofSize: 15))
     lazy var button = UIButton()
+    lazy var imageView = UIImageView()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -26,23 +26,19 @@ class LaunchScreenViewController: UIViewController {
     // MARK: - Method
     private func setupUI() {
         
-        view.addSubviews([captionLable, titleLabel, subTitleLabel, button])
+        view.addSubviews([titleLabel, subTitleLabel, button, imageView])
         
-        captionLable.textColor = .userGray(6)
         subTitleLabel.textColor = .userGray(4)
         
         button.applyBlurButton(withImage: UIImage(named: "Clover_Selected")!, withText: "무엇이든 긍정적으로 바꿔봐!", fontSize: 15)
         button.addTarget(self, action: #selector(moveToNextView), for: .touchUpInside)        
         
         applyRadialGradientBackground()
+        
+        imageView.image = UIImage(named: "NaverLogo")
     }
     
     private func setupLayout() {
-        captionLable.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-        }
-        
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
@@ -54,7 +50,12 @@ class LaunchScreenViewController: UIViewController {
         
         button.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            make.bottom.equalTo(imageView.snp.bottom).offset(-16)
+        }
+        
+        imageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-28)
         }
     }
 
