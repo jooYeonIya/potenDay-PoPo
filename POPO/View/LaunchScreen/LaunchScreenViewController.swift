@@ -50,12 +50,12 @@ class LaunchScreenViewController: UIViewController {
         
         button.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(imageView.snp.bottom).offset(-16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
         }
         
         imageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-28)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
     }
 
