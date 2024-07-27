@@ -35,7 +35,6 @@ class MakeCharmView: BaseView {
         cardImageShadowView.layer.shadowOpacity = 0.4
         cardImageShadowView.layer.shadowRadius = 10
         cardImageShadowView.layer.shadowColor = UIColor.userGray(1).cgColor
-//        cardImageShadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
         cardImageShadowView.layer.cornerRadius = 17
         
         var configuration = UIButton.Configuration.plain()

@@ -62,4 +62,30 @@ class MakeCharmViewController: BaseViewController {
         
         baseView.makeCharmImage()
     }
+    
+    override func setupEvent() {
+        // 공유 버튼 누르기
+        baseView.shareButton.rx
+            .tap
+            .bind { [weak self] _ in
+                self?.openShareView()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func openShareView() {
+        guard let shareImgae = baseView.cardImageView.image else { return }
+
+        let activityViewController = UIActivityViewController(activityItems: [shareImgae], applicationActivities: nil)
+        
+        // pop되게 만듦
+        if let popoverController = activityViewController.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+        
+        // 표시
+        present(activityViewController, animated: true, completion: nil)
+    }
 }
