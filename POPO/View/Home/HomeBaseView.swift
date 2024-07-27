@@ -19,6 +19,10 @@ class HomeBaseView: BaseView {
     // 세그먼티드 컨트롤 뷰
     lazy var segmentedView = SegmentedView()
     
+    // 비키 툴틉
+    lazy var toolTipView = UIImageView()
+    lazy var toolTipViewTextLabel = CustomLabel(text: "비키는 여기서 만날 수 있어!", font: .body(ofSize: 11))
+    
     // 미들 뷰 - input, output
     var middleView: MiddleBaseView!
     
@@ -57,6 +61,7 @@ class HomeBaseView: BaseView {
         addSubviews([circleView, 
                      viewBlurEffect,
                      segmentedView, 
+                     toolTipView,
                      middleView,
                      moveToMakeCharmButtonView,
                      tabBarView])
@@ -68,6 +73,12 @@ class HomeBaseView: BaseView {
         
         // 세그먼티드 컨트롤 뷰
         segmentedView.configure()
+        
+        // 툴팁 뷰
+        toolTipView.image = UIImage(named: "PinkToolTip")
+        toolTipView.addSubview(toolTipViewTextLabel)
+        
+
         
         // 미들 뷰 - input, output
         middleView.configure()
@@ -111,6 +122,16 @@ class HomeBaseView: BaseView {
             make.centerX.equalToSuperview()
             make.height.equalTo(40)
             make.width.equalTo(92)
+        }
+        
+        toolTipView.snp.makeConstraints { make in
+            make.top.equalTo(segmentedView.snp.bottom).offset(4)
+            make.trailing.equalToSuperview().offset(-92)
+        }
+        
+        toolTipViewTextLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(4)
         }
         
         middleView.snp.makeConstraints { make in

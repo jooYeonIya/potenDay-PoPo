@@ -26,6 +26,16 @@ class HomeViewController: BaseViewController {
         baseView.delegate = self
         baseView.middleView.delegate = self
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        if UserDefaults.standard.bool(forKey: "isOnboardingCompleted") {
+            baseView.toolTipView.isHidden = true
+            baseView.toolTipViewTextLabel.isHidden = true
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                self.baseView.toolTipView.isHidden = true
+                self.baseView.toolTipViewTextLabel.isHidden = true
+            }
+        }
     }
 
     override func setupEvent() {
