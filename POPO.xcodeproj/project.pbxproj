@@ -14,6 +14,7 @@
 		0A34A5F72C4D3CBA0023C8C7 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F62C4D3CBA0023C8C7 /* LaunchScreenViewController.swift */; };
 		0A34A5FC2C4D3CBB0023C8C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A34A5FB2C4D3CBB0023C8C7 /* Assets.xcassets */; };
 		0A34A5FF2C4D3CBB0023C8C7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0A34A5FE2C4D3CBB0023C8C7 /* Base */; };
+		0A479D332C5525D0006165B0 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A479D322C5525D0006165B0 /* PopupView.swift */; };
 		0A79962F2C5240B5000E544A /* ClovaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A79962E2C5240B5000E544A /* ClovaAPI.swift */; };
 		0A7996312C5240E3000E544A /* ClovaAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7996302C5240E3000E544A /* ClovaAPIService.swift */; };
 		0A7996362C524E24000E544A /* UserInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7996352C524E24000E544A /* UserInfoRequest.swift */; };
@@ -73,6 +74,7 @@
 		0A34A5FB2C4D3CBB0023C8C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A34A5FE2C4D3CBB0023C8C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A34A6002C4D3CBB0023C8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A479D322C5525D0006165B0 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		0A79962E2C5240B5000E544A /* ClovaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClovaAPI.swift; sourceTree = "<group>"; };
 		0A7996302C5240E3000E544A /* ClovaAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClovaAPIService.swift; sourceTree = "<group>"; };
 		0A7996352C524E24000E544A /* UserInfoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRequest.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				0AF68BCF2C52985700CE0EC1 /* MakeCharmView.swift */,
+				0A479D322C5525D0006165B0 /* PopupView.swift */,
 			);
 			path = MakeCharm;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				0AF68BF32C548D0300CE0EC1 /* CharmRequest.swift in Sources */,
 				0AE6CEF62C51FCAE005B94B3 /* MyPageViewController.swift in Sources */,
 				0AF68BF92C54A90900CE0EC1 /* AnswerRespons.swift in Sources */,
+				0A479D332C5525D0006165B0 /* PopupView.swift in Sources */,
 				0AF68BBD2C50039700CE0EC1 /* UIImage+Extension.swift in Sources */,
 				0AE6CEF32C51FC82005B94B3 /* MyPageView.swift in Sources */,
 				0A24E7AD2C53849E00F2CE90 /* SegmentedOption.swift in Sources */,

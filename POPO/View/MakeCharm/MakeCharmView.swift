@@ -8,16 +8,26 @@
 import UIKit
 
 class MakeCharmView: BaseView {
-
+    
+    // 상단
     lazy var titleView = TitleView(title: "행운부적")
     lazy var rightArrowButton = UIButton()
+    
+    // 툴팁
     lazy var toolTipView = UIImageView()
     lazy var toolTipViewLabel = CustomLabel(text: "부적을 저장해서 배경화면으로 활용해봐!", font: .body(ofSize: 11))
-
+    
+    // 부적 이미지
     lazy var cardImageView = UIImageView(image: UIImage())
     lazy var cardImageShadowView = UIView()
+    
+    // 버튼
     lazy var saveButton = UIButton()
     lazy var shareButton = UIButton()
+    
+    // 저장 완료 뷰
+    lazy var shadowBackgroundView = UIView()
+    lazy var popupView = PopupView()
     
     var message1 = ""
     var message2 = ""
@@ -33,7 +43,9 @@ class MakeCharmView: BaseView {
                      cardImageView,
                      saveButton,
                      toolTipView,
-                     shareButton])
+                     shareButton,
+                     shadowBackgroundView,
+                     popupView])
         
         backgroundColor = .userGray(9)
         
@@ -63,6 +75,13 @@ class MakeCharmView: BaseView {
         saveButton.configuration = configuration
         
         shareButton.setBackgroundImage(UIImage(named: "ShareButton"), for: .normal)
+        
+        // 저장 완료 화면
+        shadowBackgroundView.backgroundColor = .black
+        shadowBackgroundView.alpha = 0.5
+//        shadowBackgroundView.isHidden = true
+        
+        popupView.configure()
     }
     
     override func setupLayout() {
@@ -114,6 +133,16 @@ class MakeCharmView: BaseView {
             make.trailing.equalTo(saveButton.snp.leading).offset(-8)
             make.leading.equalToSuperview().offset(38)
             make.width.height.equalTo(60)
+        }
+        
+        shadowBackgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        popupView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(300)
+            make.height.equalTo(200)
         }
     }
     
