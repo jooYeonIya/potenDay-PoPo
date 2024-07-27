@@ -29,6 +29,9 @@ class MakeCharmView: BaseView {
     lazy var shadowBackgroundView = UIView()
     lazy var popupView = PopupView()
     
+    // 로딩 뷰
+    lazy var loadingImageView = UIImageView()
+    
     var message1 = ""
     var message2 = ""
     
@@ -45,7 +48,8 @@ class MakeCharmView: BaseView {
                      toolTipView,
                      shareButton,
                      shadowBackgroundView,
-                     popupView])
+                     popupView,
+                     loadingImageView])
         
         backgroundColor = .userGray(9)
         
@@ -54,9 +58,11 @@ class MakeCharmView: BaseView {
         toolTipView.image = UIImage(named: "GrayToolTip")
         toolTipView.addSubview(toolTipViewLabel)
 
-        cardImageView.contentMode = .scaleAspectFit
-        cardImageView.layer.cornerRadius = 17
-        cardImageView.clipsToBounds = true
+        [loadingImageView, cardImageView].forEach {
+            $0.contentMode = .scaleAspectFit
+            $0.layer.cornerRadius = 17
+            $0.clipsToBounds = true
+        }
     
         cardImageShadowView.backgroundColor = .userGray(9)
         cardImageShadowView.layer.shadowOpacity = 0.4
@@ -83,6 +89,9 @@ class MakeCharmView: BaseView {
         
         popupView.configure()
         popupView.isHidden = true
+        
+        // 로딩
+        loadingImageView.image = UIImage(named: "ImageLoading")
     }
     
     override func setupLayout() {
@@ -109,12 +118,14 @@ class MakeCharmView: BaseView {
             make.centerX.equalToSuperview()
         }
 
-        cardImageView.snp.makeConstraints { make in
-            make.top.equalTo(titleView.snp.bottom).offset(12)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(320)
-            make.height.equalTo(560)
-        }
+        [loadingImageView, cardImageView].forEach({
+            $0.snp.makeConstraints { make in
+                make.top.equalTo(titleView.snp.bottom).offset(12)
+                make.centerX.equalToSuperview()
+                make.width.equalTo(320)
+                make.height.equalTo(560)
+            }
+        })
         
         cardImageShadowView.snp.makeConstraints { make in
             make.width.equalTo(310)
@@ -191,7 +202,9 @@ class MakeCharmView: BaseView {
         cardImageView.image = combinedImage
 
         // 이미지 저장 (JPEG 형식)
-        saveImageToFolder(combinedImage)
+        saveImageToFolder(combinedImage) {
+            self.loadingImageView.isHidden = true
+        }
     }
         
     private func drawTextsOnImage(image: UIImage, texts: [(text: NSAttributedString, rect: CGRect)]) -> UIImage {
@@ -210,7 +223,7 @@ class MakeCharmView: BaseView {
         return resultImage!
     }
     
-    private func saveImageToFolder(_ combinedImage: UIImage) {
+    private func saveImageToFolder(_ combinedImage: UIImage, completion: (() -> Void)? = nil)  {
         // 이미지 데이터를 JPEG 형식으로 압축
         if let data = combinedImage.jpegData(compressionQuality: 0.8) {
             
@@ -237,6 +250,7 @@ class MakeCharmView: BaseView {
             do {
                 try data.write(to: filename)
                 print("Image saved to \(filename.path)")
+                completion?()
             } catch {
                 print("이미지 저장 실패: \(error.localizedDescription)")
             }
