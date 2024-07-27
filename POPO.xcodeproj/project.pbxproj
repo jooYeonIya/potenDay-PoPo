@@ -196,7 +196,7 @@
 				0AF68BD12C52986800CE0EC1 /* MakeCharm */,
 				0AE6CF022C52209D005B94B3 /* TotalCharm */,
 				0AE6CEF42C51FCA4005B94B3 /* MyPage */,
-				0ADFB55B2C509983004FB1BA /* Homve */,
+				0ADFB55B2C509983004FB1BA /* Home */,
 				0AF68BC12C502DCB00CE0EC1 /* Onboarding */,
 			);
 			path = Controller;
@@ -295,12 +295,12 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		0ADFB55B2C509983004FB1BA /* Homve */ = {
+		0ADFB55B2C509983004FB1BA /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				0ADFB55C2C509993004FB1BA /* HomeViewController.swift */,
 			);
-			path = Homve;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		0AE6CEF12C51FC76005B94B3 /* MyPage */ = {

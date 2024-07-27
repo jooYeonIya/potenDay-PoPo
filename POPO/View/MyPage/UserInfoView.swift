@@ -12,8 +12,6 @@ class UserInfoView: BaseView {
     lazy var titleLabel = CustomLabel(text: "행운의 주인공", font: .body(ofSize: 15))
     lazy var nicknameTextField = UITextField()
     lazy var modifyButton = UIButton()
-    
-    var nickname = ""
 
     override func configure() {
         super.configure()
@@ -27,7 +25,6 @@ class UserInfoView: BaseView {
         
         imageView.image = UIImage(named: "MyInfoImage")
         
-        nicknameTextField.text = nickname
         nicknameTextField.isUserInteractionEnabled = false
         nicknameTextField.font = .bodyBold(ofSize: 22)
         

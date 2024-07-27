@@ -21,6 +21,20 @@ class MyPageViewController: BaseViewController {
 
         baseView.configure()
         baseView.delegate = self
+        
+        guard let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
+        ClovaAPIService.share.fetchUserInfo(deviceId: deviceId) { result in
+            switch result {
+            case .success(let response):
+                self.baseView.userInfoView.nicknameTextField.text = response.data.name
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+//        ClovaAPIService.share.fetchMyPageMessage(deviceId: deviceId) { result in
+//            print(result)
+//        }
     }
 }
 

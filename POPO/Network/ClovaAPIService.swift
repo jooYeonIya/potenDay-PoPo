@@ -13,12 +13,13 @@ class ClovaAPIService {
     private let provider = MoyaProvider<ClovaAPI>()
     
     // 사용자 정보 조회
-    func fetchUserInfo(deviceId: String, completion: @escaping (Result<UserInfoReponse, Error>) -> Void) {
+    func fetchUserInfo(deviceId: String, 
+                       completion: @escaping (Result<UserInfoResponse, Error>) -> Void) {
         provider.request(.getUserInfo(deviceId: deviceId)) { result in
             switch result {
             case let .success(response):
                 do {
-                    let userInfoResponse = try JSONDecoder().decode(UserInfoReponse.self, from: response.data)
+                    let userInfoResponse = try JSONDecoder().decode(UserInfoResponse.self, from: response.data)
                     completion(.success(userInfoResponse))
                 } catch {
                     completion(.failure(error))
@@ -66,7 +67,8 @@ class ClovaAPIService {
     }
     
     // 포포 비키 대답 받는 함수
-    func submitMessage(request: MessageRequest, completion: @escaping (Result<AnswerRespons, Error>) -> Void) {
+    func submitMessage(request: MessageRequest, 
+                       completion: @escaping (Result<AnswerRespons, Error>) -> Void) {
         provider.request(.getAnswer(request: request)) { result in
             switch result {
             case let .success(response):

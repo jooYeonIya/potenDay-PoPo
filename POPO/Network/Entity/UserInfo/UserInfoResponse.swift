@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserInfoReponse: Codable {
+struct UserInfoResponse: Codable {
     let data: UserData
     let code: Int
     let message: String
@@ -16,5 +16,5 @@ struct UserInfoReponse: Codable {
 struct UserData: Codable {
     let name: String
     let age: String
-    let deviceId: String
+    let deviceId: String?
 }

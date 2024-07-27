@@ -13,41 +13,59 @@ protocol MyPageViewDelegate: AnyObject {
 
 class MyPageView: BaseView {
     
-    lazy var titleView = TitleView(title: "마이페이지")
-    lazy var userInfoView = UserInfoView()
+    // 타이틀
     lazy var topBackgroundView = UIView()
-    lazy var greenCircleView = UIView()
-    lazy var blurView = UIVisualEffectView()
-    lazy var QnATableView = UITableView()
+    lazy var titleView = TitleView(title: "마이페이지")
     lazy var blurImageView = UIImageView()
+
+    // 뒤 배경
+    lazy var blurView = UIVisualEffectView()
+    lazy var greenCircleView = UIView()
+
+    // 유저 인포
+    lazy var userInfoView = UserInfoView()
+
+    // 메세지
+    lazy var QnATableView = UITableView()
+    
+    // 탭바
     lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.myPage.rawValue)
 
+    // 변수
     weak var delegate: MyPageViewDelegate?
     
     override func configure() {
         super.configure()
-        backgroundColor = .userGray(9)
     }
     
     override func setupUI() {
-        addSubviews([topBackgroundView, greenCircleView, blurView, QnATableView, titleView, userInfoView, tabBarView, blurImageView])
+        addSubviews([topBackgroundView, 
+                     titleView,
+                     blurImageView,
+                     blurView,
+                     greenCircleView,
+                     userInfoView,
+                     QnATableView,
+                     tabBarView])
         
+        backgroundColor = .userGray(9)
+
         topBackgroundView.backgroundColor = .userGray(9)
         
         blurImageView.image = UIImage(named: "BlurView")
         
+        blurView.effect = UIBlurEffect(style: .extraLight)
+        
         greenCircleView.layer.cornerRadius = 411 / 2
         greenCircleView.backgroundColor = .userLightGreen
-
-        blurView.effect = UIBlurEffect(style: .extraLight)
+        
+        userInfoView.configure()
         
         QnATableView.register(QnATableViewCell.self, forCellReuseIdentifier: "QnATableViewCell")
         QnATableView.backgroundColor = .clear
         QnATableView.separatorStyle = .none
         QnATableView.showsVerticalScrollIndicator = false
-        
-        userInfoView.nickname = "나는야럭키걸"
-        userInfoView.configure()
+        QnATableView.alwaysBounceVertical = false
     }
 
     override func setupDelegate() {
@@ -63,14 +81,10 @@ class MyPageView: BaseView {
             make.bottom.equalTo(userInfoView.snp.bottom).offset(12)
         }
         
-        greenCircleView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.height.equalTo(411)
-            make.bottom.equalTo(tabBarView.snp.top).offset(-16)
-        }
-
-        blurView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        titleView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(80)
         }
         
         blurImageView.snp.makeConstraints { make in
@@ -78,13 +92,17 @@ class MyPageView: BaseView {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(40)
         }
-
-        titleView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(80)
+        
+        blurView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
+        greenCircleView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(411)
+            make.bottom.equalTo(tabBarView.snp.top).offset(-16)
+        }
+
         userInfoView.snp.makeConstraints { make in
             make.top.equalTo(titleView.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(16)
