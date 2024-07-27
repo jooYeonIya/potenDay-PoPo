@@ -14,6 +14,7 @@ enum ClovaAPI {
     case saveUserInfo(request: UserInfoRequest)
     case getAnswer(request: MessageRequest)
     case makeCharm(request: CharmRequest)
+    case modifyNickname(request: ModifyNicknameRequest)
 }
 
 extension ClovaAPI: TargetType {
@@ -33,6 +34,8 @@ extension ClovaAPI: TargetType {
             return "/message"
         case .makeCharm:
             return "/charm"
+        case .modifyNickname(request: _):
+            return "/my-page/name"
         }
     }
     
@@ -48,6 +51,8 @@ extension ClovaAPI: TargetType {
             return .post
         case .makeCharm(request: _):
             return .post
+        case .modifyNickname(request: _):
+            return .patch
         }
     }
     
@@ -62,6 +67,8 @@ extension ClovaAPI: TargetType {
         case let .getAnswer(request):
             return .requestJSONEncodable(request)
         case let .makeCharm(request):
+            return .requestJSONEncodable(request)
+        case let .modifyNickname(request):
             return .requestJSONEncodable(request)
         }
     }

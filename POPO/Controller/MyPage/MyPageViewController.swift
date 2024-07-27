@@ -7,8 +7,7 @@
 
 import UIKit
 
-class MyPageViewController: BaseViewController {
-    
+class MyPageViewController: BaseViewController, UserInfoViewDelegate {
     lazy var baseView = MyPageView()
 
     override func loadView() {
@@ -21,7 +20,16 @@ class MyPageViewController: BaseViewController {
 
         baseView.configure()
         baseView.delegate = self
+        baseView.userInfoView.delegate = self
         
+        fetchUserInfo()
+        
+//        ClovaAPIService.share.fetchMyPageMessage(deviceId: deviceId) { result in
+//            print(result)
+//        }
+    }
+    
+    func fetchUserInfo() {
         guard let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
         ClovaAPIService.share.fetchUserInfo(deviceId: deviceId) { result in
             switch result {
@@ -31,10 +39,22 @@ class MyPageViewController: BaseViewController {
                 print(error)
             }
         }
+    }
+    
+    func modifyName() {
+        guard let newName = baseView.userInfoView.nicknameTextField.text,
+              let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
         
-//        ClovaAPIService.share.fetchMyPageMessage(deviceId: deviceId) { result in
-//            print(result)
-//        }
+        let newUserInfo = ModifyNicknameRequest(name: newName, deviceId: deviceId)
+        
+        ClovaAPIService.share.modifyName(request: newUserInfo) { result in
+            switch result {
+            case .success(_):
+                self.fetchUserInfo()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

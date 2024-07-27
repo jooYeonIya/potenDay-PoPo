@@ -48,7 +48,8 @@ class ClovaAPIService {
     }
     
     // 온보딩 화면에서 유저정보 저장
-    func saveUserInfo(request: UserInfoRequest, completion: @escaping (Result<String, Error>) -> Void) {
+    func saveUserInfo(request: UserInfoRequest, 
+                      completion: @escaping (Result<String, Error>) -> Void) {
         provider.request(.saveUserInfo(request: request)) { result in
             switch result {
             case let .success(response):
@@ -94,6 +95,26 @@ class ClovaAPIService {
                     completion(.success(charmResponse))
                 } catch {
                     completion(.failure(error))
+                }
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    // 닉네임 수정
+    func modifyName(request: ModifyNicknameRequest,
+                    completion: @escaping (Result<String, Error>) -> Void) {
+        provider.request(.modifyNickname(request: request)) { result in
+            switch result {
+            case let .success(response):
+                if let responseString = String(data: response.data, encoding: .utf8) {
+                    completion(.success(responseString))
+                    print("updateName Response: \(responseString)")
+                } else {
+//                    추후 추가할 것
+//                    completion(.failure(error))
+                    print("Failed to convert response data to string.")
                 }
             case let .failure(error):
                 print(error.localizedDescription)

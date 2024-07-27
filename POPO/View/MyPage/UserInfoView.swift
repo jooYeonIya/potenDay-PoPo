@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol UserInfoViewDelegate: AnyObject {
+    func modifyName()
+}
+
 class UserInfoView: BaseView {
     lazy var imageView = UIImageView()
     lazy var titleLabel = CustomLabel(text: "행운의 주인공", font: .body(ofSize: 15))
     lazy var nicknameTextField = UITextField()
     lazy var modifyButton = UIButton()
+    
+    weak var delegate: UserInfoViewDelegate?
 
     override func configure() {
         super.configure()
@@ -55,6 +61,7 @@ class UserInfoView: BaseView {
         }
     }
     
+    // 이름 수정
     @objc private func modifyButtonTapped() {
         modifyButton.isSelected.toggle()
         
@@ -65,5 +72,7 @@ class UserInfoView: BaseView {
             nicknameTextField.isUserInteractionEnabled = false
             nicknameTextField.resignFirstResponder()
         }
+        
+        delegate?.modifyName()
     }
 }
