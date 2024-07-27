@@ -18,23 +18,29 @@ class TotalCharmView: BaseView {
     lazy var topBackgroundView = UIView()
     lazy var blurImageView = UIImageView()
     lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.totalCharm.rawValue)
-
+    lazy var noDataView = NoDataView(message: "앗! 아직 행운 부적이 없잖아? \n 어서 가서 만들어봐!")
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 4, bottom: 8, right: 4)
-
+        
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.register(TotalCharmCollectionViewCell.self, forCellWithReuseIdentifier: "TotalCharmCollectionViewCell")
-
+        
         return collectionView
     }()
     
     weak var delegate: TotalCharmViewDelegate?
-    private var images = [UIImage]()
+    var images: [UIImage] = [] {
+        didSet {
+            collectionView.reloadData()
+            noDataView.isHidden = !images.isEmpty
+        }
+    }
     
     override func configure() {
         super.configure()
@@ -43,13 +49,15 @@ class TotalCharmView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([topBackgroundView, titleView, collectionView, tabBarView, blurImageView])
+        addSubviews([topBackgroundView, titleView, noDataView, collectionView, tabBarView, blurImageView])
         
         topBackgroundView.backgroundColor = .userGray(9)
 
         tabBarView.delegate = self
         
         blurImageView.image = UIImage(named: "BlurView")
+        
+        noDataView.configure()
     }
     
     func getImagesFromFolder() {
@@ -91,6 +99,12 @@ class TotalCharmView: BaseView {
             make.top.equalTo(safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(80)
+        }
+        
+        noDataView.snp.makeConstraints { make in
+            make.width.equalTo(290)
+            make.height.equalTo(310)
+            make.center.equalTo(collectionView)
         }
         
         collectionView.snp.makeConstraints { make in
