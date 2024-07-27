@@ -11,7 +11,7 @@ protocol HomeViewDelegate: AnyObject {
     func moveToView(index: Int)
 }
 
-class HomeView: BaseView {
+class HomeBaseView: BaseView {
     // 바탕 구성
     lazy var viewBlurEffect = UIVisualEffectView()
     lazy var circleView = UIView()
@@ -86,6 +86,14 @@ class HomeView: BaseView {
     }
     
     func updateUIForSegmentChange(_ index: Int) {
+        guard let option = SegmentedOption(rawValue: index) else { return }
+        circleView.backgroundColor = option.circleColor
+        
+        middleView.removeFromSuperview()
+        middleView = MiddleBaseView(option: option)
+        addSubview(middleView)
+        
+        setupLayout()
     }
     
     override func setupLayout() {
@@ -126,7 +134,7 @@ class HomeView: BaseView {
     }
 }
 
-extension HomeView: TabBarViewDelegate {
+extension HomeBaseView: TabBarViewDelegate {
     func tabBarButtonTapped(index: Int) {
         delegate?.moveToView(index: index)
     }

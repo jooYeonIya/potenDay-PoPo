@@ -11,7 +11,7 @@ import RxCocoa
 
 class HomeViewController: BaseViewController {
     // MARK: - Component
-    lazy var baseView = HomeView(option: .popo)
+    lazy var baseView = HomeBaseView(option: .popo)
     
     private let disposeBag = DisposeBag()
     
@@ -26,11 +26,13 @@ class HomeViewController: BaseViewController {
         baseView.configure()
         baseView.delegate = self
     }
-    
+
     override func setupEvent() {
+        // 세그먼티트 컨트롤러 탭했을 때
         baseView.segmentedView.segmentControl.rx
             .selectedSegmentIndex
             .bind(onNext: { [weak self] index in
+                print(":ahjkfdlk")
                 self?.baseView.updateUIForSegmentChange(index)
             })
             .disposed(by: disposeBag)
