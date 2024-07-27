@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum SegmentedOption: Int {
     case popo
@@ -42,6 +43,13 @@ enum SegmentedOption: Int {
         switch self {
         case .popo: return "POPO"
         case .viki: return "VIKI"
+        }
+    }
+    
+    var circleColor: UIColor {
+        switch self {
+        case .popo: return UIColor.userLightGreen
+        case .viki: return UIColor.userPink
         }
     }
 }

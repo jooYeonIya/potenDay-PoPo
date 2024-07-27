@@ -13,74 +13,96 @@ enum ActionButtonOtpion: Int {
     case deselected
 }
 
-class MiddleView: BaseView {
-    lazy var inputePlaceholderLabel = CustomLabel(text: "포포에게 알려줘!", font: .body(ofSize: 17))
-    lazy var inputTextBackgroundView = UIView()
+class MiddleBaseView: BaseView {
+    
+    // Input 창
+    lazy var inputTextViewBackgroundView = UIView()
+    lazy var inputTextViewPlaceholderLabel = UILabel()
     lazy var inputTextView = UITextView()
+    
+    // Output 창
+    lazy var outPutSpeechBalloonImageView = UIImageView()
+    lazy var outPutTextView = UITextView()
+    lazy var outPutCharacterImageView = UIImageView()
+    
+    
+    // 얍 버튼
     lazy var actionButton = UIButton()
     
-    lazy var characterTextView = UITextView()
-    lazy var characterImageView = UIImageView()
-    lazy var speechBubbleImageView = UIImageView()
+    var option: SegmentedOption?
+    
+    init(option: SegmentedOption?) {
+        self.option = option
+        super.init(frame: .zero)
+        self.configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func configure() {
         super.configure()
     }
     
     override func setupUI() {
-        addSubviews([inputTextBackgroundView,
-                     actionButton,
-                     speechBubbleImageView,
-                     characterTextView,
-                     characterImageView])
+        addSubviews([inputTextViewBackgroundView,
+                     outPutSpeechBalloonImageView,
+                     outPutCharacterImageView])
         
         setupInputTextView()
-        setupCharactorView()
+        setupOutputView()
     }
     
+    // Input 창
     private func setupInputTextView() {
-        inputePlaceholderLabel.textColor = .userGray(4)
+        inputTextViewBackgroundView.addSubviews([inputTextView, actionButton])
+        inputTextViewBackgroundView.backgroundColor = .white
+        inputTextViewBackgroundView.layer.cornerRadius = 20
         
-        inputTextBackgroundView.addSubviews([inputTextView, actionButton])
-        inputTextBackgroundView.backgroundColor = .white
-        inputTextBackgroundView.layer.cornerRadius = 20
+        inputTextViewPlaceholderLabel.text = "\(option?.title ?? "포포")에게 알려줘!"
+        inputTextViewPlaceholderLabel.textColor = .userGray(4)
+        inputTextViewPlaceholderLabel.font = .body(ofSize: 17)
         
+        inputTextView.addSubview(inputTextViewPlaceholderLabel)
         inputTextView.font = .body(ofSize: 17)
         inputTextView.textColor = .userGray(1)
         inputTextView.textAlignment = .center
         inputTextView.delegate = self
-        inputTextView.addSubview(inputePlaceholderLabel)
         
         toggleActionButton(.deselected)
     }
 
-    private func setupCharactorView() {
-        speechBubbleImageView.image = UIImage(named: "SpeechBalloon")
-        speechBubbleImageView.addSubviews([characterTextView, characterTextView])
+    // Output 창
+    private func setupOutputView() {
+        guard let option = option else { return }
         
-        characterImageView.image = UIImage(named: "Charactor_Main")
+        outPutSpeechBalloonImageView.addSubviews([outPutTextView])
+        outPutSpeechBalloonImageView.image = UIImage(named: "SpeechBalloon")
         
-        characterTextView.text = SegmentedOption(rawValue: 0)?.description
-        characterTextView.font = .point(ofSize: 15)
-        characterTextView.textAlignment = .center
+        outPutCharacterImageView.image = UIImage(named: option.imageName)
+        
+        outPutTextView.text = SegmentedOption(rawValue: option.rawValue)?.description
+        outPutTextView.font = .point(ofSize: 15)
+        outPutTextView.textAlignment = .center
     }
     
     override func setupLayout() {
-        inputePlaceholderLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(17 / 2)
-        }
-        
-        inputTextBackgroundView.snp.makeConstraints { make in
+        // Input 창 (+ acitonButton)
+        inputTextViewBackgroundView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(38)
             make.height.equalTo(200)
         }
         
+        inputTextViewPlaceholderLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+    
         inputTextView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().inset(20)
-            make.top.height.equalTo(100 - 40)
+            make.center.equalToSuperview()
+            make.width.equalTo(240)
+            make.height.equalTo(100)
         }
         
         actionButton.snp.makeConstraints { make in
@@ -90,23 +112,24 @@ class MiddleView: BaseView {
             make.width.equalTo(120)
         }
 
-        speechBubbleImageView.snp.makeConstraints { make in
-            make.top.equalTo(inputTextBackgroundView.snp.bottom).offset(16)
-            make.leading.trailing.equalTo(inputTextBackgroundView)
+        // Output 창
+        outPutSpeechBalloonImageView.snp.makeConstraints { make in
+            make.top.equalTo(inputTextViewBackgroundView.snp.bottom).offset(16)
+            make.leading.trailing.equalTo(inputTextViewBackgroundView)
             make.height.equalTo(174)
             make.width.equalTo(300)
         }
         
-        characterImageView.snp.makeConstraints{ make in
-            make.top.equalTo(speechBubbleImageView.snp.bottom).offset(-16)
-            make.trailing.equalTo(inputTextBackgroundView.snp.trailing)
-            make.width.height.equalTo(100)
-        }
-        
-        characterTextView.snp.makeConstraints { make in
+        outPutTextView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.height.equalTo(120)
             make.width.equalTo(240)
+        }
+        
+        outPutCharacterImageView.snp.makeConstraints{ make in
+            make.top.equalTo(outPutSpeechBalloonImageView.snp.bottom).offset(-16)
+            make.trailing.equalTo(inputTextViewBackgroundView.snp.trailing)
+            make.width.height.equalTo(100)
         }
     }
     
@@ -153,15 +176,15 @@ class MiddleView: BaseView {
     }
 }
 
-extension MiddleView: UITextViewDelegate {
+extension MiddleBaseView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        inputePlaceholderLabel.isHidden = true
+        inputTextViewPlaceholderLabel.isHidden = true
     }
     
     func textViewDidChange(_ textView: UITextView) {
         let textIsEmpty = textView.text.isEmpty
         
-        inputePlaceholderLabel.isHidden = !textIsEmpty
+        inputTextViewPlaceholderLabel.isHidden = !textIsEmpty
         
         if textIsEmpty {
             toggleActionButton(.deselected)

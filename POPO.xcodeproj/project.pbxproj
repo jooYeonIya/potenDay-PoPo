@@ -27,7 +27,7 @@
 		0ADFB5512C5095E4004FB1BA /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0ADFB5502C5095E4004FB1BA /* Pretendard-Regular.otf */; };
 		0ADFB5542C509921004FB1BA /* HomeBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5532C509921004FB1BA /* HomeBaseView.swift */; };
 		0ADFB5562C509943004FB1BA /* SegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5552C509943004FB1BA /* SegmentedView.swift */; };
-		0ADFB5582C50995E004FB1BA /* MiddleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5572C50995E004FB1BA /* MiddleView.swift */; };
+		0ADFB5582C50995E004FB1BA /* MiddleBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5572C50995E004FB1BA /* MiddleBaseView.swift */; };
 		0ADFB55A2C509969004FB1BA /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5592C509969004FB1BA /* TabBarView.swift */; };
 		0ADFB55D2C509993004FB1BA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB55C2C509993004FB1BA /* HomeViewController.swift */; };
 		0AE6CEF32C51FC82005B94B3 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6CEF22C51FC82005B94B3 /* MyPageView.swift */; };
@@ -84,7 +84,7 @@
 		0ADFB5502C5095E4004FB1BA /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		0ADFB5532C509921004FB1BA /* HomeBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBaseView.swift; sourceTree = "<group>"; };
 		0ADFB5552C509943004FB1BA /* SegmentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedView.swift; sourceTree = "<group>"; };
-		0ADFB5572C50995E004FB1BA /* MiddleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleView.swift; sourceTree = "<group>"; };
+		0ADFB5572C50995E004FB1BA /* MiddleBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleBaseView.swift; sourceTree = "<group>"; };
 		0ADFB5592C509969004FB1BA /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		0ADFB55C2C509993004FB1BA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0AE6CEF22C51FC82005B94B3 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
@@ -287,7 +287,7 @@
 			children = (
 				0ADFB5532C509921004FB1BA /* HomeBaseView.swift */,
 				0ADFB5552C509943004FB1BA /* SegmentedView.swift */,
-				0ADFB5572C50995E004FB1BA /* MiddleView.swift */,
+				0ADFB5572C50995E004FB1BA /* MiddleBaseView.swift */,
 				0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */,
 			);
 			path = Home;
@@ -540,7 +540,7 @@
 				0AE6CEF32C51FC82005B94B3 /* MyPageView.swift in Sources */,
 				0A24E7AD2C53849E00F2CE90 /* SegmentedOption.swift in Sources */,
 				0A34A5F52C4D3CBA0023C8C7 /* SceneDelegate.swift in Sources */,
-				0ADFB5582C50995E004FB1BA /* MiddleView.swift in Sources */,
+				0ADFB5582C50995E004FB1BA /* MiddleBaseView.swift in Sources */,
 				0AE6CF012C522098005B94B3 /* TotalCharmViewController.swift in Sources */,
 				0AF68BE92C53EA2600CE0EC1 /* CharmReponse.swift in Sources */,
 			);

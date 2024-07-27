@@ -11,10 +11,6 @@ protocol HomeViewDelegate: AnyObject {
     func moveToView(index: Int)
 }
 
-struct HomeViewCustomOption {
-    let color: UIColor
-}
-
 class HomeView: BaseView {
     // 바탕 구성
     lazy var viewBlurEffect = UIVisualEffectView()
@@ -24,7 +20,7 @@ class HomeView: BaseView {
     lazy var segmentedView = SegmentedView()
     
     // 미들 뷰 - input, output
-    lazy var middleView = MiddleView()
+    var middleView: MiddleBaseView!
     
     // 부적 만들기로 이동하는 버튼 뷰
     lazy var moveToMakeCharmButtonView = MoveToLackyCharmView()
@@ -35,15 +31,16 @@ class HomeView: BaseView {
     
     // 변수
     weak var delegate: HomeViewDelegate?
-    var customOption: HomeViewCustomOption?
+    var option: SegmentedOption?
     var answer: String? = SegmentedOption.viki.description {
         willSet {
-            middleView.characterTextView.text = newValue
+            middleView.outPutTextView.text = newValue
         }
     }
     
-    init(customOption: HomeViewCustomOption?) {
-        self.customOption = customOption
+    init(option: SegmentedOption?) {
+        self.option = option
+        self.middleView = MiddleBaseView(option: option)
         super.init(frame: .zero)
         configure()
     }
@@ -66,7 +63,7 @@ class HomeView: BaseView {
         
         // 바탕 구성
         backgroundColor = .userGray(9)
-        applyCircleView(customOption?.color ?? UIColor.userGreen)
+        applyCircleView(option?.circleColor ?? UIColor.userLightGreen)
         viewBlurEffect.effect = UIBlurEffect(style: .extraLight)
         
         // 세그먼티드 컨트롤 뷰

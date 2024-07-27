@@ -11,7 +11,7 @@ import RxCocoa
 
 class HomeViewController: BaseViewController {
     // MARK: - Component
-    lazy var baseView = HomeView(customOption: HomeViewCustomOption(color: .userPink))
+    lazy var baseView = HomeView(option: .popo)
     
     private let disposeBag = DisposeBag()
     
