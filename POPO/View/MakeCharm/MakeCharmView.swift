@@ -96,7 +96,7 @@ class MakeCharmView: BaseView {
     }
     
     func makeCharmImage() {
-        let number = 3
+        let number = 0
         
         guard let charmImage = Images(rawValue: number), let image = UIImage(named: charmImage.name) else { return }
                
@@ -123,8 +123,8 @@ class MakeCharmView: BaseView {
             .paragraphStyle: paragraphStyle,
         ])
         
-        let point1 = charmImage == .image0 ? charmImage.coordinates.coord2 : charmImage.coordinates.coord1
-        let point2 = charmImage == .image0 ? charmImage.coordinates.coord1 : charmImage.coordinates.coord2
+        let point1 = charmImage.coordinates.coord1
+        let point2 = charmImage.coordinates.coord2
         
         let textRect1 = CGRect(x: point1.x, y: point1.y, width: 736, height: 160)
         let textRect2 = CGRect(x: point2.x, y: point2.y, width: 720, height: 540)
