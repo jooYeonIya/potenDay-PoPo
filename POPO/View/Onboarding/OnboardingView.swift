@@ -12,16 +12,11 @@ class OnboardingView: BaseView {
     
     lazy var scrollView = UIScrollView()
     lazy var pageControl = UIPageControl()
-    
     lazy var namePageView = UIView()
     lazy var nameTextField = UITextField()
-
     lazy var agePageView = UIView()
-    
     lazy var rightButton = UIButton()
-    
     lazy var errorLabel = CustomLabel(text: "닉네임은 10글자 내로 부탁할게~", font: .body(ofSize: 11))
-    
     lazy var doneButton = UIButton()
     
     var selecetedUserAge = 99

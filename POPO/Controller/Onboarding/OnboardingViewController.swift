@@ -31,7 +31,6 @@ class OnboardingViewController: BaseViewController {
         baseView.doneButton.rx.tap
             .bind { [weak self] _ in
                 self?.saveUserInfo()
-                self?.moveToHomeView()
             }
             .disposed(by: disposebag)
     }
@@ -48,7 +47,7 @@ class OnboardingViewController: BaseViewController {
             ClovaAPIService.share.saveUserInfo(request: userInfo) { result in
                 switch result {
                 case .success(_):
-                    UserDefaults.standard.setValue(UUID, forKey: "deviceID")
+                    UserDefaults.standard.setValue(UUID, forKey: "deviceId")
                     self.moveToHomeView()
                 case .failure(_):
                     self.showAlertOneButton(title: "", message: "다시 한 번 시도해 주세요")
@@ -58,11 +57,10 @@ class OnboardingViewController: BaseViewController {
     }
     
     private func moveToHomeView() {
-        // 메인컴에서 키 값 확인하고 추가하기
-        UserDefaults.standard.setValue(true, forKey: "")
+        UserDefaults.standard.setValue(true, forKey: "isOnboardingCompleted")
         
         let homeView = HomeViewController()
         homeView.modalPresentationStyle = .fullScreen
-        present(homeView, animated: true, completion: nil)
+        present(homeView, animated: false, completion: nil)
     }
 }

@@ -52,8 +52,11 @@ class ClovaAPIService {
             switch result {
             case let .success(response):
                 if let responseString = String(data: response.data, encoding: .utf8) {
+                    completion(.success(responseString))
                     print("Onboard Response: \(responseString)")
                 } else {
+//                    추후 추가할 것
+//                    completion(.failure(error))
                     print("Failed to convert response data to string.")
                 }
             case let .failure(error):
