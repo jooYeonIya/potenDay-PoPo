@@ -12,8 +12,6 @@ protocol HomeViewDelegate: AnyObject {
 }
 
 class HomeView: BaseView {
-    lazy var toolTip = UIImageView()
-    lazy var toolTipLabel = CustomLabel(text: "비키는 원영이의 영어 이름이야!", font: .body(ofSize: 11))
     lazy var viewBlurEffect = UIVisualEffectView()
     lazy var pinkCircleView = UIView()
     lazy var greenCircleView = UIView()
@@ -44,12 +42,7 @@ class HomeView: BaseView {
     
     override func setupUI() {
         addSubviews([pinkCircleView, greenCircleView, viewBlurEffect,
-                     segmentedView, middleView, tabBarView, moveTolackyCharmView, toolTip])
-        
-        toolTipLabel.textColor = .userGray(4)
-        toolTip.image = UIImage(named: "ToolTip")
-        toolTip.isHidden = true
-        toolTip.addSubview(toolTipLabel)
+                     segmentedView, middleView, tabBarView, moveTolackyCharmView])
         
         viewBlurEffect.effect = UIBlurEffect(style: .extraLight)
         applyCircleViews()
@@ -72,10 +65,7 @@ class HomeView: BaseView {
     
     func updateUIForSegmentChange(_ index: Int) {
         guard let option = SegmentedOption(rawValue: index) else { return }
-        
-        // 메인 컴에서 퍼스트런칭 처리 넣어야함
-        toolTip.isHidden = option == .viki ? false : true
-        
+                
         middleView.characterImageView.image = UIImage(named: option.imageName)
         middleView.inputePlaceholderLabel.text = "\(option.title)에게 알려줘!"
         
@@ -87,19 +77,7 @@ class HomeView: BaseView {
         }
     }
     
-    override func setupLayout() {
-        toolTip.snp.makeConstraints { make in
-            make.top.equalTo(segmentedView.snp.bottom).offset(4)
-            make.trailing.equalToSuperview().offset(-68)
-            make.width.equalTo(180)
-            make.height.equalTo(32)
-        }
-        
-        toolTipLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(4)
-        }
-        
+    override func setupLayout() {        
         viewBlurEffect.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
