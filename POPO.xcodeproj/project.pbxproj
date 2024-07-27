@@ -15,6 +15,7 @@
 		0A34A5FC2C4D3CBB0023C8C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A34A5FB2C4D3CBB0023C8C7 /* Assets.xcassets */; };
 		0A34A5FF2C4D3CBB0023C8C7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0A34A5FE2C4D3CBB0023C8C7 /* Base */; };
 		0A479D332C5525D0006165B0 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A479D322C5525D0006165B0 /* PopupView.swift */; };
+		0A479D352C555208006165B0 /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A479D342C555208006165B0 /* NoDataView.swift */; };
 		0A79962F2C5240B5000E544A /* ClovaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A79962E2C5240B5000E544A /* ClovaAPI.swift */; };
 		0A7996312C5240E3000E544A /* ClovaAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7996302C5240E3000E544A /* ClovaAPIService.swift */; };
 		0A7996362C524E24000E544A /* UserInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7996352C524E24000E544A /* UserInfoRequest.swift */; };
@@ -75,6 +76,7 @@
 		0A34A5FE2C4D3CBB0023C8C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A34A6002C4D3CBB0023C8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A479D322C5525D0006165B0 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		0A479D342C555208006165B0 /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
 		0A79962E2C5240B5000E544A /* ClovaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClovaAPI.swift; sourceTree = "<group>"; };
 		0A7996302C5240E3000E544A /* ClovaAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClovaAPIService.swift; sourceTree = "<group>"; };
 		0A7996352C524E24000E544A /* UserInfoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRequest.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				0ADFB5522C509910004FB1BA /* Home */,
 				0AF68BBE2C502DAC00CE0EC1 /* Onboarding */,
 				0AF68BB32C4FF61900CE0EC1 /* LaunchScreen */,
+				0A479D342C555208006165B0 /* NoDataView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				0AF68BD02C52985700CE0EC1 /* MakeCharmView.swift in Sources */,
 				0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */,
 				0AE6CEFA2C5200BB005B94B3 /* UserInfoView.swift in Sources */,
+				0A479D352C555208006165B0 /* NoDataView.swift in Sources */,
 				0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */,
 				0AE6CEFC2C521469005B94B3 /* QnATableViewCell.swift in Sources */,
 				0ADFB55A2C509969004FB1BA /* TabBarView.swift in Sources */,

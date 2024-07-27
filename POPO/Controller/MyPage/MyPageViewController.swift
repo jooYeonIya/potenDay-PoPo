@@ -24,8 +24,6 @@ class MyPageViewController: BaseViewController, UserInfoViewDelegate {
         
         fetchUserInfo()
         fetchMessage()
-        
-
     }
     
     func fetchUserInfo() {
@@ -59,10 +57,14 @@ class MyPageViewController: BaseViewController, UserInfoViewDelegate {
         guard let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
 
         ClovaAPIService.share.fetchMyPageMessage(deviceId: deviceId) { result in
-            // 확인 후 변경
-            self.baseView.contents = [Content(id: 47, userMood: "dmkdfndsafnk", clovaMood: "nkfdsndsfakldsfakjlfakjl", character: "POPO", date: "2024-02-02")]
-            print(result)
-            
+            switch result {
+            case .success(let response):
+                guard let contents = response.data?.content else { return }
+                self.baseView.contents = contents
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }

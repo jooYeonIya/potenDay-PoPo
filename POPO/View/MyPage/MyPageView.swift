@@ -28,6 +28,9 @@ class MyPageView: BaseView {
     // 메세지
     lazy var QnATableView = UITableView()
     
+    // 노데이터 뷰
+    lazy var noDataView = NoDataView(message: "아직 변환 기록이 없네! \n 포포나 비키에게 말을 걸어봐~")
+    
     // 탭바
     lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.myPage.rawValue)
 
@@ -46,11 +49,12 @@ class MyPageView: BaseView {
     override func setupUI() {
         addSubviews([greenCircleView,
                      topBackgroundView,
-                     titleView,
                      blurImageView,
                      blurView,
+                     titleView,
                      userInfoView,
                      QnATableView,
+                     noDataView,
                      tabBarView])
         
         backgroundColor = .userGray(9)
@@ -63,6 +67,7 @@ class MyPageView: BaseView {
         
         greenCircleView.layer.cornerRadius = 411 / 2
         greenCircleView.backgroundColor = .userLightGreen
+        greenCircleView.isHidden = contents.isEmpty
         
         userInfoView.configure()
         
@@ -73,6 +78,9 @@ class MyPageView: BaseView {
         QnATableView.alwaysBounceVertical = false
         
         QnATableView.reloadData()
+        
+        noDataView.configure()
+        noDataView.isHidden = !contents.isEmpty
     }
 
     override func setupDelegate() {
@@ -114,6 +122,12 @@ class MyPageView: BaseView {
             make.top.equalTo(titleView.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(76)
+        }
+        
+        noDataView.snp.makeConstraints { make in
+            make.width.equalTo(290)
+            make.height.equalTo(310)
+            make.center.equalTo(QnATableView)
         }
         
         QnATableView.snp.makeConstraints { make in
