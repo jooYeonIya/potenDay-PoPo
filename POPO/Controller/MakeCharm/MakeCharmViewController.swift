@@ -44,6 +44,15 @@ class MakeCharmViewController: BaseViewController {
             makeCharmMessage()
         }
         
+        if UserDefaults.standard.bool(forKey: "isOnboardingCompleted") {
+            baseView.toolTipView.isHidden = true
+            baseView.toolTipViewLabel.isHidden = true
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                self.baseView.toolTipView.isHidden = true
+                self.baseView.toolTipViewLabel.isHidden = true
+            }
+        }
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
