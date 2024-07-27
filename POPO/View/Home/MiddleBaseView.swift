@@ -20,7 +20,7 @@ class MiddleBaseView: BaseView {
     lazy var inputTextViewPlaceholderLabel = UILabel()
     lazy var inputTextView = UITextView()
     lazy var inputTextViewCountView = UIView()
-    lazy var inputTextViewCountLabel = CustomLabel(text: "1", font: .body(ofSize: 11))
+    lazy var inputTextViewCountLabel = CustomLabel(text: "0", font: .body(ofSize: 11))
     lazy var inputTextViewCounterLabel = CustomLabel(text: "/50자", font: .body(ofSize: 11))
 
     // Output 창
