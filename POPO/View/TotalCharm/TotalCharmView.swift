@@ -10,6 +10,7 @@ import SnapKit
 
 protocol TotalCharmViewDelegate: AnyObject {
     func moveToView(index: Int)
+    func moveToMakeCharmView(image: UIImage)
 }
 
 class TotalCharmView: BaseView {
@@ -82,7 +83,7 @@ class TotalCharmView: BaseView {
     private func getDocumentsDirectory() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
-    
+
     override func setupLayout() {
         topBackgroundView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -122,7 +123,7 @@ class TotalCharmView: BaseView {
     }
 }
 
-extension TotalCharmView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension TotalCharmView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
@@ -140,6 +141,11 @@ extension TotalCharmView: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         let width = (collectionView.frame.width / 2) - 16
         let height = width * 1.8
         return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let image = images[indexPath.row]
+        delegate?.moveToMakeCharmView(image: image)
     }
 }
 

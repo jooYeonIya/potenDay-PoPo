@@ -31,9 +31,13 @@ extension TotalCharmViewController: TotalCharmViewDelegate {
         
         switch option {
         case .totalCharm:
-            let vc = TotalCharmViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: false)
+            let homeViewController = TotalCharmViewController()
+            let navigationController = UINavigationController(rootViewController: homeViewController)
+            
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = navigationController
+                window.makeKeyAndVisible()
+            }
         case .home:
             let homeViewController = HomeViewController()
             let navigationController = UINavigationController(rootViewController: homeViewController)
@@ -48,5 +52,10 @@ extension TotalCharmViewController: TotalCharmViewDelegate {
             present(vc, animated: false)
         case .none: break
         }
+    }
+    
+    func moveToMakeCharmView(image: UIImage) {
+        let vc = MakeCharmViewController(answer: "total", image: image)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

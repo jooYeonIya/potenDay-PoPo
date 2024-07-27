@@ -51,7 +51,7 @@ class HomeViewController: BaseViewController {
         baseView.moveToMakeCharmButtonView.button.rx
             .tap
             .bind { [weak self] _ in
-                let vc = MakeCharmViewController(answer: self?.answer ?? "")
+                let vc = MakeCharmViewController(answer: self?.answer ?? "", image: nil)
                 self?.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
@@ -72,9 +72,13 @@ extension HomeViewController: HomeViewDelegate {
         
         switch option {
         case .totalCharm:
-            let vc = TotalCharmViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: false)
+            let homeViewController = TotalCharmViewController()
+            let navigationController = UINavigationController(rootViewController: homeViewController)
+            
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = navigationController
+                window.makeKeyAndVisible()
+            }
         case .home:
             let homeViewController = HomeViewController()
             let navigationController = UINavigationController(rootViewController: homeViewController)

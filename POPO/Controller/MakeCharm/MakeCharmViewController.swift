@@ -16,9 +16,11 @@ class MakeCharmViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
     private var answer = ""
+    private var image: UIImage?
     
-    init(answer: String) {
+    init(answer: String, image: UIImage?) {
         self.answer = answer
+        self.image = image
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,7 +38,12 @@ class MakeCharmViewController: BaseViewController {
 
         baseView.configure()
         
-        makeCharmMessage()
+        if answer == "total" {
+            baseView.cardImageView.image = image
+        } else {
+            makeCharmMessage()
+        }
+        
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
