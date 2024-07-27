@@ -12,9 +12,9 @@ protocol HomeViewDelegate: AnyObject {
 }
 
 class HomeView: BaseView {
+    // 바탕 구성
     lazy var viewBlurEffect = UIVisualEffectView()
-    lazy var pinkCircleView = UIView()
-    lazy var greenCircleView = UIView()
+    lazy var circleView = UIView()
     
     lazy var segmentedView = SegmentedView()
     lazy var middleView = MiddleView()
@@ -41,7 +41,7 @@ class HomeView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([pinkCircleView, greenCircleView, viewBlurEffect,
+        addSubviews([circleView, viewBlurEffect,
                      segmentedView, middleView, tabBarView, moveTolackyCharmView])
         
         viewBlurEffect.effect = UIBlurEffect(style: .extraLight)
@@ -56,11 +56,8 @@ class HomeView: BaseView {
     }
     
     private func applyCircleViews() {
-        pinkCircleView.layer.cornerRadius = 411 / 2
-        pinkCircleView.backgroundColor = .userPink
-        
-        greenCircleView.layer.cornerRadius = 411 / 2
-        greenCircleView.backgroundColor = .userLightGreen
+        circleView.layer.cornerRadius = 411 / 2
+        circleView.backgroundColor = .userPink
     }
     
     func updateUIForSegmentChange(_ index: Int) {
@@ -77,20 +74,14 @@ class HomeView: BaseView {
         }
     }
     
-    override func setupLayout() {        
+    override func setupLayout() {
         viewBlurEffect.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        pinkCircleView.snp.makeConstraints { make in
+        circleView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(12)
             make.leading.equalToSuperview().offset(100)
-            make.width.height.equalTo(411)
-        }
-        
-        greenCircleView.snp.makeConstraints { make in
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-12)
-            make.trailing.equalToSuperview().offset(-100)
             make.width.height.equalTo(411)
         }
         
