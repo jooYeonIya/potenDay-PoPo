@@ -18,7 +18,6 @@ class TotalCharmView: BaseView {
     lazy var topBackgroundView = UIView()
     lazy var blurImageView = UIImageView()
     lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.totalCharm.rawValue)
-    weak var delegate: TotalCharmViewDelegate?
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,7 +33,8 @@ class TotalCharmView: BaseView {
         return collectionView
     }()
     
-    private var cellHeights: [IndexPath: CGFloat] = [:]
+    weak var delegate: TotalCharmViewDelegate?
+    private var images = [UIImage]()
     
     override func configure() {
         super.configure()
@@ -50,6 +50,32 @@ class TotalCharmView: BaseView {
         tabBarView.delegate = self
         
         blurImageView.image = UIImage(named: "BlurView")
+    }
+    
+    func getImagesFromFolder() -> [UIImage] {
+
+        let fileManager = FileManager.default
+        let documentsDirectory = getDocumentsDirectory()
+
+        let poPoDirectory = documentsDirectory.appendingPathComponent("PoPo")
+        
+        do {
+            let fileURLs = try fileManager.contentsOfDirectory(at: poPoDirectory, includingPropertiesForKeys: nil)
+            
+            for fileURL in fileURLs {
+                if let image = UIImage(contentsOfFile: fileURL.path) {
+                    images.append(image)
+                }
+            }
+        } catch {
+            print("PoPo 폴더의 이미지 로드 실패: \(error.localizedDescription)")
+        }
+        
+        return images
+    }
+
+    private func getDocumentsDirectory() -> URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
     
     override func setupLayout() {
@@ -87,7 +113,7 @@ class TotalCharmView: BaseView {
 
 extension TotalCharmView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -95,7 +121,7 @@ extension TotalCharmView: UICollectionViewDelegateFlowLayout, UICollectionViewDa
             return UICollectionViewCell()
         }
 
-        cell.configure(for: indexPath)
+        cell.configure(images[indexPath.row])
         return cell
     }
     

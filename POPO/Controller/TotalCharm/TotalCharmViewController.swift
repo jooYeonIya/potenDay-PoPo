@@ -21,6 +21,7 @@ class TotalCharmViewController: BaseViewController {
 
         baseView.configure()
         baseView.delegate = self
+        baseView.getImagesFromFolder()
     }
 }
 
