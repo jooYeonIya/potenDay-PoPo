@@ -42,7 +42,7 @@ enum SegmentedOption: Int {
     var apiName: String {
         switch self {
         case .popo: return "POPO"
-        case .viki: return "VIKI"
+        case .viki: return "VICKY"
         }
     }
     

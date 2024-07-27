@@ -13,6 +13,10 @@ enum ActionButtonOtpion: Int {
     case deselected
 }
 
+protocol MiddleBaseviewDelegate: AnyObject {
+    func actionButtonTapped()
+}
+
 class MiddleBaseView: BaseView {
     
     // Input 창
@@ -33,6 +37,7 @@ class MiddleBaseView: BaseView {
     lazy var actionButton = UIButton()
     
     var option: SegmentedOption?
+    weak var delegate: MiddleBaseviewDelegate?
     
     init(option: SegmentedOption?) {
         self.option = option
@@ -80,6 +85,7 @@ class MiddleBaseView: BaseView {
         inputTextView.delegate = self
         
         toggleActionButton(.deselected)
+        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
     }
 
     // Output 창
@@ -202,6 +208,12 @@ class MiddleBaseView: BaseView {
                                        image: UIImage(named: "Clover_Selected")!)
         actionButton.applyBasicButton(buttonOption)
         actionButton.isEnabled = true
+    }
+    
+    @objc func actionButtonTapped() {
+        updateActionButtonLoading()
+        inputTextView.resignFirstResponder()
+        delegate?.actionButtonTapped()
     }
 }
 
