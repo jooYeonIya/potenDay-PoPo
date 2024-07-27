@@ -20,14 +20,7 @@ class OnboardingView: BaseView {
     lazy var doneButton = UIButton()
     
     var selecetedUserAge = 99
-    
     var enterPressCount = 0
-    
-    var isNotAgeView: Bool = true {
-        willSet {
-            doneButton.isHidden = newValue
-        }
-    }
     
     override func configure() {
         super.configure()
@@ -54,7 +47,7 @@ class OnboardingView: BaseView {
         errorLabel.textColor = .systemRed
         
         doneButton.applyBlurButton(withImage: UIImage(named: "Clover_Selected")!, withText: "준비 끝!", fontSize: 15)
-        doneButton.isHidden = isNotAgeView
+        doneButton.isHidden = false
         
         addSubviews([scrollView, pageControl, errorLabel, doneButton])
         
@@ -62,6 +55,8 @@ class OnboardingView: BaseView {
         setupAgePageView()
         
         scrollView.addSubviews([namePageView, agePageView])
+
+        handlePageChange(0)
     }
     
     private func setupNamePageView() {
@@ -180,6 +175,19 @@ class OnboardingView: BaseView {
         scrollView.setContentOffset(offset, animated: true)
         scrollView.isScrollEnabled = true
     }
+    
+    private func handlePageChange(_ pageIndex: Int) {
+        switch pageIndex {
+        case 0:
+            doneButton.isHidden = true
+        case 1:
+            doneButton.isHidden = false
+            enterPressCount = 0
+            nameTextField.resignFirstResponder()
+        default:
+            break
+        }
+    }
 }
 
 extension OnboardingView: UIScrollViewDelegate {
@@ -187,10 +195,12 @@ extension OnboardingView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x / frame.width)
         pageControl.currentPage = Int(pageIndex)
+        handlePageChange(Int(pageIndex))
     }
     
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        isNotAgeView.toggle()
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageIndex = round(scrollView.contentOffset.x / frame.width)
+        handlePageChange(Int(pageIndex))
     }
 }
 
