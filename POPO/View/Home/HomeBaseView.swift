@@ -11,78 +11,94 @@ protocol HomeViewDelegate: AnyObject {
     func moveToView(index: Int)
 }
 
+struct HomeViewCustomOption {
+    let color: UIColor
+}
+
 class HomeView: BaseView {
     // 바탕 구성
     lazy var viewBlurEffect = UIVisualEffectView()
     lazy var circleView = UIView()
     
+    // 세그먼티드 컨트롤 뷰
     lazy var segmentedView = SegmentedView()
+    
+    // 미들 뷰 - input, output
     lazy var middleView = MiddleView()
+    
+    // 부적 만들기로 이동하는 버튼 뷰
+    lazy var moveToMakeCharmButtonView = MoveToLackyCharmView()
+    
+    // tabbar
     lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.home.rawValue)
-    lazy var moveTolackyCharmView = MoveToLackyCharmView()
     
+    
+    // 변수
     weak var delegate: HomeViewDelegate?
-    
-    var vikiAnswer: String? = SegmentedOption.viki.description {
+    var customOption: HomeViewCustomOption?
+    var answer: String? = SegmentedOption.viki.description {
         willSet {
             middleView.characterTextView.text = newValue
         }
     }
     
-    var popoAnswer: String? = SegmentedOption.popo.description {
-        willSet {
-            middleView.characterTextView.text = newValue
-        }
+    init(customOption: HomeViewCustomOption?) {
+        self.customOption = customOption
+        super.init(frame: .zero)
+        configure()
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func configure() {
         super.configure()
-        backgroundColor = .userGray(9)
     }
     
     override func setupUI() {
-        addSubviews([circleView, viewBlurEffect,
-                     segmentedView, middleView, tabBarView, moveTolackyCharmView])
+        addSubviews([circleView, 
+                     viewBlurEffect,
+                     segmentedView, 
+                     middleView,
+                     moveToMakeCharmButtonView,
+                     tabBarView])
         
+        // 바탕 구성
+        backgroundColor = .userGray(9)
+        applyCircleView(customOption?.color ?? UIColor.userGreen)
         viewBlurEffect.effect = UIBlurEffect(style: .extraLight)
-        applyCircleViews()
         
+        // 세그먼티드 컨트롤 뷰
         segmentedView.configure()
-        middleView.configure()
-        tabBarView.delegate = self
         
-        moveTolackyCharmView.configure()
-        moveTolackyCharmView.isHidden = false
+        // 미들 뷰 - input, output
+        middleView.configure()
+        
+        // 부적 만들기로 이동하는 버튼 뷰
+        moveToMakeCharmButtonView.configure()
+        moveToMakeCharmButtonView.isHidden = false
+        
+        // tabbar
+        tabBarView.delegate = self
     }
     
-    private func applyCircleViews() {
-        circleView.layer.cornerRadius = 411 / 2
-        circleView.backgroundColor = .userPink
+    private func applyCircleView(_ color: UIColor) {
+        circleView.layer.cornerRadius = 580 / 2
+        circleView.backgroundColor = color
     }
     
     func updateUIForSegmentChange(_ index: Int) {
-        guard let option = SegmentedOption(rawValue: index) else { return }
-                
-        middleView.characterImageView.image = UIImage(named: option.imageName)
-        middleView.inputePlaceholderLabel.text = "\(option.title)에게 알려줘!"
-        
-        switch option {
-        case .popo:
-            middleView.characterTextView.text = popoAnswer
-        case .viki:
-            middleView.characterTextView.text = vikiAnswer
-        }
     }
     
     override func setupLayout() {
-        viewBlurEffect.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        circleView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(580)
         }
         
-        circleView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(12)
-            make.leading.equalToSuperview().offset(100)
-            make.width.height.equalTo(411)
+        viewBlurEffect.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         segmentedView.snp.makeConstraints { make in
@@ -98,7 +114,7 @@ class HomeView: BaseView {
             make.bottom.equalToSuperview()
         }
         
-        moveTolackyCharmView.snp.makeConstraints { make in
+        moveToMakeCharmButtonView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(tabBarView.snp.top).offset(-16)
             make.height.equalTo(40)

@@ -11,7 +11,7 @@ import RxCocoa
 
 class HomeViewController: BaseViewController {
     // MARK: - Component
-    lazy var baseView = HomeView()
+    lazy var baseView = HomeView(customOption: HomeViewCustomOption(color: .userPink))
     
     private let disposeBag = DisposeBag()
     
@@ -66,7 +66,7 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         // 부적 만들기 페이지로 이동
-        baseView.moveTolackyCharmView.button.rx
+        baseView.moveToMakeCharmButtonView.button.rx
             .tap
             .bind { [weak self] _ in
                 
