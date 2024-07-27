@@ -79,9 +79,10 @@ class MakeCharmView: BaseView {
         // 저장 완료 화면
         shadowBackgroundView.backgroundColor = .black
         shadowBackgroundView.alpha = 0.5
-//        shadowBackgroundView.isHidden = true
+        shadowBackgroundView.isHidden = true
         
         popupView.configure()
+        popupView.isHidden = true
     }
     
     override func setupLayout() {

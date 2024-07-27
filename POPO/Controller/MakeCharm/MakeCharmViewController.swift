@@ -90,6 +90,23 @@ class MakeCharmViewController: BaseViewController {
                 self?.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
+        
+        // 팝업 클로즈 버튼 누르기
+        baseView.popupView.closeButton.rx
+            .tap
+            .bind { [weak self] in
+                self?.baseView.shadowBackgroundView.isHidden = true
+                self?.baseView.popupView.isHidden = true
+            }
+            .disposed(by: disposeBag)
+        
+        // 팝업 처음으로 버튼 누르기
+        baseView.popupView.moveToHomeBUtton.rx
+            .tap
+            .bind { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     // 공유 버튼 누르기
@@ -145,7 +162,8 @@ class MakeCharmViewController: BaseViewController {
         if let error = error {
             print(error.localizedDescription)
         } else {
-            // 팝업 띄우기
+            baseView.shadowBackgroundView.isHidden = true
+            baseView.popupView.isHidden = true
             print("이미지가 사진첩에 저장되었습니다.")
         }
     }
