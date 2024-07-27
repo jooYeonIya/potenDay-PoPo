@@ -116,7 +116,7 @@ class HomeBaseView: BaseView {
         middleView.snp.makeConstraints { make in
             make.top.equalTo(segmentedView.snp.bottom).offset(54)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(moveToMakeCharmButtonView.snp.top)
         }
         
         moveToMakeCharmButtonView.snp.makeConstraints { make in
