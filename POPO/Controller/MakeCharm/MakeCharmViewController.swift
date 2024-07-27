@@ -59,8 +59,7 @@ class MakeCharmViewController: BaseViewController {
         baseView.message2 = message2
         
         baseView.makeCharmImage()
-                        
-        
+
     }
     
     override func setupEvent() {

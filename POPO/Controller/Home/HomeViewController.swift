@@ -89,6 +89,7 @@ class HomeViewController: BaseViewController {
     private func updateUI(response: AnswerRespons) {
         baseView.middleView.updateAcionButtonRepeat()
         baseView.middleView.outPutTextView.text = response.data.clovaMood
+        baseView.moveToMakeCharmButtonView.isHidden = false
     }
 }
 
