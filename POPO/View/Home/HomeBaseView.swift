@@ -98,11 +98,8 @@ class HomeBaseView: BaseView {
         guard let option = SegmentedOption(rawValue: index) else { return }
         circleView.backgroundColor = option.circleColor
         
-        middleView.removeFromSuperview()
-        middleView = MiddleBaseView(option: option)
-        addSubview(middleView)
-        
-        setupLayout()
+        middleView.option = option
+        middleView.configure()
     }
     
     override func setupLayout() {
