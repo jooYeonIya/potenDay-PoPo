@@ -11,9 +11,9 @@ import Foundation
 enum ClovaAPI {
     case getUserInfo(deviceId: String)
     case getMyPageMessage(deviceId: String)
-    case saveUserInfo(request: UserInfo)
+    case saveUserInfo(request: UserInfoRequest)
     case getAnswer(request: MessageRequest)
-    case makeCharm(request: CharmReponse)
+    case makeCharm(request: CharmRequest)
 }
 
 extension ClovaAPI: TargetType {

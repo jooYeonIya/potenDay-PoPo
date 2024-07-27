@@ -13,7 +13,6 @@ struct CharmReponse: Codable {
     let message: String
 }
 
-// MARK: - DataClass
 struct CharmData: Codable {
     let fourIdioms, message: String
 

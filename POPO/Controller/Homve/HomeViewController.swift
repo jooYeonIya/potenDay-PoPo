@@ -86,8 +86,8 @@ class HomeViewController: BaseViewController {
     }
     
     private func updateUI(response: MessageResponse) {
-        baseView.popoAnswer = response.data.clovaMood
-        baseView.vikiAnswer = response.data.vickyMood
+//        baseView.popoAnswer = response.data.clovaMood
+//        baseView.vikiAnswer = response.data.vickyMood
 
         baseView.middleView.updateAcionButtonRepeat()
     }

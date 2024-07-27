@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0A24E7A82C5347E100F2CE90 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24E7A72C5347E100F2CE90 /* UIDevice.swift */; };
-		0A24E7AB2C5376FB00F2CE90 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24E7AA2C5376FB00F2CE90 /* MessageResponse.swift */; };
 		0A24E7AD2C53849E00F2CE90 /* SegmentedOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24E7AC2C53849E00F2CE90 /* SegmentedOption.swift */; };
 		0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F22C4D3CBA0023C8C7 /* AppDelegate.swift */; };
 		0A34A5F52C4D3CBA0023C8C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F42C4D3CBA0023C8C7 /* SceneDelegate.swift */; };
@@ -17,7 +16,7 @@
 		0A34A5FF2C4D3CBB0023C8C7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0A34A5FE2C4D3CBB0023C8C7 /* Base */; };
 		0A79962F2C5240B5000E544A /* ClovaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A79962E2C5240B5000E544A /* ClovaAPI.swift */; };
 		0A7996312C5240E3000E544A /* ClovaAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7996302C5240E3000E544A /* ClovaAPIService.swift */; };
-		0A7996362C524E24000E544A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7996352C524E24000E544A /* UserInfo.swift */; };
+		0A7996362C524E24000E544A /* UserInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7996352C524E24000E544A /* UserInfoRequest.swift */; };
 		0A7996382C5251EA000E544A /* MessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7996372C5251EA000E544A /* MessageRequest.swift */; };
 		0AADD1262C4E5B4C00A2C7A4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD1252C4E5B4C00A2C7A4 /* BaseViewController.swift */; };
 		0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADD12E2C4E5ECB00A2C7A4 /* BaseView.swift */; };
@@ -57,11 +56,13 @@
 		0AF68BE52C52D76300CE0EC1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AF68BE42C52D76300CE0EC1 /* IQKeyboardManagerSwift */; };
 		0AF68BE72C53E6E900CE0EC1 /* CharmImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BE62C53E6E900CE0EC1 /* CharmImage.swift */; };
 		0AF68BE92C53EA2600CE0EC1 /* CharmReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BE82C53EA2600CE0EC1 /* CharmReponse.swift */; };
+		0AF68BEF2C54898500CE0EC1 /* UserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BEE2C54898500CE0EC1 /* UserInfoResponse.swift */; };
+		0AF68BF12C548B4800CE0EC1 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BF02C548B4800CE0EC1 /* MessageResponse.swift */; };
+		0AF68BF32C548D0300CE0EC1 /* CharmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BF22C548D0300CE0EC1 /* CharmRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A24E7A72C5347E100F2CE90 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
-		0A24E7AA2C5376FB00F2CE90 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 		0A24E7AC2C53849E00F2CE90 /* SegmentedOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedOption.swift; sourceTree = "<group>"; };
 		0A34A5EF2C4D3CBA0023C8C7 /* POPO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POPO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A34A5F22C4D3CBA0023C8C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../Application/AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,7 +73,7 @@
 		0A34A6002C4D3CBB0023C8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A79962E2C5240B5000E544A /* ClovaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClovaAPI.swift; sourceTree = "<group>"; };
 		0A7996302C5240E3000E544A /* ClovaAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClovaAPIService.swift; sourceTree = "<group>"; };
-		0A7996352C524E24000E544A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		0A7996352C524E24000E544A /* UserInfoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRequest.swift; sourceTree = "<group>"; };
 		0A7996372C5251EA000E544A /* MessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRequest.swift; sourceTree = "<group>"; };
 		0AADD1252C4E5B4C00A2C7A4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0AADD12E2C4E5ECB00A2C7A4 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -106,6 +107,9 @@
 		0AF68BD22C52987700CE0EC1 /* MakeCharmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmViewController.swift; sourceTree = "<group>"; };
 		0AF68BE62C53E6E900CE0EC1 /* CharmImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharmImage.swift; sourceTree = "<group>"; };
 		0AF68BE82C53EA2600CE0EC1 /* CharmReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharmReponse.swift; sourceTree = "<group>"; };
+		0AF68BEE2C54898500CE0EC1 /* UserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponse.swift; sourceTree = "<group>"; };
+		0AF68BF02C548B4800CE0EC1 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
+		0AF68BF22C548D0300CE0EC1 /* CharmRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharmRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,7 @@
 		0A79962D2C5240A4000E544A /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0AF68BF42C548DAA00CE0EC1 /* Entity */,
 				0A79962E2C5240B5000E544A /* ClovaAPI.swift */,
 				0A7996302C5240E3000E544A /* ClovaAPIService.swift */,
 			);
@@ -166,12 +171,8 @@
 		0AADD1182C4E538200A2C7A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0A7996352C524E24000E544A /* UserInfo.swift */,
-				0A7996372C5251EA000E544A /* MessageRequest.swift */,
-				0A24E7AA2C5376FB00F2CE90 /* MessageResponse.swift */,
 				0A24E7AC2C53849E00F2CE90 /* SegmentedOption.swift */,
 				0AF68BE62C53E6E900CE0EC1 /* CharmImage.swift */,
-				0AF68BE82C53EA2600CE0EC1 /* CharmReponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -377,6 +378,43 @@
 			path = MakeCharm;
 			sourceTree = "<group>";
 		};
+		0AF68BF42C548DAA00CE0EC1 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				0AF68BF72C548E4000CE0EC1 /* Charm */,
+				0AF68BF62C548E1000CE0EC1 /* Message */,
+				0AF68BF52C548DB000CE0EC1 /* UserInfo */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		0AF68BF52C548DB000CE0EC1 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				0AF68BEE2C54898500CE0EC1 /* UserInfoResponse.swift */,
+				0A7996352C524E24000E544A /* UserInfoRequest.swift */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		0AF68BF62C548E1000CE0EC1 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				0A7996372C5251EA000E544A /* MessageRequest.swift */,
+				0AF68BF02C548B4800CE0EC1 /* MessageResponse.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		0AF68BF72C548E4000CE0EC1 /* Charm */ = {
+			isa = PBXGroup;
+			children = (
+				0AF68BF22C548D0300CE0EC1 /* CharmRequest.swift */,
+				0AF68BE82C53EA2600CE0EC1 /* CharmReponse.swift */,
+			);
+			path = Charm;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -468,7 +506,6 @@
 				0AF68BC92C506F0900CE0EC1 /* AgePageCollectionViewCell.swift in Sources */,
 				0A7996312C5240E3000E544A /* ClovaAPIService.swift in Sources */,
 				0ADFB55D2C509993004FB1BA /* HomeViewController.swift in Sources */,
-				0A24E7AB2C5376FB00F2CE90 /* MessageResponse.swift in Sources */,
 				0A24E7A82C5347E100F2CE90 /* UIDevice.swift in Sources */,
 				0A7996382C5251EA000E544A /* MessageRequest.swift in Sources */,
 				0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */,
@@ -480,10 +517,12 @@
 				0ADFB5562C509943004FB1BA /* SegmentedView.swift in Sources */,
 				0AE6CF042C5222BE005B94B3 /* TotalCharmCollectionViewCell.swift in Sources */,
 				0A79962F2C5240B5000E544A /* ClovaAPI.swift in Sources */,
-				0A7996362C524E24000E544A /* UserInfo.swift in Sources */,
+				0A7996362C524E24000E544A /* UserInfoRequest.swift in Sources */,
 				0AF68BD32C52987700CE0EC1 /* MakeCharmViewController.swift in Sources */,
 				0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */,
+				0AF68BEF2C54898500CE0EC1 /* UserInfoResponse.swift in Sources */,
 				0A34A5F72C4D3CBA0023C8C7 /* LaunchScreenViewController.swift in Sources */,
+				0AF68BF12C548B4800CE0EC1 /* MessageResponse.swift in Sources */,
 				0AF68BD02C52985700CE0EC1 /* MakeCharmView.swift in Sources */,
 				0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */,
 				0AE6CEFA2C5200BB005B94B3 /* UserInfoView.swift in Sources */,
@@ -495,6 +534,7 @@
 				0AF68BB72C4FF7BD00CE0EC1 /* UILable+Extension.swift in Sources */,
 				0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */,
 				0AF68BC02C502DBF00CE0EC1 /* OnboardingView.swift in Sources */,
+				0AF68BF32C548D0300CE0EC1 /* CharmRequest.swift in Sources */,
 				0AE6CEF62C51FCAE005B94B3 /* MyPageViewController.swift in Sources */,
 				0AF68BBD2C50039700CE0EC1 /* UIImage+Extension.swift in Sources */,
 				0AE6CEF32C51FC82005B94B3 /* MyPageView.swift in Sources */,
