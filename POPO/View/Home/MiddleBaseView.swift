@@ -19,7 +19,10 @@ class MiddleBaseView: BaseView {
     lazy var inputTextViewBackgroundView = UIView()
     lazy var inputTextViewPlaceholderLabel = UILabel()
     lazy var inputTextView = UITextView()
-    
+    lazy var inputTextViewCountView = UIView()
+    lazy var inputTextViewCountLabel = CustomLabel(text: "1", font: .body(ofSize: 11))
+    lazy var inputTextViewCounterLabel = CustomLabel(text: "/50자", font: .body(ofSize: 11))
+
     // Output 창
     lazy var outPutSpeechBalloonImageView = UIImageView()
     lazy var outPutTextView = UITextView()
@@ -56,9 +59,15 @@ class MiddleBaseView: BaseView {
     
     // Input 창
     private func setupInputTextView() {
-        inputTextViewBackgroundView.addSubviews([inputTextView, actionButton])
+        inputTextViewBackgroundView.addSubviews([inputTextViewCountView,
+                                                 inputTextView,
+                                                 actionButton])
         inputTextViewBackgroundView.backgroundColor = .white
         inputTextViewBackgroundView.layer.cornerRadius = 20
+        
+        inputTextViewCountView.addSubviews([inputTextViewCountLabel, inputTextViewCounterLabel])
+        inputTextViewCountLabel.textColor = .userGreen
+        inputTextViewCounterLabel.textColor = .userGray(6)
         
         inputTextViewPlaceholderLabel.text = "\(option?.title ?? "포포")에게 알려줘!"
         inputTextViewPlaceholderLabel.textColor = .userGray(4)
@@ -93,6 +102,23 @@ class MiddleBaseView: BaseView {
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(38)
             make.height.equalTo(200)
+        }
+        
+        inputTextViewCountView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(37)
+            make.height.equalTo(13)
+        }
+        
+        inputTextViewCountLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(inputTextViewCounterLabel.snp.leading).offset(-4)
+        }
+        
+        inputTextViewCounterLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview()
         }
         
         inputTextViewPlaceholderLabel.snp.makeConstraints { make in
@@ -185,14 +211,24 @@ extension MiddleBaseView: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        
+        inputTextViewCountLabel.text = String(textView.text.count)
+        
         let textIsEmpty = textView.text.isEmpty
         
         inputTextViewPlaceholderLabel.isHidden = !textIsEmpty
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard let inputText = inputTextView.text else { return false }
+        let newLength = inputText.count + text.count - range.length
         
-        if textIsEmpty {
+        if newLength == 51 {
             toggleActionButton(.deselected)
         } else {
             toggleActionButton(.selected)
         }
+        
+        return newLength <= 51
     }
 }
