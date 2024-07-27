@@ -61,11 +61,15 @@ class OnboardingViewController: BaseViewController {
         }
     }
     
-    private func moveToHomeView() {
-        UserDefaults.standard.setValue(true, forKey: "isOnboardingCompleted")
+    private func moveToHomeView() {        
+        let homeViewController = HomeViewController()
+        let navigationController = UINavigationController(rootViewController: homeViewController)
         
-        let homeView = HomeViewController()
-        homeView.modalPresentationStyle = .fullScreen
-        present(homeView, animated: false, completion: nil)
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+        }
+        
+        UserDefaults.standard.setValue(true, forKey: "isOnboardingCompleted")
     }
 }
