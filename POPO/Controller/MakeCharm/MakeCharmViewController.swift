@@ -62,13 +62,4 @@ class MakeCharmViewController: BaseViewController {
         
         baseView.makeCharmImage()
     }
-    
-    override func setupEvent() {
-        baseView.closeButton.rx
-            .tap
-            .bind { [weak self] _ in
-                self?.dismiss(animated: true)
-            }
-            .disposed(by: disposeBag)
-    }
 }

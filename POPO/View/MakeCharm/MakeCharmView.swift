@@ -9,11 +9,10 @@ import UIKit
 
 class MakeCharmView: BaseView {
 
-    lazy var blurView = UIVisualEffectView()
     lazy var titleView = TitleView(title: "행운부적")
     lazy var cardImageView = UIImageView(image: UIImage())
-    lazy var closeButton = UIButton(type: .system)
-    lazy var saveButton = UIButton(type: .system)
+    lazy var cardImageShadowView = UIView()
+    lazy var saveButton = UIButton()
     lazy var shareButton = UIButton()
     
     var message1 = ""
@@ -24,16 +23,20 @@ class MakeCharmView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([blurView, titleView, cardImageView, saveButton, closeButton, shareButton])
-
-        blurView.alpha = 0.7
-        blurView.effect = UIBlurEffect(style: .extraLight)
+        addSubviews([titleView, cardImageShadowView, cardImageView, saveButton, shareButton])
         
+        backgroundColor = .userGray(9)
+
         cardImageView.contentMode = .scaleAspectFit
-        cardImageView.layer.shadowColor = UIColor.userGray(1).cgColor
-        cardImageView.layer.shadowOpacity = 0.4
-        cardImageView.layer.shadowRadius = 10
-        cardImageView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cardImageView.layer.cornerRadius = 17
+        cardImageView.clipsToBounds = true
+    
+        cardImageShadowView.backgroundColor = .userGray(9)
+        cardImageShadowView.layer.shadowOpacity = 0.4
+        cardImageShadowView.layer.shadowRadius = 10
+        cardImageShadowView.layer.shadowColor = UIColor.userGray(1).cgColor
+//        cardImageShadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cardImageShadowView.layer.cornerRadius = 17
         
         var configuration = UIButton.Configuration.plain()
         configuration.image = UIImage(named: "Clover_Selected")
@@ -45,24 +48,10 @@ class MakeCharmView: BaseView {
         
         saveButton.configuration = configuration
         
-        var closeConfiguration = UIButton.Configuration.plain()
-        closeConfiguration.image = UIImage(named: "Close")
-        closeConfiguration.imagePadding = 4
-        
-        let closeAttributedString = NSAttributedString(string: "닫기", attributes: [.font: UIFont.body(ofSize: 15), .foregroundColor: UIColor.userGray(4)])
-        closeConfiguration.attributedTitle = AttributedString(closeAttributedString)
-        
-        closeButton.configuration = closeConfiguration
-        
         shareButton.setBackgroundImage(UIImage(named: "ShareButton"), for: .normal)
     }
     
     override func setupLayout() {
-        
-        blurView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-
         titleView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
@@ -70,33 +59,35 @@ class MakeCharmView: BaseView {
         }
 
         cardImageView.snp.makeConstraints { make in
-            make.top.equalTo(titleView.snp.bottom).offset(8)
+            make.top.equalTo(titleView.snp.bottom).offset(12)
             make.centerX.equalToSuperview()
-            make.width.equalTo(270)
-            make.height.equalTo(480)
+            make.width.equalTo(320)
+            make.height.equalTo(560)
+        }
+        
+        cardImageShadowView.snp.makeConstraints { make in
+            make.width.equalTo(310)
+            make.height.equalTo(550)
+            make.edges.equalTo(cardImageView)
         }
         
         saveButton.snp.makeConstraints { make in
-            make.top.equalTo(cardImageView.snp.bottom).offset(24)
-            make.height.equalTo(80)
+            make.top.equalTo(cardImageView.snp.bottom).offset(40)
             make.trailing.equalToSuperview().offset(-32)
+            make.height.equalTo(60)
+            make.width.equalTo(240)
         }
         
         shareButton.snp.makeConstraints { make in
             make.top.equalTo(saveButton.snp.top)
             make.trailing.equalTo(saveButton.snp.leading).offset(-8)
-            make.leading.equalToSuperview().offset(32)
-            make.width.height.equalTo(80)
-        }
-        
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(saveButton.snp.bottom).offset(24)
-            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(38)
+            make.width.height.equalTo(60)
         }
     }
     
     func makeCharmImage() {
-        let number = 0
+        let number = Int.random(in: 0...6)
         
         guard let charmImage = Images(rawValue: number), let image = UIImage(named: charmImage.name) else { return }
                
