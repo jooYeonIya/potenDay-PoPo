@@ -9,11 +9,11 @@ import Moya
 import Foundation
 
 enum ClovaAPI {
-    case healthCheck
-    case myPage(deviceId: String)
-    case onboard(request: UserInfo)
-    case message(request: MessageRequest)
-    case charm
+    case getUserInfo(deviceId: String)
+    case getMyPageMessage(deviceId: String)
+    case saveUserInfo(request: UserInfo)
+    case getAnswer(request: MessageRequest)
+    case makeCharm(request: CharmReponse)
 }
 
 extension ClovaAPI: TargetType {
@@ -23,42 +23,46 @@ extension ClovaAPI: TargetType {
     
     var path: String {
         switch self {
-        case .healthCheck:
-            return "/health-check"
-        case .myPage(deviceId: _):
-            return "/my-page"
-        case .onboard(request: _):
+        case .getUserInfo(deviceId: _):
             return "/onboard"
-        case .message(request: _):
+        case .getMyPageMessage(deviceId: _):
+            return "/my-page"
+        case .saveUserInfo(request: _):
+            return "/onboard"
+        case .getAnswer(request: _):
             return "/message"
-        case .charm:
+        case .makeCharm:
             return "/charm"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .healthCheck, .myPage(deviceId: _):
+        case .getUserInfo:
             return .get
-        case .onboard(request: _), .message(request: _):
+        case .getMyPageMessage:
+            return .get
+        case .saveUserInfo(request: _):
             return .post
-        case .charm:
+        case .getAnswer(request: _):
+            return .post
+        case .makeCharm(request: _):
             return .post
         }
     }
     
     var task: Task {
         switch self {
-        case .healthCheck:
-            return .requestPlain
-        case let .myPage(deviceId):
-            return .requestParameters(parameters: ["dId": deviceId], encoding: URLEncoding.queryString)
-        case let .onboard(request):
+        case let .getUserInfo(deviceId):
+            return .requestParameters(parameters: ["deviceId": deviceId], encoding: URLEncoding.queryString)
+        case let .getMyPageMessage(deviceId):
+            return .requestParameters(parameters: ["diviceId": deviceId], encoding: URLEncoding.queryString)
+        case let .saveUserInfo(request):
             return .requestJSONEncodable(request)
-        case let .message(request):
+        case let .getAnswer(request):
             return .requestJSONEncodable(request)
-        case .charm:
-            return .requestPlain
+        case let .makeCharm(request):
+            return .requestJSONEncodable(request)
         }
     }
     
