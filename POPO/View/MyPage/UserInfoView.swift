@@ -34,8 +34,8 @@ class UserInfoView: BaseView {
         nicknameTextField.isUserInteractionEnabled = false
         nicknameTextField.font = .bodyBold(ofSize: 22)
         
-        modifyButton.setImage(UIImage(named: "ModifyUserInfo_Unselected"), for: .normal)
-        modifyButton.setImage(UIImage(named: "ModifyUserInfo_Selected"), for: .selected)
+        modifyButton.setImage(UIImage(named: "Modify_Deselected"), for: .normal)
+        modifyButton.setImage(UIImage(named: "Modify_Selected"), for: .selected)
         modifyButton.addTarget(self, action: #selector(modifyButtonTapped), for: .touchUpInside)
     }
     
@@ -57,7 +57,8 @@ class UserInfoView: BaseView {
         modifyButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-16)
-            make.width.height.equalTo(24)
+            make.width.equalTo(63)
+            make.height.equalTo(32)
         }
     }
     
