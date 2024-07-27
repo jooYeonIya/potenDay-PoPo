@@ -133,6 +133,7 @@ class MiddleBaseView: BaseView {
         }
     }
     
+    // 버튼 관련 함수들
     func toggleActionButton(_ option: ActionButtonOtpion) {
         switch option {
             
@@ -143,6 +144,7 @@ class MiddleBaseView: BaseView {
                                            text: "얍",
                                            image: UIImage(named: "Clover_Deselected")!)
             actionButton.applyBasicButton(buttonOption)
+            actionButton.isEnabled = false
             
         case .selected:
             let buttonOption = BasicButtonOtpion(backgroundColor: .white,
@@ -151,6 +153,7 @@ class MiddleBaseView: BaseView {
                                            text: "얍",
                                            image: UIImage(named: "Clover_Selected")!)
             actionButton.applyBasicButton(buttonOption)
+            actionButton.isEnabled = true
         }
     }
     
@@ -162,7 +165,7 @@ class MiddleBaseView: BaseView {
                                        image: UIImage(named: "Loading")!)
         
         actionButton.applyBasicButton(buttonOption)
-        actionButton.isEnabled = true
+        actionButton.isEnabled = false
     }
     
     func updateAcionButtonRepeat() {
