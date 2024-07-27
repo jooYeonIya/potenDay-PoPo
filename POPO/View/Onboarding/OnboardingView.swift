@@ -144,12 +144,12 @@ class OnboardingView: BaseView {
         
         pageControl.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(scrollView.snp.bottom).offset(20)
+            make.top.equalTo(safeAreaLayoutGuide)
         }
         
         errorLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(pageControl.snp.top)
+            make.top.equalTo(namePageView.snp.bottom).offset(8)
         }
         
         namePageView.snp.makeConstraints { make in
