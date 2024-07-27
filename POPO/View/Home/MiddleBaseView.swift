@@ -128,7 +128,8 @@ class MiddleBaseView: BaseView {
         }
         
         inputTextViewPlaceholderLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.top.equalTo(inputTextView.snp.top)
         }
     
         inputTextView.snp.makeConstraints { make in
@@ -154,7 +155,8 @@ class MiddleBaseView: BaseView {
         
         outPutTextView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.height.equalTo(120)
+            make.top.equalToSuperview().offset(12)
+            make.bottom.equalToSuperview().offset(-24)
             make.width.equalTo(240)
         }
         
@@ -238,6 +240,10 @@ extension MiddleBaseView: UITextViewDelegate {
         let textIsEmpty = textView.text.isEmpty
         
         inputTextViewPlaceholderLabel.isHidden = !textIsEmpty
+        
+        if textIsEmpty {
+            textView.endEditing(true)
+        }
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
