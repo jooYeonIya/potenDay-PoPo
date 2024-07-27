@@ -28,11 +28,15 @@ class OnboardingViewController: BaseViewController {
     }
     
     override func setupEvent() {
-        baseView.doneButton.rx.tap
+        baseView.doneButton.rx
+            .tap
             .bind { [weak self] _ in
                 self?.saveUserInfo()
             }
             .disposed(by: disposebag)
+        
+//        baseView.nameTextField.rx
+//            
     }
     
     // 유저 정보 등록

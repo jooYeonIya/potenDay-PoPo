@@ -21,6 +21,8 @@ class OnboardingView: BaseView {
     
     var selecetedUserAge = 99
     
+    var enterPressCount = 0
+    
     var isNotAgeView: Bool = true {
         willSet {
             doneButton.isHidden = newValue
@@ -79,7 +81,8 @@ class OnboardingView: BaseView {
         
         rightButton.setImage(UIImage(named: "CancelButton"), for: .normal)
         rightButton.isHidden = true
-        
+        rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
+
         nameTextField.addSubview(rightButton)
         
         rightButton.snp.makeConstraints { make in
@@ -199,19 +202,20 @@ extension OnboardingView: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
         if let text = textField.text,
            !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             if text.count < 11 {
+                enterPressCount += 1
                 rightButton.setImage(UIImage(named: "DoneButton"), for: .normal)
-                rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
                 rightButton.isEnabled = true
-                errorLabel.isHidden = true
-            } else {
+                
+                if enterPressCount >= 2 {
+                    rightButtonTapped()
+                }
+                
+             } else {
                 rightButton.setImage(UIImage(named: "CancelButton"), for: .normal)
                 rightButton.isEnabled = false
-                errorLabel.isHidden = false
             }
         }
         
