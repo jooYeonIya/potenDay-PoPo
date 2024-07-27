@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Photos
 
 class MakeCharmViewController: BaseViewController {
 
@@ -68,12 +69,21 @@ class MakeCharmViewController: BaseViewController {
         baseView.shareButton.rx
             .tap
             .bind { [weak self] _ in
-                self?.openShareView()
+                self?.shareButtonTapped()
+            }
+            .disposed(by: disposeBag)
+        
+        // 저장 버튼 누르기
+        baseView.saveButton.rx
+            .tap
+            .bind { [weak self] _ in
+                self?.saveButtonTapped()
             }
             .disposed(by: disposeBag)
     }
     
-    private func openShareView() {
+    // 공유 버튼 누르기
+    private func shareButtonTapped() {
         guard let shareImgae = baseView.cardImageView.image else { return }
 
         let activityViewController = UIActivityViewController(activityItems: [shareImgae], applicationActivities: nil)
@@ -88,4 +98,47 @@ class MakeCharmViewController: BaseViewController {
         // 표시
         present(activityViewController, animated: true, completion: nil)
     }
+    
+    // 저장 버튼 누르기
+    private func saveButtonTapped() {
+        guard let image = baseView.cardImageView.image else { return }
+        
+        // 사진첩 접근 권한 상태 확인
+          let status = PHPhotoLibrary.authorizationStatus()
+          
+          switch status {
+          case .authorized:
+              saveImageToPhotoLibrary(image)
+          case .denied, .restricted:
+              showAlertOneButton(title: "", message: "사진첩 접근 권한이 필요합니다.")
+          case .notDetermined:
+              PHPhotoLibrary.requestAuthorization { status in
+                  if status == .authorized {
+                      self.saveImageToPhotoLibrary(image)
+                  } else {
+                      print("사진첩 접근 권한이 필요합니다.")
+                  }
+              }
+          case .limited: 
+              break
+          default:
+              fatalError("새로운 상태가 추가되었습니다.")
+          }
+      }
+    
+    
+    func saveImageToPhotoLibrary(_ image: UIImage) {
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            print(error.localizedDescription)
+        } else {
+            // 팝업 띄우기
+            print("이미지가 사진첩에 저장되었습니다.")
+        }
+    }
 }
+
+

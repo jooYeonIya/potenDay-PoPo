@@ -129,14 +129,7 @@ class MakeCharmView: BaseView {
         cardImageView.image = combinedImage
 
         // 이미지 저장 (JPEG 형식)
-//        if let data = combinedImage.jpegData(compressionQuality: 0.8) {
-//            let UUID = UUID()
-//            let filename = getDocumentsDirectory().appendingPathComponent("\(UUID).jpg")
-//            try? data.write(to: filename)
-//            print("Image saved to \(filename.path)")
-//        }
-        
-        // 이미지를 사진첩에 저장
+        saveImageToFolder(combinedImage)
     }
         
     private func drawTextsOnImage(image: UIImage, texts: [(text: NSAttributedString, rect: CGRect)]) -> UIImage {
@@ -155,6 +148,38 @@ class MakeCharmView: BaseView {
         return resultImage!
     }
     
+    private func saveImageToFolder(_ combinedImage: UIImage) {
+        // 이미지 데이터를 JPEG 형식으로 압축
+        if let data = combinedImage.jpegData(compressionQuality: 0.8) {
+            
+            // PoPo 폴더 경로 설정
+            let fileManager = FileManager.default
+            let documentsDirectory = getDocumentsDirectory()
+            let poPoDirectory = documentsDirectory.appendingPathComponent("PoPo")
+
+            // PoPo 폴더가 존재하지 않을 경우 폴더 생성
+            if !fileManager.fileExists(atPath: poPoDirectory.path) {
+                do {
+                    try fileManager.createDirectory(at: poPoDirectory, withIntermediateDirectories: true, attributes: nil)
+                } catch {
+                    print("폴더 생성 실패: \(error.localizedDescription)")
+                    return
+                }
+            }
+
+            // 파일 이름 및 경로 설정
+            let uuid = UUID().uuidString
+            let filename = poPoDirectory.appendingPathComponent("\(uuid).jpg")
+
+            // 이미지 데이터를 파일에 저장
+            do {
+                try data.write(to: filename)
+                print("Image saved to \(filename.path)")
+            } catch {
+                print("이미지 저장 실패: \(error.localizedDescription)")
+            }
+        }
+    }
     
     private func getDocumentsDirectory() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
