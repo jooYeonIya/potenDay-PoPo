@@ -10,6 +10,7 @@ import UIKit
 class MakeCharmView: BaseView {
 
     lazy var titleView = TitleView(title: "행운부적")
+    lazy var rightArrowButton = UIButton()
     lazy var cardImageView = UIImageView(image: UIImage())
     lazy var cardImageShadowView = UIView()
     lazy var saveButton = UIButton()
@@ -23,9 +24,16 @@ class MakeCharmView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([titleView, cardImageShadowView, cardImageView, saveButton, shareButton])
+        addSubviews([titleView, 
+                     rightArrowButton,
+                     cardImageShadowView,
+                     cardImageView,
+                     saveButton,
+                     shareButton])
         
         backgroundColor = .userGray(9)
+        
+        rightArrowButton.setImage(UIImage(named: "RightArrowButton"), for: .normal)
 
         cardImageView.contentMode = .scaleAspectFit
         cardImageView.layer.cornerRadius = 17
@@ -55,6 +63,12 @@ class MakeCharmView: BaseView {
             make.top.equalTo(safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(80)
+        }
+        
+        rightArrowButton.snp.makeConstraints { make in
+            make.width.height.equalTo(24)
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalTo(titleView)
         }
 
         cardImageView.snp.makeConstraints { make in

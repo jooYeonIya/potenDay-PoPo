@@ -74,7 +74,7 @@ class HomeBaseView: BaseView {
         
         // 부적 만들기로 이동하는 버튼 뷰
         moveToMakeCharmButtonView.configure()
-        moveToMakeCharmButtonView.isHidden = true
+        moveToMakeCharmButtonView.isHidden = false
         
         // tabbar
         tabBarView.delegate = self

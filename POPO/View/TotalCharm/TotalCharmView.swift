@@ -52,8 +52,7 @@ class TotalCharmView: BaseView {
         blurImageView.image = UIImage(named: "BlurView")
     }
     
-    func getImagesFromFolder() -> [UIImage] {
-
+    func getImagesFromFolder() {
         let fileManager = FileManager.default
         let documentsDirectory = getDocumentsDirectory()
 
@@ -70,8 +69,6 @@ class TotalCharmView: BaseView {
         } catch {
             print("PoPo 폴더의 이미지 로드 실패: \(error.localizedDescription)")
         }
-        
-        return images
     }
 
     private func getDocumentsDirectory() -> URL {

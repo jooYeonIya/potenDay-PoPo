@@ -24,6 +24,7 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
         baseView.configure()
         baseView.delegate = self
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func setupEvent() {
@@ -70,8 +71,7 @@ class HomeViewController: BaseViewController {
             .tap
             .bind { [weak self] _ in
                 let vc = MakeCharmViewController(answer: self?.answer ?? "")
-                vc.modalPresentationStyle = .fullScreen
-                self?.present(vc, animated: true)
+                self?.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
     }
@@ -95,9 +95,13 @@ extension HomeViewController: HomeViewDelegate {
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: false)
         case .home:
-            let vc = HomeViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: false)
+            let homeViewController = HomeViewController()
+            let navigationController = UINavigationController(rootViewController: homeViewController)
+            
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = navigationController
+                window.makeKeyAndVisible()
+            }
         case .myPage:
             let vc = MyPageViewController()
             vc.modalPresentationStyle = .fullScreen

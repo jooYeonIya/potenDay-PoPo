@@ -37,6 +37,8 @@ class MakeCharmViewController: BaseViewController {
         baseView.configure()
         
         makeCharmMessage()
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func makeCharmMessage() {
@@ -78,6 +80,14 @@ class MakeCharmViewController: BaseViewController {
             .tap
             .bind { [weak self] _ in
                 self?.saveButtonTapped()
+            }
+            .disposed(by: disposeBag)
+        
+        // 돌아가기 버튼 누르기
+        baseView.rightArrowButton.rx
+            .tap
+            .bind { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
     }

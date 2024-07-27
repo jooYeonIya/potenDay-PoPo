@@ -70,9 +70,13 @@ class LaunchScreenViewController: UIViewController {
         let isOnboardingCompleted = UserDefaults.standard.bool(forKey: "isOnboardingCompleted")
         
         if isOnboardingCompleted {
-            let homeView = HomeViewController()
-            homeView.modalPresentationStyle = .fullScreen
-            present(homeView, animated: false)
+            let homeViewController = HomeViewController()
+            let navigationController = UINavigationController(rootViewController: homeViewController)
+            
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = navigationController
+                window.makeKeyAndVisible()
+            }
         } else {
             let onboardingView = OnboardingViewController()
             onboardingView.modalPresentationStyle = .fullScreen
