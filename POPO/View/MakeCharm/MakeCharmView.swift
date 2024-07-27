@@ -11,6 +11,9 @@ class MakeCharmView: BaseView {
 
     lazy var titleView = TitleView(title: "행운부적")
     lazy var rightArrowButton = UIButton()
+    lazy var toolTipView = UIImageView()
+    lazy var toolTipViewLabel = CustomLabel(text: "부적을 저장해서 배경화면으로 활용해봐!", font: .body(ofSize: 11))
+
     lazy var cardImageView = UIImageView(image: UIImage())
     lazy var cardImageShadowView = UIView()
     lazy var saveButton = UIButton()
@@ -29,11 +32,15 @@ class MakeCharmView: BaseView {
                      cardImageShadowView,
                      cardImageView,
                      saveButton,
+                     toolTipView,
                      shareButton])
         
         backgroundColor = .userGray(9)
         
         rightArrowButton.setImage(UIImage(named: "RightArrowButton"), for: .normal)
+        
+        toolTipView.image = UIImage(named: "GrayToolTip")
+        toolTipView.addSubview(toolTipViewLabel)
 
         cardImageView.contentMode = .scaleAspectFit
         cardImageView.layer.cornerRadius = 17
@@ -69,6 +76,17 @@ class MakeCharmView: BaseView {
             make.width.height.equalTo(24)
             make.leading.equalToSuperview().offset(16)
             make.centerY.equalTo(titleView)
+        }
+        
+        toolTipView.snp.makeConstraints { make in
+            make.bottom.equalTo(saveButton.snp.top).offset(16)
+            make.trailing.equalToSuperview().offset(-56)
+            make.width.equalTo(200)
+        }
+        
+        toolTipViewLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview().offset(-4)
+            make.centerX.equalToSuperview()
         }
 
         cardImageView.snp.makeConstraints { make in
