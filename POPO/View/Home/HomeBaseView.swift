@@ -78,14 +78,12 @@ class HomeBaseView: BaseView {
         toolTipView.image = UIImage(named: "PinkToolTip")
         toolTipView.addSubview(toolTipViewTextLabel)
         
-
-        
         // 미들 뷰 - input, output
         middleView.configure()
         
         // 부적 만들기로 이동하는 버튼 뷰
         moveToMakeCharmButtonView.configure()
-        moveToMakeCharmButtonView.isHidden = false
+        moveToMakeCharmButtonView.isHidden = true
         
         // tabbar
         tabBarView.delegate = self
