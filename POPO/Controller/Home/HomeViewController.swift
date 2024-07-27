@@ -27,7 +27,7 @@ class HomeViewController: BaseViewController {
         baseView.middleView.delegate = self
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        if UserDefaults.standard.bool(forKey: "isOnboardingCompleted") {
+        if !UserDefaults.standard.bool(forKey: "isOnboardingCompleted") {
             baseView.toolTipView.isHidden = true
             baseView.toolTipViewTextLabel.isHidden = true
         } else {
