@@ -51,11 +51,11 @@ class MyPageView: BaseView {
     override func setupUI() {
         addSubviews([greenCircleView,
                      topBackgroundView,
-                     blurImageView,
                      blurView,
                      titleView,
                      userInfoView,
                      QnATableView,
+                     blurImageView,
                      noDataView,
                      tabBarView])
         

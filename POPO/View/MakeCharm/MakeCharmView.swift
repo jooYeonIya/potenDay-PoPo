@@ -57,6 +57,7 @@ class MakeCharmView: BaseView {
         
         toolTipView.image = UIImage(named: "GrayToolTip")
         toolTipView.addSubview(toolTipViewLabel)
+        toolTipView.isHidden = true
 
         [loadingImageView, cardImageView].forEach {
             $0.contentMode = .scaleAspectFit
@@ -79,10 +80,8 @@ class MakeCharmView: BaseView {
         configuration.attributedTitle = AttributedString(attributedString)
         
         saveButton.configuration = configuration
-        saveButton.isEnabled = false
         
         shareButton.setBackgroundImage(UIImage(named: "ShareButton"), for: .normal)
-        shareButton.isEnabled = false
         
         // 저장 완료 화면
         shadowBackgroundView.backgroundColor = .black
@@ -206,8 +205,24 @@ class MakeCharmView: BaseView {
         // 이미지 저장 (JPEG 형식)
         saveImageToFolder(combinedImage) {
             self.loadingImageView.isHidden = true
-            self.saveButton.isEnabled = true
-            self.shareButton.isEnabled = true
+            self.saveButton.isHidden = false
+            self.shareButton.isHidden = false
+            
+            if !UserDefaults.standard.bool(forKey: "isDonwloadToolTipShow") {
+                self.toolTipView.isHidden = false
+                self.toolTipViewLabel.isHidden = false
+               
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    self.toolTipView.isHidden = true
+                    self.toolTipViewLabel.isHidden = true
+                }
+                
+                UserDefaults.standard.setValue(true, forKey: "isDonwloadToolTipShow")
+            } else {
+                self.toolTipView.isHidden = true
+                self.toolTipViewLabel.isHidden = true
+            }
+            
         }
     }
         

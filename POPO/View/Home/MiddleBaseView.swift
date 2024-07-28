@@ -220,6 +220,7 @@ class MiddleBaseView: BaseView {
             inputTextViewPlaceholderLabel.isHidden = false
             outPutTextView.text = option?.description
             delegate?.dismissMoveToMakeCharmButtonView()
+            toggleActionButton(.deselected)
         } else {
             updateActionButtonLoading()
             inputTextView.resignFirstResponder()

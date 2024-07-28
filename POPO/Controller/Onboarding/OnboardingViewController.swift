@@ -63,6 +63,8 @@ class OnboardingViewController: BaseViewController {
     
     private func moveToHomeView() {        
         UserDefaults.standard.setValue(true, forKey: "isOnboardingCompleted")
+        UserDefaults.standard.setValue(false, forKey: "isHomeToolTipShow")
+
 
         let homeViewController = HomeViewController()
         let navigationController = UINavigationController(rootViewController: homeViewController)

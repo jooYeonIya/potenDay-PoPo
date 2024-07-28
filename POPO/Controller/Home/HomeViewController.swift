@@ -27,14 +27,21 @@ class HomeViewController: BaseViewController {
         baseView.middleView.delegate = self
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        if UserDefaults.standard.bool(forKey: "isOnboardingCompleted") {
-            baseView.toolTipView.isHidden = true
-            baseView.toolTipViewTextLabel.isHidden = true
-        } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+        if !UserDefaults.standard.bool(forKey: "isHomeToolTipShow") {
+            
+            baseView.toolTipView.isHidden = false
+            baseView.toolTipViewTextLabel.isHidden = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 self.baseView.toolTipView.isHidden = true
                 self.baseView.toolTipViewTextLabel.isHidden = true
             }
+            
+            UserDefaults.standard.setValue(false, forKey: "isDonwloadToolTipShow")
+            UserDefaults.standard.setValue(true, forKey: "isHomeToolTipShow")
+        } else {
+                self.baseView.toolTipView.isHidden = true
+                self.baseView.toolTipViewTextLabel.isHidden = true
         }
     }
 

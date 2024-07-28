@@ -88,7 +88,7 @@ class LaunchScreenViewController: UIViewController {
 
 class RadialGradientLayer: CALayer {
     override func draw(in ctx: CGContext) {
-        let colors = [UIColor.userPink.cgColor, // 중앙 색상
+        let colors = [UIColor.white.cgColor, // 중앙 색상
                       UIColor.userLightGreen.cgColor] // 외곽 색상
 
         // RGB 색상 공간 생성

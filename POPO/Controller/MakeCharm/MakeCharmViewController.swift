@@ -40,18 +40,11 @@ class MakeCharmViewController: BaseViewController {
         
         if answer == "total" {
             baseView.cardImageView.image = image
+            baseView.loadingImageView.isHidden = true
         } else {
             makeCharmMessage()
-        }
-        
-        if UserDefaults.standard.bool(forKey: "isOnboardingCompleted") {
-            baseView.toolTipView.isHidden = true
-            baseView.toolTipViewLabel.isHidden = true
-        } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                self.baseView.toolTipView.isHidden = true
-                self.baseView.toolTipViewLabel.isHidden = true
-            }
+            baseView.saveButton.isHidden = true
+            baseView.shareButton.isHidden = true
         }
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -120,7 +113,13 @@ class MakeCharmViewController: BaseViewController {
         baseView.popupView.moveToHomeBUtton.rx
             .tap
             .bind { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
+                let homeViewController = HomeViewController()
+                let navigationController = UINavigationController(rootViewController: homeViewController)
+                
+                if let window = UIApplication.shared.windows.first {
+                    window.rootViewController = navigationController
+                    window.makeKeyAndVisible()
+                }
             }
             .disposed(by: disposeBag)
     }
@@ -170,6 +169,10 @@ class MakeCharmViewController: BaseViewController {
         }, completionHandler: { success, error in
             if success {
                 print("이미지가 사진첩에 저장되었습니다.")
+                DispatchQueue.main.async() {
+                    self.baseView.popupView.isHidden = false
+                    self.baseView.shadowBackgroundView.isHidden = false
+                }
             } else {
                 print("이미지 저장에 실패했습니다: \(String(describing: error))")
             }
