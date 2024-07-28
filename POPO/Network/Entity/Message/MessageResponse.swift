@@ -35,6 +35,14 @@ struct Content: Codable {
     let clovaMood: String
     let character: String
     let date: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case userMood = "user_mood"
+        case clovaMood = "clova_mood"
+        case character
+        case date
+    }
 }
 
 // MARK: - Pageable

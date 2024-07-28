@@ -10,7 +10,7 @@ import Foundation
 
 enum ClovaAPI {
     case getUserInfo(deviceId: String)
-    case getMyPageMessage(deviceId: String)
+    case getMyPageMessage(deviceId: String, page: Int, size: Int)
     case saveUserInfo(request: UserInfoRequest)
     case getAnswer(request: MessageRequest)
     case makeCharm(request: CharmRequest)
@@ -26,7 +26,7 @@ extension ClovaAPI: TargetType {
         switch self {
         case .getUserInfo(deviceId: _):
             return "/onboard"
-        case .getMyPageMessage(deviceId: _):
+        case .getMyPageMessage:
             return "/my-page"
         case .saveUserInfo(request: _):
             return "/onboard"
@@ -60,8 +60,8 @@ extension ClovaAPI: TargetType {
         switch self {
         case let .getUserInfo(deviceId):
             return .requestParameters(parameters: ["deviceId": deviceId], encoding: URLEncoding.queryString)
-        case let .getMyPageMessage(deviceId):
-            return .requestParameters(parameters: ["diviceId": deviceId], encoding: URLEncoding.queryString)
+        case let .getMyPageMessage(deviceId, page, size):
+            return .requestParameters(parameters: ["deviceId": deviceId, "page": page, "size": size], encoding: URLEncoding.queryString)
         case let .saveUserInfo(request):
             return .requestJSONEncodable(request)
         case let .getAnswer(request):

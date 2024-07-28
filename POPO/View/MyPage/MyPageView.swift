@@ -157,7 +157,7 @@ extension MyPageView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "QnATableViewCell", for: indexPath) as? QnATableViewCell else { return UITableViewCell() }
-        cell.configure(content: contents[indexPath.row])
+        cell.configure(content: contents[indexPath.section])
         return cell
     }
     

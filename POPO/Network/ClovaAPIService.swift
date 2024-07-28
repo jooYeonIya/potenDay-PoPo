@@ -33,7 +33,7 @@ class ClovaAPIService {
     // 마이페이지 메시지 조회
     func fetchMyPageMessage(deviceId:String, 
                             completion: @escaping (Result<MessageResponse, Error>) -> Void) {
-        provider.request(.getMyPageMessage(deviceId: deviceId)) { result in
+        provider.request(.getMyPageMessage(deviceId: deviceId, page: 0, size: 10)) { result in
             switch result {
             case let .success(response):
                 do {
