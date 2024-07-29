@@ -7,16 +7,11 @@
 
 import UIKit
 
-protocol MyPageViewDelegate: AnyObject {
-    func moveToView(index: Int)
-}
-
 class MyPageView: BaseView {
     
     // 타이틀
-    lazy var topBackgroundView = UIView()
     lazy var titleView = TitleView(title: "마이페이지")
-    lazy var blurImageView = UIImageView()
+    lazy var blurImageView = CustomImageView("BlurView")
 
     // 뒤 배경
     lazy var blurView = UIVisualEffectView()
@@ -32,7 +27,6 @@ class MyPageView: BaseView {
     lazy var noDataView = NoDataView(message: "아직 변환 기록이 없네! \n 포포나 비키에게 말을 걸어봐~")
 
     // 변수
-    weak var delegate: MyPageViewDelegate?
     var contents: [Content] = [] {
         didSet {
             QnATableView.reloadData()
@@ -43,11 +37,11 @@ class MyPageView: BaseView {
     
     override func configure() {
         super.configure()
+        backgroundColor = .userGray(9)
     }
     
     override func setupUI() {
         addSubviews([greenCircleView,
-                     topBackgroundView,
                      blurView,
                      titleView,
                      userInfoView,
@@ -55,16 +49,9 @@ class MyPageView: BaseView {
                      blurImageView,
                      noDataView])
         
-        backgroundColor = .userGray(9)
-
-        topBackgroundView.backgroundColor = .userGray(9)
-        
-        blurImageView.image = UIImage(named: "BlurView")
-        
         blurView.effect = UIBlurEffect(style: .extraLight)
         
-        greenCircleView.layer.cornerRadius = 411 / 2
-        greenCircleView.backgroundColor = .userLightGreen
+        greenCircleView.createCircleView(.userLightGreen)
         
         userInfoView.configure()
         
@@ -73,7 +60,6 @@ class MyPageView: BaseView {
         QnATableView.separatorStyle = .none
         QnATableView.showsVerticalScrollIndicator = false
         QnATableView.alwaysBounceVertical = false
-        
         QnATableView.reloadData()
         
         noDataView.configure()
@@ -86,11 +72,6 @@ class MyPageView: BaseView {
     }
     
     override func setupLayout() {
-        topBackgroundView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(userInfoView.snp.bottom).offset(12)
-        }
-        
         titleView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
@@ -130,7 +111,6 @@ class MyPageView: BaseView {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide)
         }
- 
     }
 }
 

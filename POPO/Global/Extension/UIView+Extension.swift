@@ -13,4 +13,9 @@ extension UIView {
             addSubview($0)
         }
     }
+    
+    func createCircleView(_ color: UIColor) {
+        layer.cornerRadius = 411 / 2
+        backgroundColor = color
+    }
 }

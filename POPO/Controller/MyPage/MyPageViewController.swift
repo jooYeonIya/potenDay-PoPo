@@ -19,7 +19,6 @@ class MyPageViewController: BaseViewController, UserInfoViewDelegate {
         super.viewDidLoad()
 
         baseView.configure()
-        baseView.delegate = self
         baseView.userInfoView.delegate = self
         
         fetchUserInfo()
@@ -37,11 +36,11 @@ class MyPageViewController: BaseViewController, UserInfoViewDelegate {
 //            }
 //        }
         
-        baseView.userInfoView.nicknameTextField.text = "테스트 Id"
+        baseView.userInfoView.nameTextField.text = "테스트 Id"
     }
     
     func modifyName() {
-        guard let newName = baseView.userInfoView.nicknameTextField.text,
+        guard let newName = baseView.userInfoView.nameTextField.text,
               let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
         let newUserInfo = ModifyNicknameRequest(name: newName, deviceId: deviceId)
         
@@ -75,31 +74,5 @@ class MyPageViewController: BaseViewController, UserInfoViewDelegate {
                                date: "9999-01-01")]
         
         baseView.contents = contents
-    }
-}
-
-extension MyPageViewController: MyPageViewDelegate {
-    func moveToView(index: Int) {
-        let option = TabBarOption(rawValue: index)
-        
-        switch option {
-        case .totalCharm:
-            let vc = TotalCharmViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: false)
-        case .home:
-            let homeViewController = HomeViewController()
-            let navigationController = UINavigationController(rootViewController: homeViewController)
-            
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = navigationController
-                window.makeKeyAndVisible()
-            }
-        case .myPage:
-            let vc = MyPageViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: false)
-        case .none: break
-        }
     }
 }
