@@ -19,44 +19,27 @@ struct BasicButtonOtpion {
 extension UIButton {
     
     // 재활용할 수 있도록 좀 더 생각해보자
-    func applyBlurButton(withImage image: UIImage, withText text: String, fontSize: CGFloat) {
-        
+    func applyBlurButton(withImage image: UIImage, withText text: String, fontSize: CGFloat, fontColor: UIColor = .black) {
         setBackgroundImage(UIImage(named: "BlurButton"), for: .normal)
         
-        let imageView = UIImageView()
-        imageView.image = image
-        
-        let titleLabel = UILabel()
-        titleLabel.text = text
-        titleLabel.font = .bodyBold(ofSize: fontSize)
-        
-        addSubviews([imageView, titleLabel])
-        
-        titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            
-            let offset = image.size.width - 4
-            make.centerX.equalToSuperview().offset(offset)
-        }
-        
-        imageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalTo(titleLabel.snp.leading).offset(-4)
-        }
+        setImage(image, for: .normal)
+        setTitle(text, for: .normal)
+        setTitleColor(fontColor, for: .normal)
+        titleLabel?.font = .bodyBold(ofSize: fontSize)
     }
     
     func applyBasicButton(_ option: BasicButtonOtpion) {
-        
         var configuration = UIButton.Configuration.plain()
         
-        let attributedString = NSAttributedString(string: option.text, attributes: [.font: UIFont.bodyBold(ofSize: 13), .foregroundColor: option.fontColor])
+        let attributedString = NSAttributedString(string: option.text, 
+                                                  attributes: [.font: UIFont.bodyBold(ofSize: 13),
+                                                               .foregroundColor: option.fontColor])
         
         configuration.attributedTitle = AttributedString(attributedString)
         configuration.image = option.image
         configuration.imagePlacement = .trailing
         configuration.imagePadding = 4
                         
-        
         self.configuration = configuration
        
         layer.cornerRadius = 20

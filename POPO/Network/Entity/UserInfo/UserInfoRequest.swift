@@ -47,7 +47,7 @@ enum Ages: Int, CaseIterable {
         }
     }
     
-    var userAsge: String {
+    var apiAge: String {
         switch self {
         case .age0to9:
             return "CHILD"

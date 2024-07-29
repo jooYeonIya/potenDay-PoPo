@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class AgeViewController: UIViewController {
+class AgeViewController: BaseViewController {
 
     let baseView = AgeView()
+    
+    private let disposeBag = DisposeBag()
+    var selectedAgeSubject = PublishSubject<Int?>()
     
     override func loadView() {
         super.loadView()
@@ -19,5 +24,14 @@ class AgeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         baseView.configure()
+    }
+    
+    override func setupEvent() {
+        baseView.selectedAgeSubject
+            .bind { [weak self] index in
+                self?.selectedAgeSubject.onNext(index)
+            }
+            .disposed(by: disposeBag)
+        
     }
 }

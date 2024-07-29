@@ -37,7 +37,6 @@ class HomeViewController: BaseViewController {
                 self.baseView.toolTipViewTextLabel.isHidden = true
             }
             
-            UserDefaults.standard.setValue(false, forKey: "isDonwloadToolTipShow")
             UserDefaults.standard.setValue(true, forKey: "isHomeToolTipShow")
         } else {
                 self.baseView.toolTipView.isHidden = true

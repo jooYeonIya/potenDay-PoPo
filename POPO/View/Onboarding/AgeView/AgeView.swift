@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class AgeView: BaseView {
     
@@ -27,7 +29,8 @@ class AgeView: BaseView {
         return collectionView
     }()
     
-    var selecetedUserAge = 99
+    // 변수
+    var selectedAgeSubject = PublishSubject<Int?>()
 
     override func configure() {
         super.configure()
@@ -37,7 +40,11 @@ class AgeView: BaseView {
     override func setupUI() {
         addSubviews([doneButton, ageLabel, ageCollectionView])
             
-        doneButton.applyBlurButton(withImage: UIImage(named: "Clover_Deselected")!, withText: "기다리는 중..", fontSize: 15)
+        doneButton.isEnabled = false
+        doneButton.applyBlurButton(withImage: UIImage(named: "Clover_Deselected")!,
+                                   withText: "기다리는 중..",
+                                   fontSize: 15,
+                                   fontColor: .userGray(4))
     }
     
     // Setup Delegate
@@ -48,15 +55,15 @@ class AgeView: BaseView {
     
     // Setup Layout
     override func setupLayout() {
-        ageCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(ageLabel.snp.bottom).offset(12)
-            make.centerX.leading.trailing.equalToSuperview()
-            make.height.equalTo(76)
+        ageLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(176)
         }
         
-        ageLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(50)
-            make.centerX.equalToSuperview()
+        ageCollectionView.snp.makeConstraints { make in
+            make.centerX.leading.trailing.equalToSuperview()
+            make.top.equalTo(ageLabel.snp.bottom).offset(8)
+            make.height.equalTo(40)
         }
         
         doneButton.snp.makeConstraints { make in
@@ -67,7 +74,7 @@ class AgeView: BaseView {
 }
 
 
-extension AgeView: UICollectionViewDataSource, UICollectionViewDelegate {
+extension AgeView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Ages.allCases.count
     }
@@ -81,10 +88,16 @@ extension AgeView: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! AgeViewCollectionViewCell
         cell.configure(text: Ages.from(number: indexPath.row)?.description ?? "")
+        
+        selectedAgeSubject.onNext(indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! AgeViewCollectionViewCell
         cell.configure(text: Ages.from(number: indexPath.row)?.description ?? "")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 }

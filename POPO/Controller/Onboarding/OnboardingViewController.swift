@@ -18,6 +18,12 @@ class OnboardingViewController: BaseViewController {
     private var pageViewController: UIPageViewController!
     private var pages: [UIViewController] = []
     private let disposeBag = DisposeBag()
+    
+    let nameViewController = NameViewController()
+    let ageViewController = AgeViewController()
+    
+    private var selectedAge: Int?
+    private var pressedName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,16 +39,6 @@ class OnboardingViewController: BaseViewController {
         pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         pageViewController.delegate = self
         pageViewController.dataSource = self
-        
-        let nameViewController = NameViewController()
-        let ageViewController = AgeViewController()
-        
-        nameViewController.enterPressedSubject
-            .bind { [weak self] text in
-                print(text)
-                self?.moveToAgePageView()
-            }
-            .disposed(by: disposeBag)
         
         pages = [nameViewController, ageViewController]
     
@@ -68,6 +64,37 @@ class OnboardingViewController: BaseViewController {
         let indicatorImage = UIImage(named: "Indicator")
         pageControl.setIndicatorImage(indicatorImage, forPage: 0)
         pageControl.setIndicatorImage(indicatorImage, forPage: 1)
+    }
+    
+    override func setupEvent() {
+        nameViewController.enterPressedSubject
+            .bind { [weak self] text in
+                self?.pressedName = text
+                self?.moveToAgePageView()
+            }
+            .disposed(by: disposeBag)
+        
+        ageViewController.selectedAgeSubject
+            .bind { [weak self] index in
+                self?.selectedAge = index
+                self?.ageViewController.baseView.doneButton.isEnabled = true
+                self?.ageViewController.baseView.doneButton.applyBlurButton(withImage: UIImage(named:"Clover_Selected")!,
+                                                                            withText: "준비 끝",
+                                                                            fontSize: 15)
+            }
+            .disposed(by: disposeBag)
+ 
+        
+        ageViewController.baseView.doneButton.rx
+            .tap
+            .bind { [weak self] _ in
+                if self?.pressedName != nil && self?.selectedAge != nil {
+                    self?.saveUserInfo()
+                } else {
+                    self?.showAlertOneButton(title: "", message: "이름을 입력해 주세요")
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     // Setup Layout
@@ -109,6 +136,11 @@ class OnboardingViewController: BaseViewController {
     private func moveToHomeView() {        
         UserDefaults.standard.setValue(true, forKey: "isOnboardingCompleted")
         UserDefaults.standard.setValue(false, forKey: "isHomeToolTipShow")
+        UserDefaults.standard.setValue(false, forKey: "isDonwloadToolTipShow")
+        
+        let VC = CustomTabBarViewController()
+        VC.modalPresentationStyle = .fullScreen
+        present(VC, animated: false)
     }
     
     private func moveToAgePageView() {
