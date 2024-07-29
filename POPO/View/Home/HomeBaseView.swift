@@ -109,9 +109,12 @@ class HomeBaseView: BaseView {
     func updateUIForSegmentChange(_ index: Int) {
         guard let option = SegmentedOption(rawValue: index) else { return }
         circleView.backgroundColor = option.circleColor
-        
         middleView.option = option
         middleView.configure()
+        
+        let buttonOption = middleView.inputTextViewPlaceholderLabel.isHidden 
+            ? ActionButtonOtpion.selected : ActionButtonOtpion.deselected
+        middleView.toggleActionButton(buttonOption)
     }
     
     override func setupLayout() {

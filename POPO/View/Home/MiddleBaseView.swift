@@ -30,8 +30,9 @@ class MiddleBaseView: BaseView {
     // 얍 버튼
     lazy var actionButton = UIButton()
     
-    var option: SegmentedOption?
+    // 변수
     weak var delegate: MiddleBaseviewDelegate?
+    var option: SegmentedOption?
     
     init(option: SegmentedOption?) {
         self.option = option
