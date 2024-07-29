@@ -13,6 +13,7 @@ class CustomLabel: UILabel {
         
         self.text = text
         self.font = font
+        self.textColor = fontColor
     }
     
     required init?(coder: NSCoder) {

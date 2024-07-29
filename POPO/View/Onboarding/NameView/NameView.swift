@@ -96,7 +96,9 @@ extension NameView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text,
            !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            enterPressedSubject.onNext(text)
+            if text.count < 11 {
+                enterPressedSubject.onNext(text)
+            }
         }
         
         return true
@@ -105,7 +107,15 @@ extension NameView: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text as NSString? else { return true }
         let newText = text.replacingCharacters(in: range, with: string)
-        moveToAgeViewButton.isSelected = !newText.isEmpty
+            
+        if newText.count >= 11 || newText.isEmpty {
+            moveToAgeViewButton.isSelected = false
+        } else {
+            moveToAgeViewButton.isSelected = true
+        }
+        
+        errorLabel.isHidden = newText.count < 11
+        
         return newText.count <= 11
     }
 }
