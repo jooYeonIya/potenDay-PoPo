@@ -13,3 +13,15 @@ extension UIImage {
         return image
     }
 }
+
+class CustomImageView: UIImageView {
+    init(_ imageName: String) {
+        super.init(frame: .zero)
+        
+        image = UIImage(named: imageName)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

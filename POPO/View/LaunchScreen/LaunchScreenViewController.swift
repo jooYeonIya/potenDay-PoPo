@@ -10,35 +10,61 @@ import SnapKit
 
 class LaunchScreenViewController: UIViewController {
     
-    // MARK: - Component
+    // 컴포넌트
+    lazy var topLogoImageView = CustomImageView("NaverLogo")
     lazy var titleLabel = CustomLabel(text: "PoPo", font: .point(ofSize: 40))
-    lazy var subTitleLabel = CustomLabel(text: "클로바가 말아주는 클로버🍀", font: .point(ofSize: 15))
-    lazy var button = UIButton()
-    lazy var imageView = UIImageView()
-    
-    // MARK: - LifeCycle
+    lazy var subTitleLabel = CustomLabel(text: "클로바가 말아주는 클로버🍀", 
+                                         font: .point(ofSize: 15),
+                                         fontColor: .userGray(4))
+    lazy var moveToNextViewButton = UIButton()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupLayout()
     }
     
-    // MARK: - Method
+    // Setup UI
     private func setupUI() {
-        
-        view.addSubviews([titleLabel, subTitleLabel, button, imageView])
-        
-        subTitleLabel.textColor = .userGray(4)
-        
-        button.applyBlurButton(withImage: UIImage(named: "Clover_Selected")!, withText: "무엇이든 긍정적으로 바꿔봐!", fontSize: 15)
-        button.addTarget(self, action: #selector(moveToNextView), for: .touchUpInside)        
+        view.backgroundColor = .userLightGreen
+        view.addSubviews([topLogoImageView, titleLabel, subTitleLabel, moveToNextViewButton])
+
+        moveToNextViewButton.addTarget(self, action: #selector(moveToNextViewButtonTapped), for: .touchUpInside)
+        moveToNextViewButton.applyBlurButton(withImage: UIImage(named: "Clover_Selected")!,
+                                             withText: "무엇이든 긍정적으로 바꿔봐!", fontSize: 15)
         
         applyRadialGradientBackground()
-        
-        imageView.image = UIImage(named: "NaverLogo")
     }
     
+    // 메소드
+    private func applyRadialGradientBackground() {
+        let gradientLayer = RadialGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.setNeedsDisplay()
+        view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    @objc private func moveToNextViewButtonTapped() {
+        let isOnboardingCompleted = UserDefaults.standard.bool(forKey: "isOnboardingCompleted")
+        
+        if isOnboardingCompleted {
+            let tabBarViewController = CustomTabBarViewController()
+            tabBarViewController.modalPresentationStyle = .fullScreen
+            present(tabBarViewController, animated: false)
+        } else {
+            let onboardingViewController = OnboardingViewController()
+            onboardingViewController.modalPresentationStyle = .fullScreen
+            present(onboardingViewController, animated: false)
+        }
+    }
+    
+    // Setup Layout
     private func setupLayout() {
+        topLogoImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+        }
+        
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
@@ -48,40 +74,9 @@ class LaunchScreenViewController: UIViewController {
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
         }
         
-        button.snp.makeConstraints { make in
+        moveToNextViewButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
-        }
-        
-        imageView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-        }
-    }
-
-    private func applyRadialGradientBackground() {
-        let gradientLayer = RadialGradientLayer()
-        gradientLayer.frame = view.bounds
-        gradientLayer.setNeedsDisplay()
-        view.layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    @objc private func moveToNextView() {
-        
-        let isOnboardingCompleted = UserDefaults.standard.bool(forKey: "isOnboardingCompleted")
-        
-        if isOnboardingCompleted {
-            let homeViewController = HomeViewController()
-            let navigationController = UINavigationController(rootViewController: homeViewController)
-            
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = navigationController
-                window.makeKeyAndVisible()
-            }
-        } else {
-            let onboardingView = OnboardingViewController()
-            onboardingView.modalPresentationStyle = .fullScreen
-            present(onboardingView, animated: false)
         }
     }
 }
