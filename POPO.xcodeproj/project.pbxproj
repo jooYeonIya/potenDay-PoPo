@@ -13,6 +13,7 @@
 		0A097E642C57F677008ED71B /* AgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A097E632C57F677008ED71B /* AgeView.swift */; };
 		0A097E662C57F683008ED71B /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A097E652C57F683008ED71B /* NameViewController.swift */; };
 		0A097E682C57F68E008ED71B /* AgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A097E672C57F68E008ED71B /* AgeViewController.swift */; };
+		0A097E6A2C583B87008ED71B /* ActionButtonOtpion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A097E692C583B87008ED71B /* ActionButtonOtpion.swift */; };
 		0A24E7A82C5347E100F2CE90 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24E7A72C5347E100F2CE90 /* UIDevice.swift */; };
 		0A24E7AD2C53849E00F2CE90 /* SegmentedOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24E7AC2C53849E00F2CE90 /* SegmentedOption.swift */; };
 		0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F22C4D3CBA0023C8C7 /* AppDelegate.swift */; };
@@ -34,7 +35,6 @@
 		0ADFB54F2C5095CD004FB1BA /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0ADFB54E2C5095CD004FB1BA /* Pretendard-Bold.otf */; };
 		0ADFB5512C5095E4004FB1BA /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0ADFB5502C5095E4004FB1BA /* Pretendard-Regular.otf */; };
 		0ADFB5542C509921004FB1BA /* HomeBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5532C509921004FB1BA /* HomeBaseView.swift */; };
-		0ADFB5562C509943004FB1BA /* SegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5552C509943004FB1BA /* SegmentedView.swift */; };
 		0ADFB5582C50995E004FB1BA /* MiddleBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5572C50995E004FB1BA /* MiddleBaseView.swift */; };
 		0ADFB55A2C509969004FB1BA /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB5592C509969004FB1BA /* CustomTabBarView.swift */; };
 		0ADFB55D2C509993004FB1BA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFB55C2C509993004FB1BA /* HomeViewController.swift */; };
@@ -52,7 +52,6 @@
 		0AF68BBD2C50039700CE0EC1 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBC2C50039700CE0EC1 /* UIImage+Extension.swift */; };
 		0AF68BC32C502DE600CE0EC1 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BC22C502DE600CE0EC1 /* OnboardingViewController.swift */; };
 		0AF68BC92C506F0900CE0EC1 /* AgeViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BC82C506F0900CE0EC1 /* AgeViewCollectionViewCell.swift */; };
-		0AF68BCB2C527DC800CE0EC1 /* MoveToLackyCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */; };
 		0AF68BD02C52985700CE0EC1 /* MakeCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BCF2C52985700CE0EC1 /* MakeCharmView.swift */; };
 		0AF68BD32C52987700CE0EC1 /* MakeCharmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BD22C52987700CE0EC1 /* MakeCharmViewController.swift */; };
 		0AF68BD62C52A37100CE0EC1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0AF68BD52C52A37100CE0EC1 /* SnapKit */; };
@@ -77,6 +76,7 @@
 		0A097E632C57F677008ED71B /* AgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeView.swift; sourceTree = "<group>"; };
 		0A097E652C57F683008ED71B /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		0A097E672C57F68E008ED71B /* AgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeViewController.swift; sourceTree = "<group>"; };
+		0A097E692C583B87008ED71B /* ActionButtonOtpion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonOtpion.swift; sourceTree = "<group>"; };
 		0A24E7A72C5347E100F2CE90 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		0A24E7AC2C53849E00F2CE90 /* SegmentedOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedOption.swift; sourceTree = "<group>"; };
 		0A34A5EF2C4D3CBA0023C8C7 /* POPO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POPO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +100,6 @@
 		0ADFB54E2C5095CD004FB1BA /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		0ADFB5502C5095E4004FB1BA /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		0ADFB5532C509921004FB1BA /* HomeBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBaseView.swift; sourceTree = "<group>"; };
-		0ADFB5552C509943004FB1BA /* SegmentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedView.swift; sourceTree = "<group>"; };
 		0ADFB5572C50995E004FB1BA /* MiddleBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleBaseView.swift; sourceTree = "<group>"; };
 		0ADFB5592C509969004FB1BA /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		0ADFB55C2C509993004FB1BA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -118,7 +117,6 @@
 		0AF68BBC2C50039700CE0EC1 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		0AF68BC22C502DE600CE0EC1 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		0AF68BC82C506F0900CE0EC1 /* AgeViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeViewCollectionViewCell.swift; sourceTree = "<group>"; };
-		0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToLackyCharmView.swift; sourceTree = "<group>"; };
 		0AF68BCF2C52985700CE0EC1 /* MakeCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmView.swift; sourceTree = "<group>"; };
 		0AF68BD22C52987700CE0EC1 /* MakeCharmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmViewController.swift; sourceTree = "<group>"; };
 		0AF68BE62C53E6E900CE0EC1 /* CharmImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharmImage.swift; sourceTree = "<group>"; };
@@ -275,6 +273,7 @@
 				0A24E7AC2C53849E00F2CE90 /* SegmentedOption.swift */,
 				0AF68BE62C53E6E900CE0EC1 /* CharmImage.swift */,
 				0A097E5D2C57ED1B008ED71B /* TabBarOption.swift */,
+				0A097E692C583B87008ED71B /* ActionButtonOtpion.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -326,9 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				0ADFB5532C509921004FB1BA /* HomeBaseView.swift */,
-				0ADFB5552C509943004FB1BA /* SegmentedView.swift */,
 				0ADFB5572C50995E004FB1BA /* MiddleBaseView.swift */,
-				0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -556,11 +553,9 @@
 				0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */,
 				0AE6CEFF2C522066005B94B3 /* TotalCharmView.swift in Sources */,
 				0ADFB5542C509921004FB1BA /* HomeBaseView.swift in Sources */,
-				0AF68BCB2C527DC800CE0EC1 /* MoveToLackyCharmView.swift in Sources */,
 				0AF68BE72C53E6E900CE0EC1 /* CharmImage.swift in Sources */,
 				0AF68BFB2C54B75000CE0EC1 /* ModifyNicknameRequest.swift in Sources */,
 				0AADD1682C4FD77100A2C7A4 /* UIFont+Extension.swift in Sources */,
-				0ADFB5562C509943004FB1BA /* SegmentedView.swift in Sources */,
 				0AE6CF042C5222BE005B94B3 /* TotalCharmCollectionViewCell.swift in Sources */,
 				0A79962F2C5240B5000E544A /* ClovaAPI.swift in Sources */,
 				0A7996362C524E24000E544A /* UserInfoRequest.swift in Sources */,
@@ -595,6 +590,7 @@
 				0AE6CF012C522098005B94B3 /* TotalCharmViewController.swift in Sources */,
 				0AF68BE92C53EA2600CE0EC1 /* CharmReponse.swift in Sources */,
 				0A097E642C57F677008ED71B /* AgeView.swift in Sources */,
+				0A097E6A2C583B87008ED71B /* ActionButtonOtpion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

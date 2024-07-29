@@ -7,30 +7,29 @@
 
 import UIKit
 
-protocol HomeViewDelegate: AnyObject {
-    func moveToView(index: Int)
-}
-
 class HomeBaseView: BaseView {
     // 바탕 구성
     lazy var viewBlurEffect = UIVisualEffectView()
     lazy var circleView = UIView()
     
     // 세그먼티드 컨트롤 뷰
-    lazy var segmentedView = SegmentedView()
+    lazy var segmentedControl: UISegmentedControl = {
+        let items = [SegmentedOption.popo.title, SegmentedOption.viki.title]
+        let segmentedControl = UISegmentedControl(items: items)
+        return segmentedControl
+    }()
     
     // 비키 툴틉
-    lazy var toolTipView = UIImageView()
+    lazy var toolTipView = CustomImageView("PinkToolTip")
     lazy var toolTipViewTextLabel = CustomLabel(text: "비키는 여기서 만날 수 있어!", font: .body(ofSize: 11))
     
     // 미들 뷰 - input, output
     var middleView: MiddleBaseView!
     
     // 부적 만들기로 이동하는 버튼 뷰
-    lazy var moveToMakeCharmButtonView = MoveToLackyCharmView()
+    lazy var moveToMakeCharmViewButton = UIButton()
 
     // 변수
-    weak var delegate: HomeViewDelegate?
     var option: SegmentedOption?
     var answer: String? = SegmentedOption.viki.description {
         willSet {
@@ -51,39 +50,60 @@ class HomeBaseView: BaseView {
     
     override func configure() {
         super.configure()
+        backgroundColor = .userGray(9)
     }
     
     override func setupUI() {
-        addSubviews([circleView, 
+        addSubviews([circleView,
                      viewBlurEffect,
-                     segmentedView, 
+                     segmentedControl,
                      toolTipView,
                      middleView,
-                     moveToMakeCharmButtonView])
+                     moveToMakeCharmViewButton])
         
         // 바탕 구성
-        backgroundColor = .userGray(9)
-        applyCircleView(option?.circleColor ?? UIColor.userLightGreen)
+        circleView.createCircleView(option?.circleColor ?? .userLightGreen)
         viewBlurEffect.effect = UIBlurEffect(style: .extraLight)
         
-        // 세그먼티드 컨트롤 뷰
-        segmentedView.configure()
+        // 세그먼티드 뷰
+        setupSegmentedControl()
         
         // 툴팁 뷰
-        toolTipView.image = UIImage(named: "PinkToolTip")
         toolTipView.addSubview(toolTipViewTextLabel)
         
         // 미들 뷰 - input, output
         middleView.configure()
         
         // 부적 만들기로 이동하는 버튼 뷰
-        moveToMakeCharmButtonView.configure()
-        moveToMakeCharmButtonView.isHidden = true
+        setupButton()
+    }
+
+    private func setupSegmentedControl() {
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.backgroundColor = .userLightGreen
+        segmentedControl.selectedSegmentTintColor = .white
+
+        let normalAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.body(ofSize: 17),
+            .foregroundColor: UIColor.userGray(4)
+        ]
+        segmentedControl.setTitleTextAttributes(normalAttributes, for: .normal)
+        
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.bodyBold(ofSize: 17),
+            .foregroundColor: UIColor.userGreen
+        ]
+        segmentedControl.setTitleTextAttributes(selectedAttributes, for: .selected)
     }
     
-    private func applyCircleView(_ color: UIColor) {
-        circleView.layer.cornerRadius = 580 / 2
-        circleView.backgroundColor = color
+    private func setupButton() {
+        let buttonOption = BasicButtonOtpion(backgroundColor: .white,
+                                             borderColor: .userGray(1),
+                                             fontColor: .userGray(1),
+                                             text: "부적으로 행운을 빌어줄게!",
+                                             image: UIImage(named: "DoneButton")!)
+        moveToMakeCharmViewButton.applyBasicButton(buttonOption)
+        moveToMakeCharmViewButton.isHidden = true
     }
     
     func updateUIForSegmentChange(_ index: Int) {
@@ -104,7 +124,7 @@ class HomeBaseView: BaseView {
             make.edges.equalToSuperview()
         }
         
-        segmentedView.snp.makeConstraints { make in
+        segmentedControl.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(16)
             make.centerX.equalToSuperview()
             make.height.equalTo(40)
@@ -112,7 +132,7 @@ class HomeBaseView: BaseView {
         }
         
         toolTipView.snp.makeConstraints { make in
-            make.top.equalTo(segmentedView.snp.bottom).offset(4)
+            make.top.equalTo(segmentedControl.snp.bottom).offset(4)
             make.trailing.equalToSuperview().offset(-92)
         }
         
@@ -122,12 +142,12 @@ class HomeBaseView: BaseView {
         }
         
         middleView.snp.makeConstraints { make in
-            make.top.equalTo(segmentedView.snp.bottom).offset(54)
+            make.top.equalTo(segmentedControl.snp.bottom).offset(54)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(moveToMakeCharmButtonView.snp.top)
+            make.bottom.equalTo(moveToMakeCharmViewButton.snp.top)
         }
         
-        moveToMakeCharmButtonView.snp.makeConstraints { make in
+        moveToMakeCharmViewButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(40)

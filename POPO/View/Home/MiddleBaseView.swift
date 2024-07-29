@@ -8,13 +8,7 @@
 import UIKit
 import SnapKit
 
-enum ActionButtonOtpion: Int {
-    case selected
-    case deselected
-}
-
 protocol MiddleBaseviewDelegate: AnyObject {
-    func actionButtonTapped()
     func dismissMoveToMakeCharmButtonView()
 }
 
@@ -29,7 +23,7 @@ class MiddleBaseView: BaseView {
     lazy var inputTextViewCounterLabel = CustomLabel(text: "/50자", font: .body(ofSize: 11))
 
     // Output 창
-    lazy var outPutSpeechBalloonImageView = UIImageView()
+    lazy var outPutSpeechBalloonImageView = CustomImageView("SpeechBalloon")
     lazy var outPutTextView = UITextView()
     lazy var outPutCharacterImageView = UIImageView()
     
@@ -59,7 +53,7 @@ class MiddleBaseView: BaseView {
                      outPutCharacterImageView])
         
         setupInputTextView()
-        setupOutputView()
+        setupOutputTextView()
     }
     
     // Input 창
@@ -67,6 +61,7 @@ class MiddleBaseView: BaseView {
         inputTextViewBackgroundView.addSubviews([inputTextViewCountView,
                                                  inputTextView,
                                                  actionButton])
+        
         inputTextViewBackgroundView.backgroundColor = .white
         inputTextViewBackgroundView.layer.cornerRadius = 20
         
@@ -85,21 +80,63 @@ class MiddleBaseView: BaseView {
         inputTextView.delegate = self
         
         toggleActionButton(.deselected)
-        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
     }
 
     // Output 창
-    private func setupOutputView() {
+    private func setupOutputTextView() {
         guard let option = option else { return }
         
         outPutSpeechBalloonImageView.addSubviews([outPutTextView])
-        outPutSpeechBalloonImageView.image = UIImage(named: "SpeechBalloon")
         
         outPutCharacterImageView.image = UIImage(named: option.imageName)
         
         outPutTextView.text = SegmentedOption(rawValue: option.rawValue)?.description
         outPutTextView.font = .point(ofSize: 15)
         outPutTextView.textAlignment = .center
+    }
+    
+    // 버튼 관련 함수들
+    func toggleActionButton(_ option: ActionButtonOtpion) {
+        switch option {
+        case .deselected: updateActionButtonDeselected("얍", imageName: "Clover_Deselected")
+        case .selected: updateActionButtonSelected("얍")
+        case .loading: updateActionButtonDeselected("로딩중..", imageName: "Loading")
+        case .retry: updateActionButtonSelected("다시하기")
+        }
+    }
+    
+    func updateActionButtonDeselected(_ text: String, imageName: String) {
+        let buttonOption = BasicButtonOtpion(backgroundColor: .userGray(8),
+                                             borderColor: .userGray(6),
+                                             fontColor: .userGray(4),
+                                             text: text,
+                                             image: UIImage(named: imageName)!)
+        actionButton.applyBasicButton(buttonOption)
+        actionButton.isEnabled = false
+    }
+    
+    func updateActionButtonSelected(_ text: String) {
+        let buttonOption = BasicButtonOtpion(backgroundColor: .white,
+                                             borderColor: .userGreen,
+                                       fontColor: .userGray(1),
+                                       text: text,
+                                       image: UIImage(named: "Clover_Selected")!)
+        actionButton.applyBasicButton(buttonOption)
+        actionButton.isEnabled = true
+    }
+    
+    func actionButtonTapped(_ buttonOtion: ActionButtonOtpion) {
+        if buttonOtion == .retry {
+            inputTextView.text = .none
+            inputTextViewPlaceholderLabel.isHidden = false
+            outPutTextView.text = option?.description
+            delegate?.dismissMoveToMakeCharmButtonView()
+            toggleActionButton(.deselected)
+        } else {
+            updateActionButtonDeselected("로딩중..", imageName: "Loading")
+            inputTextView.resignFirstResponder()
+//            delegate?.actionButtonTapped()
+        }
     }
     
     override func setupLayout() {
@@ -150,11 +187,10 @@ class MiddleBaseView: BaseView {
             make.top.equalTo(inputTextViewBackgroundView.snp.bottom).offset(16)
             make.leading.trailing.equalTo(inputTextViewBackgroundView)
             make.height.equalTo(174)
-            make.width.equalTo(300)
         }
         
         outPutTextView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(12)
             make.bottom.equalToSuperview().offset(-24)
             make.width.equalTo(240)
@@ -166,69 +202,9 @@ class MiddleBaseView: BaseView {
             make.width.height.equalTo(100)
         }
     }
-    
-    // 버튼 관련 함수들
-    func toggleActionButton(_ option: ActionButtonOtpion) {
-        switch option {
-            
-        case .deselected:
-            let buttonOption = BasicButtonOtpion(backgroundColor: .userGray(8),
-                                           borderColor: .userGray(6),
-                                           fontColor: .userGray(4),
-                                           text: "얍",
-                                           image: UIImage(named: "Clover_Deselected")!)
-            actionButton.applyBasicButton(buttonOption)
-            actionButton.isEnabled = false
-            
-        case .selected:
-            let buttonOption = BasicButtonOtpion(backgroundColor: .white,
-                                           borderColor: .userGreen,
-                                           fontColor: .userGray(1),
-                                           text: "얍",
-                                           image: UIImage(named: "Clover_Selected")!)
-            actionButton.applyBasicButton(buttonOption)
-            actionButton.isEnabled = true
-        }
-    }
-    
-    func updateActionButtonLoading() {
-        let buttonOption = BasicButtonOtpion(backgroundColor: .userGray(8),
-                                       borderColor: .userGray(6),
-                                       fontColor: .userGray(4),
-                                       text: "로딩중..",
-                                       image: UIImage(named: "Loading")!)
-        
-        actionButton.applyBasicButton(buttonOption)
-        actionButton.isEnabled = false
-    }
-    
-    func updateAcionButtonRepeat() {
-        let buttonOption = BasicButtonOtpion(backgroundColor: .white,
-                                       borderColor: .userGreen,
-                                       fontColor: .userGray(1),
-                                       text: "다시하기",
-                                       image: UIImage(named: "Clover_Selected")!)
-        actionButton.applyBasicButton(buttonOption)
-        actionButton.isEnabled = true
-    }
-    
-    @objc func actionButtonTapped() {
-        let title = actionButton.titleLabel?.text
-        
-        if title == "다시하기" {
-            inputTextView.text = .none
-            inputTextViewPlaceholderLabel.isHidden = false
-            outPutTextView.text = option?.description
-            delegate?.dismissMoveToMakeCharmButtonView()
-            toggleActionButton(.deselected)
-        } else {
-            updateActionButtonLoading()
-            inputTextView.resignFirstResponder()
-            delegate?.actionButtonTapped()
-        }
-    }
 }
 
+// 텍스트뷰 델리게이트
 extension MiddleBaseView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         inputTextViewPlaceholderLabel.isHidden = true

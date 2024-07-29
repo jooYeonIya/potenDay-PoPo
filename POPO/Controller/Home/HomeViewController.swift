@@ -10,7 +10,10 @@ import RxSwift
 import RxCocoa
 
 class HomeViewController: BaseViewController {
+    // 컴포넌트
     lazy var baseView = HomeBaseView(option: .popo)
+    
+    // 변수
     private let disposeBag = DisposeBag()
     
     var answer = ""
@@ -22,13 +25,20 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseView.configure()
-        baseView.delegate = self
-        baseView.middleView.delegate = self
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        if !UserDefaults.standard.bool(forKey: "isHomeToolTipShow") {
-            
+        baseView.configure()
+        baseView.middleView.delegate = self
+    
+        toggleToolTip()
+    }
+
+    // 툴팁 관련
+    func toggleToolTip() {
+        if UserDefaults.standard.bool(forKey: "isHomeToolTipShow") {
+            self.baseView.toolTipView.isHidden = true
+            self.baseView.toolTipViewTextLabel.isHidden = true
+        } else {
             baseView.toolTipView.isHidden = false
             baseView.toolTipViewTextLabel.isHidden = false
             
@@ -38,15 +48,12 @@ class HomeViewController: BaseViewController {
             }
             
             UserDefaults.standard.setValue(true, forKey: "isHomeToolTipShow")
-        } else {
-                self.baseView.toolTipView.isHidden = true
-                self.baseView.toolTipViewTextLabel.isHidden = true
         }
     }
 
     override func setupEvent() {
         // 세그먼티트 컨트롤러 탭했을 때
-        baseView.segmentedView.segmentControl.rx
+        baseView.segmentedControl.rx
             .selectedSegmentIndex
             .bind(onNext: { [weak self] index in
                 self?.baseView.updateUIForSegmentChange(index)
@@ -54,7 +61,7 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag) 
         
         // 부적 만들기 페이지로 이동
-        baseView.moveToMakeCharmButtonView.button.rx
+        baseView.moveToMakeCharmViewButton.rx
             .tap
             .bind { [weak self] _ in
                 let vc = MakeCharmViewController(answer: self?.answer ?? "", image: nil)
@@ -66,71 +73,41 @@ class HomeViewController: BaseViewController {
     private func updateUI(response: AnswerRespons) {
         answer = response.data.clovaMood
         
-        baseView.middleView.updateAcionButtonRepeat()
+        baseView.middleView.updateActionButtonSelected("다시하기")
         baseView.middleView.outPutTextView.text = answer
-        baseView.moveToMakeCharmButtonView.isHidden = false
+        baseView.moveToMakeCharmViewButton.isHidden = false
     }
-}
-
-extension HomeViewController: HomeViewDelegate {
-    func moveToView(index: Int) {
-        let option = TabBarOption(rawValue: index)
+    
+    func actionButtonTapped() {
+        //        guard let message = baseView.middleView.inputTextView.text,
+        //              let character = SegmentedOption(rawValue: self.baseView.segmentedControl.selectedSegmentIndex)?.apiName,
+        //              let deviceId = UserDefaults.standard.string(forKey: "deviceId")
+        //        else { return }
+        //
+        //        let messageRequest = MessageRequest(message: message,
+        //                                            deviceId: deviceId,
+        //                                            character: character)
         
-        switch option {
-        case .totalCharm:
-            let homeViewController = TotalCharmViewController()
-            let navigationController = UINavigationController(rootViewController: homeViewController)
-            
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = navigationController
-                window.makeKeyAndVisible()
-            }
-        case .home:
-            let homeViewController = HomeViewController()
-            let navigationController = UINavigationController(rootViewController: homeViewController)
-            
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = navigationController
-                window.makeKeyAndVisible()
-            }
-        case .myPage:
-            let vc = MyPageViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: false)
-        case .none: break
-        }
+        //        ClovaAPIService.share.submitMessage(request: messageRequest) { result in
+        //            switch result {
+        //            case .success(let messageResponse):
+        //                self.updateUI(response: messageResponse)
+        //            case .failure(let error):
+        //                print(error)
+        //                // 기획자님 메세지 확인할 것
+        //                self.showAlertOneButton(title: "", message: "한 번 더")
+        //                self.baseView.middleView.toggleActionButton(.selected)
+        //            }
+        //        }
+        
+        //        let answer = AnswerData(clovaMood: "테스트 중", character: "POPO")
+        //        let response = AnswerRespons(data: answer, code: 200, message: "성공")
+        //        updateUI(response: response)
     }
 }
 
 extension HomeViewController: MiddleBaseviewDelegate {
     func dismissMoveToMakeCharmButtonView() {
-        baseView.moveToMakeCharmButtonView.isHidden = true
-    }
-    
-    func actionButtonTapped() {
-        guard let message = baseView.middleView.inputTextView.text,
-              let character = SegmentedOption(rawValue: self.baseView.segmentedView.segmentControl.selectedSegmentIndex)?.apiName,
-              let deviceId = UserDefaults.standard.string(forKey: "deviceId")
-        else { return }
- 
-        let messageRequest = MessageRequest(message: message,
-                                            deviceId: deviceId,
-                                            character: character)
-        
-//        ClovaAPIService.share.submitMessage(request: messageRequest) { result in
-//            switch result {
-//            case .success(let messageResponse):
-//                self.updateUI(response: messageResponse)
-//            case .failure(let error):
-//                print(error)
-//                // 기획자님 메세지 확인할 것
-//                self.showAlertOneButton(title: "", message: "한 번 더")
-//                self.baseView.middleView.toggleActionButton(.selected)
-//            }
-//        }
-        
-        let answer = AnswerData(clovaMood: "테스트 중", character: "POPO")
-        let response = AnswerRespons(data: answer, code: 200, message: "성공")
-        updateUI(response: response)
+        baseView.moveToMakeCharmViewButton.isHidden = true
     }
 }
