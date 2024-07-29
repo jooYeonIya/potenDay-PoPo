@@ -11,7 +11,7 @@ import Foundation
 class ClovaAPIService {
 //    static let share = ClovaAPIService()
 //    private let provider = MoyaProvider<ClovaAPI>()
-    
+//    
 //    // 사용자 정보 조회
 //    func fetchUserInfo(deviceId: String, 
 //                       completion: @escaping (Result<UserInfoResponse, Error>) -> Void) {
@@ -88,7 +88,7 @@ class ClovaAPIService {
 //    
 //    // 부적 만들기에서 사용
 //    func fetchCharm(request: CharmRequest, completion: @escaping (Result<CharmReponse, Error>) -> Void) {
-//        provider.request(.makeCharm(request: request)) { result in
+//        provider.request(.getCharmMessage(request: request)) { result in
 //            switch result {
 //            case let .success(response):
 //                do {
@@ -106,7 +106,7 @@ class ClovaAPIService {
 //    // 닉네임 수정
 //    func modifyName(request: ModifyNicknameRequest,
 //                    completion: @escaping (Result<String, Error>) -> Void) {
-//        provider.request(.modifyNickname(request: request)) { result in
+//        provider.request(.modifyUserName(request: request)) { result in
 //            switch result {
 //            case let .success(response):
 //                if let responseString = String(data: response.data, encoding: .utf8) {
