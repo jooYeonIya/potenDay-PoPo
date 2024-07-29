@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class AgePageCollectionViewCell: UICollectionViewCell {
+class AgeViewCollectionViewCell: UICollectionViewCell {
     
     let label = CustomLabel(text: "", font: .body(ofSize: 15))
     

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0A097E5C2C57D141008ED71B /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A097E5B2C57D141008ED71B /* CustomTabBarViewController.swift */; };
 		0A097E5E2C57ED1B008ED71B /* TabBarOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A097E5D2C57ED1B008ED71B /* TabBarOption.swift */; };
+		0A097E622C57F670008ED71B /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A097E612C57F670008ED71B /* NameView.swift */; };
+		0A097E642C57F677008ED71B /* AgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A097E632C57F677008ED71B /* AgeView.swift */; };
+		0A097E662C57F683008ED71B /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A097E652C57F683008ED71B /* NameViewController.swift */; };
+		0A097E682C57F68E008ED71B /* AgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A097E672C57F68E008ED71B /* AgeViewController.swift */; };
 		0A24E7A82C5347E100F2CE90 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24E7A72C5347E100F2CE90 /* UIDevice.swift */; };
 		0A24E7AD2C53849E00F2CE90 /* SegmentedOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24E7AC2C53849E00F2CE90 /* SegmentedOption.swift */; };
 		0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34A5F22C4D3CBA0023C8C7 /* AppDelegate.swift */; };
@@ -46,9 +50,8 @@
 		0AF68BB92C4FF86B00CE0EC1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */; };
 		0AF68BBB2C4FFF4F00CE0EC1 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */; };
 		0AF68BBD2C50039700CE0EC1 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBC2C50039700CE0EC1 /* UIImage+Extension.swift */; };
-		0AF68BC02C502DBF00CE0EC1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BBF2C502DBF00CE0EC1 /* OnboardingView.swift */; };
 		0AF68BC32C502DE600CE0EC1 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BC22C502DE600CE0EC1 /* OnboardingViewController.swift */; };
-		0AF68BC92C506F0900CE0EC1 /* AgePageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BC82C506F0900CE0EC1 /* AgePageCollectionViewCell.swift */; };
+		0AF68BC92C506F0900CE0EC1 /* AgeViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BC82C506F0900CE0EC1 /* AgeViewCollectionViewCell.swift */; };
 		0AF68BCB2C527DC800CE0EC1 /* MoveToLackyCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */; };
 		0AF68BD02C52985700CE0EC1 /* MakeCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BCF2C52985700CE0EC1 /* MakeCharmView.swift */; };
 		0AF68BD32C52987700CE0EC1 /* MakeCharmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF68BD22C52987700CE0EC1 /* MakeCharmViewController.swift */; };
@@ -70,6 +73,10 @@
 /* Begin PBXFileReference section */
 		0A097E5B2C57D141008ED71B /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		0A097E5D2C57ED1B008ED71B /* TabBarOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarOption.swift; sourceTree = "<group>"; };
+		0A097E612C57F670008ED71B /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
+		0A097E632C57F677008ED71B /* AgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeView.swift; sourceTree = "<group>"; };
+		0A097E652C57F683008ED71B /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
+		0A097E672C57F68E008ED71B /* AgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeViewController.swift; sourceTree = "<group>"; };
 		0A24E7A72C5347E100F2CE90 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		0A24E7AC2C53849E00F2CE90 /* SegmentedOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedOption.swift; sourceTree = "<group>"; };
 		0A34A5EF2C4D3CBA0023C8C7 /* POPO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POPO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,9 +116,8 @@
 		0AF68BB82C4FF86B00CE0EC1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		0AF68BBA2C4FFF4F00CE0EC1 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		0AF68BBC2C50039700CE0EC1 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
-		0AF68BBF2C502DBF00CE0EC1 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		0AF68BC22C502DE600CE0EC1 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		0AF68BC82C506F0900CE0EC1 /* AgePageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgePageCollectionViewCell.swift; sourceTree = "<group>"; };
+		0AF68BC82C506F0900CE0EC1 /* AgeViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		0AF68BCA2C527DC800CE0EC1 /* MoveToLackyCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToLackyCharmView.swift; sourceTree = "<group>"; };
 		0AF68BCF2C52985700CE0EC1 /* MakeCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmView.swift; sourceTree = "<group>"; };
 		0AF68BD22C52987700CE0EC1 /* MakeCharmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharmViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +147,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A097E5F2C57F657008ED71B /* NameView */ = {
+			isa = PBXGroup;
+			children = (
+				0A097E612C57F670008ED71B /* NameView.swift */,
+				0A097E652C57F683008ED71B /* NameViewController.swift */,
+			);
+			path = NameView;
+			sourceTree = "<group>";
+		};
+		0A097E602C57F662008ED71B /* AgeView */ = {
+			isa = PBXGroup;
+			children = (
+				0A097E632C57F677008ED71B /* AgeView.swift */,
+				0A097E672C57F68E008ED71B /* AgeViewController.swift */,
+				0AF68BC82C506F0900CE0EC1 /* AgeViewCollectionViewCell.swift */,
+			);
+			path = AgeView;
+			sourceTree = "<group>";
+		};
 		0A34A5E62C4D3CBA0023C8C7 = {
 			isa = PBXGroup;
 			children = (
@@ -363,8 +388,8 @@
 		0AF68BBE2C502DAC00CE0EC1 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				0AF68BBF2C502DBF00CE0EC1 /* OnboardingView.swift */,
-				0AF68BC82C506F0900CE0EC1 /* AgePageCollectionViewCell.swift */,
+				0A097E602C57F662008ED71B /* AgeView */,
+				0A097E5F2C57F657008ED71B /* NameView */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -521,10 +546,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AF68BC32C502DE600CE0EC1 /* OnboardingViewController.swift in Sources */,
-				0AF68BC92C506F0900CE0EC1 /* AgePageCollectionViewCell.swift in Sources */,
+				0AF68BC92C506F0900CE0EC1 /* AgeViewCollectionViewCell.swift in Sources */,
 				0A7996312C5240E3000E544A /* ClovaAPIService.swift in Sources */,
 				0ADFB55D2C509993004FB1BA /* HomeViewController.swift in Sources */,
 				0A24E7A82C5347E100F2CE90 /* UIDevice.swift in Sources */,
+				0A097E682C57F68E008ED71B /* AgeViewController.swift in Sources */,
+				0A097E622C57F670008ED71B /* NameView.swift in Sources */,
 				0A7996382C5251EA000E544A /* MessageRequest.swift in Sources */,
 				0AADD16E2C4FDBF100A2C7A4 /* UIColor+Extension.swift in Sources */,
 				0AE6CEFF2C522066005B94B3 /* TotalCharmView.swift in Sources */,
@@ -554,10 +581,10 @@
 				0AADD12F2C4E5ECB00A2C7A4 /* BaseView.swift in Sources */,
 				0AF68BB72C4FF7BD00CE0EC1 /* UILable+Extension.swift in Sources */,
 				0A34A5F32C4D3CBA0023C8C7 /* AppDelegate.swift in Sources */,
-				0AF68BC02C502DBF00CE0EC1 /* OnboardingView.swift in Sources */,
 				0AF68BF32C548D0300CE0EC1 /* CharmRequest.swift in Sources */,
 				0A097E5E2C57ED1B008ED71B /* TabBarOption.swift in Sources */,
 				0AE6CEF62C51FCAE005B94B3 /* MyPageViewController.swift in Sources */,
+				0A097E662C57F683008ED71B /* NameViewController.swift in Sources */,
 				0AF68BF92C54A90900CE0EC1 /* AnswerRespons.swift in Sources */,
 				0A479D332C5525D0006165B0 /* PopupView.swift in Sources */,
 				0AF68BBD2C50039700CE0EC1 /* UIImage+Extension.swift in Sources */,
@@ -567,6 +594,7 @@
 				0ADFB5582C50995E004FB1BA /* MiddleBaseView.swift in Sources */,
 				0AE6CF012C522098005B94B3 /* TotalCharmViewController.swift in Sources */,
 				0AF68BE92C53EA2600CE0EC1 /* CharmReponse.swift in Sources */,
+				0A097E642C57F677008ED71B /* AgeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
