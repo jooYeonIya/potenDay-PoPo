@@ -18,7 +18,6 @@ class TotalCharmView: BaseView {
     lazy var titleView = TitleView(title: "행운 부적 모음집")
     lazy var topBackgroundView = UIView()
     lazy var blurImageView = UIImageView()
-    lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.totalCharm.rawValue)
     lazy var noDataView = NoDataView(message: "앗! 아직 행운 부적이 없잖아? \n 어서 가서 만들어봐!")
     
     lazy var collectionView: UICollectionView = {
@@ -50,11 +49,9 @@ class TotalCharmView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([topBackgroundView, titleView, noDataView, collectionView, tabBarView, blurImageView])
+        addSubviews([topBackgroundView, titleView, noDataView, collectionView, blurImageView])
         
         topBackgroundView.backgroundColor = .userGray(9)
-
-        tabBarView.delegate = self
         
         blurImageView.image = UIImage(named: "BlurView")
         
@@ -111,14 +108,7 @@ class TotalCharmView: BaseView {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(titleView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(30)
-            make.bottom.equalTo(tabBarView.snp.top)
-        }
-        
-        tabBarView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
-            make.height.equalTo(80)
+            make.bottom.equalTo(safeAreaLayoutGuide)
         }
     }
 }
@@ -146,11 +136,5 @@ extension TotalCharmView: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let image = images[indexPath.row]
         delegate?.moveToMakeCharmView(image: image)
-    }
-}
-
-extension TotalCharmView: TabBarViewDelegate {
-    func tabBarButtonTapped(index: Int) {
-        delegate?.moveToView(index: index)
     }
 }

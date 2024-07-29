@@ -30,9 +30,6 @@ class MyPageView: BaseView {
     
     // 노데이터 뷰
     lazy var noDataView = NoDataView(message: "아직 변환 기록이 없네! \n 포포나 비키에게 말을 걸어봐~")
-    
-    // 탭바
-    lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.myPage.rawValue)
 
     // 변수
     weak var delegate: MyPageViewDelegate?
@@ -56,8 +53,7 @@ class MyPageView: BaseView {
                      userInfoView,
                      QnATableView,
                      blurImageView,
-                     noDataView,
-                     tabBarView])
+                     noDataView])
         
         backgroundColor = .userGray(9)
 
@@ -87,8 +83,6 @@ class MyPageView: BaseView {
     override func setupDelegate() {
         QnATableView.delegate = self
         QnATableView.dataSource = self
-        
-        tabBarView.delegate = self
     }
     
     override func setupLayout() {
@@ -116,7 +110,7 @@ class MyPageView: BaseView {
         greenCircleView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.width.height.equalTo(411)
-            make.bottom.equalTo(tabBarView.snp.top).offset(-16)
+            make.bottom.equalToSuperview()
         }
 
         userInfoView.snp.makeConstraints { make in
@@ -134,15 +128,9 @@ class MyPageView: BaseView {
         QnATableView.snp.makeConstraints { make in
             make.top.equalTo(userInfoView.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(tabBarView.snp.top)
+            make.bottom.equalTo(safeAreaLayoutGuide)
         }
-        
-        tabBarView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
-            make.height.equalTo(80)
-        }
+ 
     }
 }
 
@@ -172,8 +160,3 @@ extension MyPageView: UITableViewDelegate, UITableViewDataSource {
      }
 }
 
-extension MyPageView: TabBarViewDelegate {
-    func tabBarButtonTapped(index: Int) {
-        delegate?.moveToView(index: index)
-    }
-}

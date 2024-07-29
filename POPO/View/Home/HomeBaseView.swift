@@ -28,11 +28,7 @@ class HomeBaseView: BaseView {
     
     // 부적 만들기로 이동하는 버튼 뷰
     lazy var moveToMakeCharmButtonView = MoveToLackyCharmView()
-    
-    // tabbar
-    lazy var tabBarView = TabBarView(selectedIndex: TabBarOption.home.rawValue)
-    
-    
+
     // 변수
     weak var delegate: HomeViewDelegate?
     var option: SegmentedOption?
@@ -63,8 +59,7 @@ class HomeBaseView: BaseView {
                      segmentedView, 
                      toolTipView,
                      middleView,
-                     moveToMakeCharmButtonView,
-                     tabBarView])
+                     moveToMakeCharmButtonView])
         
         // 바탕 구성
         backgroundColor = .userGray(9)
@@ -84,9 +79,6 @@ class HomeBaseView: BaseView {
         // 부적 만들기로 이동하는 버튼 뷰
         moveToMakeCharmButtonView.configure()
         moveToMakeCharmButtonView.isHidden = true
-        
-        // tabbar
-        tabBarView.delegate = self
     }
     
     private func applyCircleView(_ color: UIColor) {
@@ -137,21 +129,8 @@ class HomeBaseView: BaseView {
         
         moveToMakeCharmButtonView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(tabBarView.snp.top).offset(-16)
+            make.bottom.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(40)
         }
-        
-        tabBarView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
-            make.height.equalTo(80)
-        }
-    }
-}
-
-extension HomeBaseView: TabBarViewDelegate {
-    func tabBarButtonTapped(index: Int) {
-        delegate?.moveToView(index: index)
     }
 }
