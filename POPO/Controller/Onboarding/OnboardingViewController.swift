@@ -48,16 +48,16 @@ class OnboardingViewController: BaseViewController {
         if userName == "" || baseView.selecetedUserAge == 99 {
             showAlertOneButton(title: "이름 및 나이를 확인해 주세요", message: "확인혀~")
         } else {
-            let userInfo = UserInfoRequest(age: userAge!, name: userName!, deviceId: UUID)
-            ClovaAPIService.share.saveUserInfo(request: userInfo) { result in
-                switch result {
-                case .success(_):
+//            let userInfo = UserInfoRequest(age: userAge!, name: userName!, deviceId: UUID)
+//            ClovaAPIService.share.saveUserInfo(request: userInfo) { result in
+//                switch result {
+//                case .success(_):
                     UserDefaults.standard.setValue(UUID, forKey: "deviceId")
                     self.moveToHomeView()
-                case .failure(_):
-                    self.showAlertOneButton(title: "", message: "다시 한 번 시도해 주세요")
-                }
-            }
+//                case .failure(_):
+//                    self.showAlertOneButton(title: "", message: "다시 한 번 시도해 주세요")
+//                }
+//            }
         }
     }
     

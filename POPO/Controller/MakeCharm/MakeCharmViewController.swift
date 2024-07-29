@@ -52,17 +52,20 @@ class MakeCharmViewController: BaseViewController {
     
     private func makeCharmMessage() {
         
-        guard let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
-        let request = CharmRequest(message: answer, deviceId: deviceId)
+//        guard let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
+//        let request = CharmRequest(message: answer, deviceId: deviceId)
+//        
+//        ClovaAPIService.share.fetchCharm(request: request) { result in
+//            switch result {
+//            case .success(let response):
+//                self.makeCharmImgae(message: [response.data.fourIdioms, response.data.message])
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
         
-        ClovaAPIService.share.fetchCharm(request: request) { result in
-            switch result {
-            case .success(let response):
-                self.makeCharmImgae(message: [response.data.fourIdioms, response.data.message])
-            case .failure(let error):
-                print(error)
-            }
-        }
+     makeCharmImgae(message: ["테스트중", "테스트중이자나 럭키비키일지도 모르자나"])
+        
     }
     
     private func makeCharmImgae(message: [String]) {

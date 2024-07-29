@@ -118,16 +118,20 @@ extension HomeViewController: MiddleBaseviewDelegate {
                                             deviceId: deviceId,
                                             character: character)
         
-        ClovaAPIService.share.submitMessage(request: messageRequest) { result in
-            switch result {
-            case .success(let messageResponse):
-                self.updateUI(response: messageResponse)
-            case .failure(let error):
-                print(error)
-                // 기획자님 메세지 확인할 것
-                self.showAlertOneButton(title: "", message: "한 번 더")
-                self.baseView.middleView.toggleActionButton(.selected)
-            }
-        }
+//        ClovaAPIService.share.submitMessage(request: messageRequest) { result in
+//            switch result {
+//            case .success(let messageResponse):
+//                self.updateUI(response: messageResponse)
+//            case .failure(let error):
+//                print(error)
+//                // 기획자님 메세지 확인할 것
+//                self.showAlertOneButton(title: "", message: "한 번 더")
+//                self.baseView.middleView.toggleActionButton(.selected)
+//            }
+//        }
+        
+        let answer = AnswerData(clovaMood: "테스트 중", character: "POPO")
+        let response = AnswerRespons(data: answer, code: 200, message: "성공")
+        updateUI(response: response)
     }
 }
