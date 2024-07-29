@@ -26,34 +26,6 @@ class TotalCharmViewController: BaseViewController {
 }
 
 extension TotalCharmViewController: TotalCharmViewDelegate {
-    func moveToView(index: Int) {
-        let option = TabBarOption(rawValue: index)
-        
-        switch option {
-        case .totalCharm:
-            let homeViewController = TotalCharmViewController()
-            let navigationController = UINavigationController(rootViewController: homeViewController)
-            
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = navigationController
-                window.makeKeyAndVisible()
-            }
-        case .home:
-            let homeViewController = HomeViewController()
-            let navigationController = UINavigationController(rootViewController: homeViewController)
-            
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = navigationController
-                window.makeKeyAndVisible()
-            }
-        case .myPage:
-            let vc = MyPageViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: false)
-        case .none: break
-        }
-    }
-    
     func moveToMakeCharmView(image: UIImage) {
         let vc = MakeCharmViewController(answer: "total", image: image)
         navigationController?.pushViewController(vc, animated: true)

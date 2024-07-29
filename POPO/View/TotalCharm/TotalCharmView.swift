@@ -9,15 +9,13 @@ import UIKit
 import SnapKit
 
 protocol TotalCharmViewDelegate: AnyObject {
-    func moveToView(index: Int)
     func moveToMakeCharmView(image: UIImage)
 }
 
 class TotalCharmView: BaseView {
     
     lazy var titleView = TitleView(title: "행운 부적 모음집")
-    lazy var topBackgroundView = UIView()
-    lazy var blurImageView = UIImageView()
+    lazy var blurImageView = CustomImageView("BlurView")
     lazy var noDataView = NoDataView(message: "앗! 아직 행운 부적이 없잖아? \n 어서 가서 만들어봐!")
     
     lazy var collectionView: UICollectionView = {
@@ -29,7 +27,8 @@ class TotalCharmView: BaseView {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
-        collectionView.register(TotalCharmCollectionViewCell.self, forCellWithReuseIdentifier: "TotalCharmCollectionViewCell")
+        collectionView.register(TotalCharmCollectionViewCell.self, 
+                                forCellWithReuseIdentifier: "TotalCharmCollectionViewCell")
         
         return collectionView
     }()
@@ -44,17 +43,11 @@ class TotalCharmView: BaseView {
     
     override func configure() {
         super.configure()
-        
         backgroundColor = .userGray(9)
     }
     
     override func setupUI() {
-        addSubviews([topBackgroundView, titleView, noDataView, collectionView, blurImageView])
-        
-        topBackgroundView.backgroundColor = .userGray(9)
-        
-        blurImageView.image = UIImage(named: "BlurView")
-        
+        addSubviews([titleView, noDataView, collectionView, blurImageView])
         noDataView.configure()
     }
     
@@ -82,23 +75,18 @@ class TotalCharmView: BaseView {
     }
 
     override func setupLayout() {
-        topBackgroundView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(titleView.snp.bottom).offset(12)
-        }
-        
-        blurImageView.snp.makeConstraints { make in
-            make.top.equalTo(topBackgroundView.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(40)
-        }
-        
         titleView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(80)
         }
         
+        blurImageView.snp.makeConstraints { make in
+            make.top.equalTo(titleView.snp.bottom).offset(12)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(40)
+        }
+
         noDataView.snp.makeConstraints { make in
             make.width.equalTo(290)
             make.height.equalTo(310)
