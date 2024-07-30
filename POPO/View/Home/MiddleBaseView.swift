@@ -43,6 +43,7 @@ class MiddleBaseView: BaseView {
         super.configure()
     }
     
+    // MARK: - Setup UI
     override func setupUI() {
         addSubviews([inputTextViewBackgroundView,
                      outPutSpeechBalloonImageView,
@@ -90,7 +91,7 @@ class MiddleBaseView: BaseView {
         outPutTextView.textAlignment = .center
     }
     
-    // 버튼 관련 함수들
+    // MARK: - 얍 버튼 토글
     func toggleActionButton(_ option: ActionButtonOtpion) {
         switch option {
         case .deselected: updateActionButtonDeselected("얍", imageName: "Clover_Deselected")
@@ -134,6 +135,7 @@ class MiddleBaseView: BaseView {
         }
     }
     
+    // MARK: - Setup Layout
     override func setupLayout() {
         // Input 창 (+ acitonButton)
         inputTextViewBackgroundView.snp.makeConstraints { make in
@@ -196,5 +198,12 @@ class MiddleBaseView: BaseView {
             make.trailing.equalTo(inputTextViewBackgroundView.snp.trailing)
             make.width.height.equalTo(100)
         }
+    }
+    
+    // MARK: - Update
+    func updateUIForSegmentedControl(_ option: SegmentedOption) {
+        inputTextViewPlaceholderLabel.text = "\(option.title)에게 알려줘!"
+        outPutTextView.text = option.description
+        outPutCharacterImageView.image = UIImage(named: option.imageName)
     }
 }

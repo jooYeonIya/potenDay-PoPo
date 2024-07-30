@@ -49,4 +49,15 @@ class HomeViewController: BaseViewController {
             UserDefaults.standard.setValue(true, forKey: "isHomeToolTipShow")
         }
     }
+    
+    override func setupEvent() {
+        // 세그먼티트 컨트롤러 탭했을 때
+        baseView.segmentedControl.rx
+            .selectedSegmentIndex
+            .bind { [weak self] index in
+                guard let option = SegmentedOption(rawValue: index) else { return }
+                self?.baseView.updateUIForSegmenteCotrol(option)
+            }
+            .disposed(by: disposeBag)
+    }
  }

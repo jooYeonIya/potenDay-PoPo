@@ -53,6 +53,7 @@ class HomeBaseView: BaseView {
         backgroundColor = .userGray(9)
     }
     
+    // Setup UI
     override func setupUI() {
         addSubviews([circleView,
                      viewBlurEffect,
@@ -106,6 +107,7 @@ class HomeBaseView: BaseView {
         moveToMakeCharmViewButton.isHidden = true
     }
        
+    // Setup Layout
     override func setupLayout() {
         circleView.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -144,5 +146,11 @@ class HomeBaseView: BaseView {
             make.bottom.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(40)
         }
+    }
+    
+    // Update
+    func updateUIForSegmenteCotrol(_ option: SegmentedOption) {
+        circleView.backgroundColor = option.circleColor
+        middleView.updateUIForSegmentedControl(option)
     }
 }
