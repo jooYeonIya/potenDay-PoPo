@@ -226,23 +226,20 @@ extension MiddleBaseView: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         inputTextViewPlaceholderLabel.isHidden = !(textView.text.count <= 0)
     }
-    
-    func textViewDidChange(_ textView: UITextView) {
-        toggleActionButton(.selected)
-    }
         
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
+
         guard let textViewText = textView.text as NSString? else { return true }
         let newText = textViewText.replacingCharacters(in: range, with: text)
             
+        inputTextViewCountLabel.text = String(newText.count)
+
         if newText.count > 50 || newText.isEmpty {
             toggleActionButton(.deselected)
+        } else {
+            toggleActionButton(.selected)
         }
-        
-        inputTextViewCountLabel.text = String(newText.count)
         
         return newText.count <= 50
     }
-
 }
