@@ -142,8 +142,8 @@ class HomeBaseView: BaseView {
         }
         
         moveToMakeCharmViewButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview().inset(95)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
             make.height.equalTo(40)
         }
     }
