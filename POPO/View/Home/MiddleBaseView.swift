@@ -8,10 +8,6 @@
 import UIKit
 import SnapKit
 
-protocol MiddleBaseviewDelegate: AnyObject {
-    func dismissMoveToMakeCharmButtonView()
-}
-
 class MiddleBaseView: BaseView {
     
     // Input 창
@@ -31,7 +27,6 @@ class MiddleBaseView: BaseView {
     lazy var actionButton = UIButton()
     
     // 변수
-    weak var delegate: MiddleBaseviewDelegate?
     var option: SegmentedOption?
     
     init(option: SegmentedOption?) {
@@ -78,7 +73,6 @@ class MiddleBaseView: BaseView {
         inputTextView.font = .body(ofSize: 17)
         inputTextView.textColor = .userGray(1)
         inputTextView.textAlignment = .center
-        inputTextView.delegate = self
         
         toggleActionButton(.deselected)
     }
@@ -104,6 +98,8 @@ class MiddleBaseView: BaseView {
         case .loading: updateActionButtonDeselected("로딩중..", imageName: "Loading")
         case .retry: updateActionButtonSelected("다시하기")
         }
+        
+        actionButton.tag = option.rawValue
     }
     
     func updateActionButtonDeselected(_ text: String, imageName: String) {
@@ -131,12 +127,10 @@ class MiddleBaseView: BaseView {
             inputTextView.text = .none
             inputTextViewPlaceholderLabel.isHidden = false
             outPutTextView.text = option?.description
-            delegate?.dismissMoveToMakeCharmButtonView()
             toggleActionButton(.deselected)
         } else {
             updateActionButtonDeselected("로딩중..", imageName: "Loading")
             inputTextView.resignFirstResponder()
-//            delegate?.actionButtonTapped()
         }
     }
     
@@ -202,38 +196,5 @@ class MiddleBaseView: BaseView {
             make.trailing.equalTo(inputTextViewBackgroundView.snp.trailing)
             make.width.height.equalTo(100)
         }
-    }
-}
-
-// 텍스트뷰 델리게이트
-extension MiddleBaseView: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        inputTextViewPlaceholderLabel.isHidden = true
-    }
-    
-    func textViewDidChange(_ textView: UITextView) {
-        
-        inputTextViewCountLabel.text = String(textView.text.count)
-        
-        let textIsEmpty = textView.text.isEmpty
-        
-        inputTextViewPlaceholderLabel.isHidden = !textIsEmpty
-        
-        if textIsEmpty {
-            textView.endEditing(true)
-        }
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        guard let inputText = inputTextView.text else { return false }
-        let newLength = inputText.count + text.count - range.length
-        
-        if newLength == 51 {
-            toggleActionButton(.deselected)
-        } else {
-            toggleActionButton(.selected)
-        }
-        
-        return newLength <= 51
     }
 }

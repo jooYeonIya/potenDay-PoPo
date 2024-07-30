@@ -28,7 +28,6 @@ class HomeViewController: BaseViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         baseView.configure()
-        baseView.middleView.delegate = self
     
         toggleToolTip()
     }
@@ -50,64 +49,4 @@ class HomeViewController: BaseViewController {
             UserDefaults.standard.setValue(true, forKey: "isHomeToolTipShow")
         }
     }
-
-    override func setupEvent() {
-        // 세그먼티트 컨트롤러 탭했을 때
-        baseView.segmentedControl.rx
-            .selectedSegmentIndex
-            .bind(onNext: { [weak self] index in
-                self?.baseView.updateUIForSegmentChange(index)
-            })
-            .disposed(by: disposeBag) 
-        
-        // 부적 만들기 페이지로 이동
-        baseView.moveToMakeCharmViewButton.rx
-            .tap
-            .bind { [weak self] _ in
-                let vc = MakeCharmViewController(answer: self?.answer ?? "", image: nil)
-                self?.navigationController?.pushViewController(vc, animated: true)
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    private func updateUI(response: AnswerRespons) {
-        answer = response.data.clovaMood
-        
-        baseView.middleView.updateActionButtonSelected("다시하기")
-        baseView.middleView.outPutTextView.text = answer
-        baseView.moveToMakeCharmViewButton.isHidden = false
-    }
-    
-    func actionButtonTapped() {
-        //        guard let message = baseView.middleView.inputTextView.text,
-        //              let character = SegmentedOption(rawValue: self.baseView.segmentedControl.selectedSegmentIndex)?.apiName,
-        //              let deviceId = UserDefaults.standard.string(forKey: "deviceId")
-        //        else { return }
-        //
-        //        let messageRequest = MessageRequest(message: message,
-        //                                            deviceId: deviceId,
-        //                                            character: character)
-        
-        //        ClovaAPIService.share.submitMessage(request: messageRequest) { result in
-        //            switch result {
-        //            case .success(let messageResponse):
-        //                self.updateUI(response: messageResponse)
-        //            case .failure(let error):
-        //                print(error)
-        //                // 기획자님 메세지 확인할 것
-        //                self.showAlertOneButton(title: "", message: "한 번 더")
-        //                self.baseView.middleView.toggleActionButton(.selected)
-        //            }
-        //        }
-        
-        //        let answer = AnswerData(clovaMood: "테스트 중", character: "POPO")
-        //        let response = AnswerRespons(data: answer, code: 200, message: "성공")
-        //        updateUI(response: response)
-    }
-}
-
-extension HomeViewController: MiddleBaseviewDelegate {
-    func dismissMoveToMakeCharmButtonView() {
-        baseView.moveToMakeCharmViewButton.isHidden = true
-    }
-}
+ }
