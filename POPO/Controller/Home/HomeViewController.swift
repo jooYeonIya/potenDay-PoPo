@@ -55,6 +55,12 @@ class HomeViewController: BaseViewController {
         baseView.segmentedControl.rx
             .selectedSegmentIndex
             .bind { [weak self] index in
+                
+                if self?.baseView.middleView.actionButton.titleLabel?.text == "다시하기" {
+                    self?.baseView.moveToMakeCharmViewButton.isHidden = true
+                    self?.baseView.middleView.toggleActionButton(.selected)
+                }
+                
                 guard let option = SegmentedOption(rawValue: index) else { return }
                 self?.baseView.updateUIForSegmenteCotrol(option)
             }
