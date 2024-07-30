@@ -72,6 +72,7 @@ class MiddleBaseView: BaseView {
         inputTextViewPlaceholderLabel.textColor = .userGray(4)
         inputTextViewPlaceholderLabel.font = .body(ofSize: 17)
         
+        inputTextView.tintColor = .userGreen
         inputTextView.text = .none
         inputTextView.addSubview(inputTextViewPlaceholderLabel)
         inputTextView.font = .body(ofSize: 17)
@@ -228,18 +229,10 @@ extension MiddleBaseView: UITextViewDelegate {
     }
         
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-
         guard let textViewText = textView.text as NSString? else { return true }
         let newText = textViewText.replacingCharacters(in: range, with: text)
-            
         inputTextViewCountLabel.text = String(newText.count)
-
-        if newText.count > 50 || newText.isEmpty {
-            toggleActionButton(.deselected)
-        } else {
-            toggleActionButton(.selected)
-        }
-        
+        toggleActionButton((newText.count > 50 || newText.isEmpty) ? .deselected : .selected)
         return newText.count <= 50
     }
 }
