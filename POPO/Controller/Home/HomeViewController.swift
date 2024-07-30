@@ -82,6 +82,15 @@ class HomeViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        // 부적 만들기 버튼 탭했을 때
+        baseView.moveToMakeCharmViewButton.rx
+            .tap
+            .bind { [weak self] _ in
+                self?.moveToMakeCharmViewButtonTapped()
+            }
+            .disposed(by: disposeBag)
+
     }
     
     // 얍 버튼
@@ -99,4 +108,13 @@ class HomeViewController: BaseViewController {
         baseView.middleView.option = .popo
         baseView.middleView.configure()
     }
+    
+    // 부적 만들기 버튼
+    func moveToMakeCharmViewButtonTapped() {
+        baseView.moveToMakeCharmViewButton.isHidden = false
+        
+        let VC = MakeCharmViewController(answer: answer, image: nil)
+        navigationController?.pushViewController(VC, animated: true)
+    }
+
  }
