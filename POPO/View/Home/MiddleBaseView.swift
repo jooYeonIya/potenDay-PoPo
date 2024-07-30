@@ -15,7 +15,7 @@ class MiddleBaseView: BaseView {
     lazy var inputTextViewPlaceholderLabel = UILabel()
     lazy var inputTextView = UITextView()
     lazy var inputTextViewCountView = UIView()
-    lazy var inputTextViewCountLabel = CustomLabel(text: "0", font: .body(ofSize: 11))
+    lazy var inputTextViewCountLabel = UILabel()
     lazy var inputTextViewCounterLabel = CustomLabel(text: "/50자", font: .body(ofSize: 11))
 
     // Output 창
@@ -63,6 +63,8 @@ class MiddleBaseView: BaseView {
         inputTextViewBackgroundView.layer.cornerRadius = 20
         
         inputTextViewCountView.addSubviews([inputTextViewCountLabel, inputTextViewCounterLabel])
+        inputTextViewCountLabel.text = "0"
+        inputTextViewCountLabel.font = .body(ofSize: 11)
         inputTextViewCountLabel.textColor = .userGreen
         inputTextViewCounterLabel.textColor = .userGray(6)
         
@@ -70,10 +72,12 @@ class MiddleBaseView: BaseView {
         inputTextViewPlaceholderLabel.textColor = .userGray(4)
         inputTextViewPlaceholderLabel.font = .body(ofSize: 17)
         
+        inputTextView.text = .none
         inputTextView.addSubview(inputTextViewPlaceholderLabel)
         inputTextView.font = .body(ofSize: 17)
         inputTextView.textColor = .userGray(1)
         inputTextView.textAlignment = .center
+        inputTextView.delegate = self
         
         toggleActionButton(.deselected)
     }
@@ -206,4 +210,39 @@ class MiddleBaseView: BaseView {
         outPutTextView.text = option.description
         outPutCharacterImageView.image = UIImage(named: option.imageName)
     }
+    
+    func updateUIForYaapButtonTppaed(_ answer: String) {
+        outPutTextView.text = answer
+        toggleActionButton(.retry)
+    }
+}
+
+// 텍스트뷰 델리게이트
+extension MiddleBaseView: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        inputTextViewPlaceholderLabel.isHidden = true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        inputTextViewPlaceholderLabel.isHidden = !(textView.text.count <= 0)
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        toggleActionButton(.selected)
+    }
+        
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        guard let textViewText = textView.text as NSString? else { return true }
+        let newText = textViewText.replacingCharacters(in: range, with: text)
+            
+        if newText.count > 50 || newText.isEmpty {
+            toggleActionButton(.deselected)
+        }
+        
+        inputTextViewCountLabel.text = String(newText.count)
+        
+        return newText.count <= 50
+    }
+
 }

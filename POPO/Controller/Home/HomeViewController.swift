@@ -59,5 +59,38 @@ class HomeViewController: BaseViewController {
                 self?.baseView.updateUIForSegmenteCotrol(option)
             }
             .disposed(by: disposeBag)
+        
+        // 얍 버튼 탭했을 때
+        baseView.middleView.actionButton.rx
+            .tap
+            .bind { [weak self] _ in
+                guard let buttonTag = self?.baseView.middleView.actionButton.tag,
+                      let buttonAction = ActionButtonOtpion(rawValue: buttonTag) else { return }
+                switch buttonAction {
+                case .selected: 
+                    self?.baseView.middleView.toggleActionButton(.loading)
+                    self?.yaapButtonTapped()
+                case .retry:
+                    self?.retryButtonTapped()
+                case .deselected, .loading: break
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    // 얍 버튼
+    func yaapButtonTapped() {
+        let answer = AnswerData(clovaMood: "테스트 중", character: "POPO")
+        let response = AnswerRespons(data: answer, code: 200, message: "성공")
+        
+        baseView.moveToMakeCharmViewButton.isHidden = false        
+        baseView.middleView.updateUIForYaapButtonTppaed(response.data.clovaMood)
+    }
+    
+    // 다시하기 버튼
+    func retryButtonTapped() {
+        baseView.configure()
+        baseView.middleView.option = .popo
+        baseView.middleView.configure()
     }
  }
