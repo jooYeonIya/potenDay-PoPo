@@ -78,7 +78,7 @@ class MakeCharmViewController: BaseViewController {
         baseView.leftArrowButton.rx
             .tap
             .bind { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismissMakeCharmView()
             }
             .disposed(by: disposeBag)
         
@@ -154,6 +154,16 @@ class MakeCharmViewController: BaseViewController {
                 print("이미지 저장에 실패했습니다: \(String(describing: error))")
             }
         })
+    }
+    
+    // 돌아가기 버튼 누르기
+    private func dismissMakeCharmView() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.frame = self.view.frame.offsetBy(dx: self.view.frame.width, dy: 0)
+        }) { _ in
+            self.willMove(toParent: nil)
+            self.view.removeFromSuperview()
+            self.removeFromParent()        }
     }
 }
 

@@ -27,7 +27,19 @@ class TotalCharmViewController: BaseViewController {
 
 extension TotalCharmViewController: TotalCharmViewDelegate {
     func moveToMakeCharmView(image: UIImage) {
-        let vc = MakeCharmViewController(answer: "total", image: image)
-        navigationController?.pushViewController(vc, animated: true)
+        let nextVC = MakeCharmViewController(answer: "total", image: image)
+        nextVC.modalPresentationStyle = .fullScreen
+        addChild(nextVC)
+        
+        // x축을 view의 넓이만큼 오른쪽으로 이동시킨다. 뷰|뷰 이런 상태가 되어 있음.
+        nextVC.view.frame = view.frame.offsetBy(dx: view.frame.width, dy: 0)
+        view.addSubview(nextVC.view)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            // 뷰의 프레임을 중심으로 이동시킨다.
+            nextVC.view.frame = self.view.frame
+        }) { _ in
+            nextVC.didMove(toParent: self)
+        }
     }
 }

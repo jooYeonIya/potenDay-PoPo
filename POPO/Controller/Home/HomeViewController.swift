@@ -111,9 +111,19 @@ class HomeViewController: BaseViewController {
     
     // 부적 만들기 버튼
     func moveToMakeCharmViewButtonTapped() {
-        baseView.moveToMakeCharmViewButton.isHidden = false
+        let nextVC = MakeCharmViewController(answer: answer, image: nil)
+        nextVC.modalPresentationStyle = .fullScreen
+        addChild(nextVC)
         
-        let VC = MakeCharmViewController(answer: answer, image: nil)
-        navigationController?.pushViewController(VC, animated: true)
+        // x축을 view의 넓이만큼 오른쪽으로 이동시킨다. 뷰|뷰 이런 상태가 되어 있음.
+        nextVC.view.frame = view.frame.offsetBy(dx: view.frame.width, dy: 0)
+        view.addSubview(nextVC.view)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            // 뷰의 프레임을 중심으로 이동시킨다.
+            nextVC.view.frame = self.view.frame
+        }) { _ in
+            nextVC.didMove(toParent: self)
+        }
     }
  }
