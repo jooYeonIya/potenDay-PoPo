@@ -11,10 +11,10 @@ class MakeCharmView: BaseView {
     
     // 상단
     lazy var titleView = TitleView(title: "행운부적")
-    lazy var rightArrowButton = UIButton()
+    lazy var leftArrowButton = UIButton()
     
     // 툴팁
-    lazy var toolTipView = UIImageView()
+    lazy var toolTipView = CustomImageView("GrayToolTip")
     lazy var toolTipViewLabel = CustomLabel(text: "부적을 저장해서 배경화면으로 활용해봐!", font: .body(ofSize: 11))
     
     // 부적 이미지
@@ -29,11 +29,7 @@ class MakeCharmView: BaseView {
     lazy var shadowBackgroundView = UIView()
     lazy var popupView = PopupView()
     
-    // 로딩 뷰
-    lazy var loadingImageView = UIImageView()
-    
-    var message1 = ""
-    var message2 = ""
+    var cardImage: UIImage?
     
     override func configure() {
         super.configure()
@@ -41,29 +37,23 @@ class MakeCharmView: BaseView {
     
     override func setupUI() {
         addSubviews([titleView, 
-                     rightArrowButton,
+                     leftArrowButton,
                      cardImageShadowView,
                      cardImageView,
                      saveButton,
                      toolTipView,
                      shareButton,
                      shadowBackgroundView,
-                     popupView,
-                     loadingImageView])
+                     popupView])
         
         backgroundColor = .userGray(9)
         
-        rightArrowButton.setImage(UIImage(named: "RightArrowButton"), for: .normal)
-        
-        toolTipView.image = UIImage(named: "GrayToolTip")
-        toolTipView.addSubview(toolTipViewLabel)
-        toolTipView.isHidden = true
+        leftArrowButton.setImage(UIImage(named: "LeftArrowButton"), for: .normal)
 
-        [loadingImageView, cardImageView].forEach {
-            $0.contentMode = .scaleAspectFit
-            $0.layer.cornerRadius = 17
-            $0.clipsToBounds = true
-        }
+        cardImageView.contentMode = .scaleAspectFit
+        cardImageView.layer.cornerRadius = 17
+        cardImageView.clipsToBounds = true
+        cardImageView.image = cardImage == nil ? UIImage(named: "ImageLoading") : cardImage
     
         cardImageShadowView.backgroundColor = .userGray(9)
         cardImageShadowView.layer.shadowOpacity = 0.4
@@ -76,23 +66,30 @@ class MakeCharmView: BaseView {
         configuration.imagePadding = 4
         configuration.background.image = UIImage(named: "SaveButton")
         
-        let attributedString = NSAttributedString(string: "저장하기", attributes: [.font: UIFont.bodyBold(ofSize: 15), .foregroundColor: UIColor.userGray(1)])
+        let attributedString = NSAttributedString(string: "저장하기", 
+                                                  attributes: [.font: UIFont.bodyBold(ofSize: 15),
+                                                    .foregroundColor: UIColor.userGray(1)])
         configuration.attributedTitle = AttributedString(attributedString)
         
         saveButton.configuration = configuration
         
         shareButton.setBackgroundImage(UIImage(named: "ShareButton"), for: .normal)
         
+        toolTipView.addSubview(toolTipViewLabel)
+        
         // 저장 완료 화면
         shadowBackgroundView.backgroundColor = .black
         shadowBackgroundView.alpha = 0.5
-        shadowBackgroundView.isHidden = true
         
         popupView.configure()
-        popupView.isHidden = true
         
-        // 로딩
-        loadingImageView.image = UIImage(named: "ImageLoading")
+        // 로딩 화면에서는 안 보이는 것들
+        shadowBackgroundView.isHidden = true
+        popupView.isHidden = true
+        toolTipView.isHidden = true
+        
+        saveButton.isHidden = cardImage == nil
+        shareButton.isHidden = cardImage == nil
     }
     
     override func setupLayout() {
@@ -102,31 +99,18 @@ class MakeCharmView: BaseView {
             make.height.equalTo(80)
         }
         
-        rightArrowButton.snp.makeConstraints { make in
+        leftArrowButton.snp.makeConstraints { make in
             make.width.height.equalTo(24)
             make.leading.equalToSuperview().offset(16)
             make.centerY.equalTo(titleView)
         }
         
-        toolTipView.snp.makeConstraints { make in
-            make.bottom.equalTo(saveButton.snp.top).offset(16)
-            make.trailing.equalToSuperview().offset(-56)
-            make.width.equalTo(200)
-        }
-        
-        toolTipViewLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-4)
+        cardImageView.snp.makeConstraints { make in
+            make.top.equalTo(titleView.snp.bottom).offset(12)
             make.centerX.equalToSuperview()
+            make.width.equalTo(320)
+            make.height.equalTo(560)
         }
-
-        [loadingImageView, cardImageView].forEach({
-            $0.snp.makeConstraints { make in
-                make.top.equalTo(titleView.snp.bottom).offset(12)
-                make.centerX.equalToSuperview()
-                make.width.equalTo(320)
-                make.height.equalTo(560)
-            }
-        })
         
         cardImageShadowView.snp.makeConstraints { make in
             make.width.equalTo(310)
@@ -148,6 +132,17 @@ class MakeCharmView: BaseView {
             make.width.height.equalTo(60)
         }
         
+        toolTipView.snp.makeConstraints { make in
+            make.bottom.equalTo(saveButton.snp.top).offset(16)
+            make.trailing.equalToSuperview().offset(-56)
+            make.width.equalTo(200)
+        }
+        
+        toolTipViewLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview().offset(-4)
+            make.centerX.equalToSuperview()
+        }
+        
         shadowBackgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -159,13 +154,15 @@ class MakeCharmView: BaseView {
         }
     }
     
-    func makeCharmImage() {
+    // 부적 만들기
+    func makeCharmImage(with messages: [String]) {
         let number = Int.random(in: 0...6)
         
-        guard let charmImage = Images(rawValue: number), let image = UIImage(named: charmImage.name) else { return }
+        guard let charmImage = Images(rawValue: number), 
+                let image = UIImage(named: charmImage.name) else { return }
                
-        let text1 = message1
-        let text2 = message2
+        let text1 = messages[0]
+        let text2 = messages[1]
         
         let textColor = UIColor.black
         
@@ -203,27 +200,26 @@ class MakeCharmView: BaseView {
         cardImageView.image = combinedImage
 
         // 이미지 저장 (JPEG 형식)
-        saveImageToFolder(combinedImage) {
-            self.loadingImageView.isHidden = true
-            self.saveButton.isHidden = false
-            self.shareButton.isHidden = false
+//        saveImageToFolder(combinedImage) {
+//            self.loadingImageView.isHidden = true
+//            self.saveButton.isHidden = false
+//            self.shareButton.isHidden = false
+//            
+        if UserDefaults.standard.bool(forKey: "isDonwloadToolTipShow") {
+            self.toolTipView.isHidden = true
+            self.toolTipViewLabel.isHidden = true
             
-            if !UserDefaults.standard.bool(forKey: "isDonwloadToolTipShow") {
-                self.toolTipView.isHidden = false
-                self.toolTipViewLabel.isHidden = false
-               
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                    self.toolTipView.isHidden = true
-                    self.toolTipViewLabel.isHidden = true
-                }
-                
-                UserDefaults.standard.setValue(true, forKey: "isDonwloadToolTipShow")
-            } else {
+            UserDefaults.standard.setValue(true, forKey: "isDonwloadToolTipShow")
+        } else {
+            self.toolTipView.isHidden = false
+            self.toolTipViewLabel.isHidden = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 self.toolTipView.isHidden = true
                 self.toolTipViewLabel.isHidden = true
             }
-            
         }
+        //        }
     }
         
     private func drawTextsOnImage(image: UIImage, texts: [(text: NSAttributedString, rect: CGRect)]) -> UIImage {

@@ -15,7 +15,7 @@ class MakeCharmViewController: BaseViewController {
     lazy var baseView = MakeCharmView()
     
     private let disposeBag = DisposeBag()
-    private var answer = ""
+    private var answer: String?
     private var image: UIImage?
     
     init(answer: String, image: UIImage?) {
@@ -35,18 +35,8 @@ class MakeCharmViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        baseView.cardImage = image
         baseView.configure()
-        
-        if answer == "total" {
-            baseView.cardImageView.image = image
-            baseView.loadingImageView.isHidden = true
-        } else {
-            makeCharmMessage()
-            baseView.saveButton.isHidden = true
-            baseView.shareButton.isHidden = true
-        }
-        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -64,18 +54,7 @@ class MakeCharmViewController: BaseViewController {
 //            }
 //        }
         
-     makeCharmImgae(message: ["테스트중", "테스트중이자나 럭키비키일지도 모르자나"])
-        
-    }
-    
-    private func makeCharmImgae(message: [String]) {
-        let message1 = message[0]
-        let message2 = message[1]
-        
-        baseView.message1 = message1
-        baseView.message2 = message2
-        
-        baseView.makeCharmImage()
+        baseView.makeCharmImage(with: ["테스트중", "테스트중이자나 럭키비키일지도 모르자나"])
     }
     
     override func setupEvent() {
@@ -96,7 +75,7 @@ class MakeCharmViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         // 돌아가기 버튼 누르기
-        baseView.rightArrowButton.rx
+        baseView.leftArrowButton.rx
             .tap
             .bind { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
@@ -116,13 +95,7 @@ class MakeCharmViewController: BaseViewController {
         baseView.popupView.moveToHomeBUtton.rx
             .tap
             .bind { [weak self] in
-                let homeViewController = HomeViewController()
-                let navigationController = UINavigationController(rootViewController: homeViewController)
-                
-                if let window = UIApplication.shared.windows.first {
-                    window.rootViewController = navigationController
-                    window.makeKeyAndVisible()
-                }
+
             }
             .disposed(by: disposeBag)
     }
@@ -166,6 +139,7 @@ class MakeCharmViewController: BaseViewController {
         }
     }
 
+    // 사진첩에 저장하기
     private func saveImageToPhotoLibrary(_ image: UIImage) {
         PHPhotoLibrary.shared().performChanges({
             PHAssetChangeRequest.creationRequestForAsset(from: image)
@@ -180,16 +154,6 @@ class MakeCharmViewController: BaseViewController {
                 print("이미지 저장에 실패했습니다: \(String(describing: error))")
             }
         })
-    }
-
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            print(error.localizedDescription)
-        } else {
-            baseView.shadowBackgroundView.isHidden = true
-            baseView.popupView.isHidden = true
-            print("이미지가 사진첩에 저장되었습니다.")
-        }
     }
 }
 

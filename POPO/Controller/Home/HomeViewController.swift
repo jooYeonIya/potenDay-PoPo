@@ -116,5 +116,4 @@ class HomeViewController: BaseViewController {
         let VC = MakeCharmViewController(answer: answer, image: nil)
         navigationController?.pushViewController(VC, animated: true)
     }
-
  }
