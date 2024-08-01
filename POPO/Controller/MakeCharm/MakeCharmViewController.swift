@@ -86,7 +86,7 @@ class MakeCharmViewController: BaseViewController {
         baseView.popupView.closeButton.rx
             .tap
             .bind { [weak self] in
-                self?.baseView.shadowBackgroundView.isHidden = true
+                self?.baseView.popupShadowBackgroundView.isHidden = true
                 self?.baseView.popupView.isHidden = true
             }
             .disposed(by: disposeBag)
@@ -148,7 +148,7 @@ class MakeCharmViewController: BaseViewController {
                 print("이미지가 사진첩에 저장되었습니다.")
                 DispatchQueue.main.async() {
                     self.baseView.popupView.isHidden = false
-                    self.baseView.shadowBackgroundView.isHidden = false
+                    self.baseView.popupShadowBackgroundView.isHidden = false
                 }
             } else {
                 print("이미지 저장에 실패했습니다: \(String(describing: error))")

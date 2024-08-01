@@ -9,13 +9,12 @@ import UIKit
 
 class MakeCharmView: BaseView {
     
+    lazy var scrollView = UIScrollView()
+    lazy var contentView = UIView()
+    
     // 상단
     lazy var titleView = TitleView(title: "행운부적")
     lazy var leftArrowButton = UIButton()
-    
-    // 툴팁
-    lazy var toolTipView = CustomImageView("GrayToolTip")
-    lazy var toolTipViewLabel = CustomLabel(text: "부적을 저장해서 배경화면으로 활용해봐!", font: .body(ofSize: 11))
     
     // 부적 이미지
     lazy var cardImageView = UIImageView(image: UIImage())
@@ -25,8 +24,12 @@ class MakeCharmView: BaseView {
     lazy var saveButton = UIButton()
     lazy var shareButton = UIButton()
     
+    // 툴팁
+    lazy var toolTipView = CustomImageView("GrayToolTip")
+    lazy var toolTipViewLabel = CustomLabel(text: "부적을 저장해서 배경화면으로 활용해봐!", font: .body(ofSize: 11))
+    
     // 저장 완료 뷰
-    lazy var shadowBackgroundView = UIView()
+    lazy var popupShadowBackgroundView = UIView()
     lazy var popupView = PopupView()
     
     var cardImage: UIImage?
@@ -36,30 +39,32 @@ class MakeCharmView: BaseView {
     }
     
     override func setupUI() {
-        addSubviews([titleView, 
-                     leftArrowButton,
-                     cardImageShadowView,
-                     cardImageView,
-                     saveButton,
-                     toolTipView,
-                     shareButton,
-                     shadowBackgroundView,
-                     popupView])
+        contentView.addSubviews([titleView,
+                                 leftArrowButton,
+                                 cardImageShadowView,
+                                 cardImageView,
+                                 shareButton,
+                                 saveButton,
+                                 toolTipView])
+        scrollView.addSubview(contentView)
+        addSubviews([scrollView, popupShadowBackgroundView, popupView])
         
         backgroundColor = .userGray(9)
+        
+        scrollView.showsVerticalScrollIndicator = false
         
         leftArrowButton.setImage(UIImage(named: "LeftArrowButton"), for: .normal)
 
         cardImageView.contentMode = .scaleAspectFit
-        cardImageView.layer.cornerRadius = 17
-        cardImageView.clipsToBounds = true
+        cardImageView.layer.cornerRadius = 16
+        cardImageView.layer.masksToBounds = true
         cardImageView.image = cardImage == nil ? UIImage(named: "ImageLoading") : cardImage
     
         cardImageShadowView.backgroundColor = .userGray(9)
         cardImageShadowView.layer.shadowOpacity = 0.4
         cardImageShadowView.layer.shadowRadius = 10
         cardImageShadowView.layer.shadowColor = UIColor.userGray(1).cgColor
-        cardImageShadowView.layer.cornerRadius = 17
+        cardImageShadowView.layer.cornerRadius = 16
         
         var configuration = UIButton.Configuration.plain()
         configuration.image = UIImage(named: "Clover_Selected")
@@ -78,13 +83,13 @@ class MakeCharmView: BaseView {
         toolTipView.addSubview(toolTipViewLabel)
         
         // 저장 완료 화면
-        shadowBackgroundView.backgroundColor = .black
-        shadowBackgroundView.alpha = 0.5
+        popupShadowBackgroundView.backgroundColor = .black
+        popupShadowBackgroundView.alpha = 0.5
         
         popupView.configure()
         
         // 로딩 화면에서는 안 보이는 것들
-        shadowBackgroundView.isHidden = true
+        popupShadowBackgroundView.isHidden = true
         popupView.isHidden = true
         toolTipView.isHidden = true
         
@@ -93,9 +98,20 @@ class MakeCharmView: BaseView {
     }
     
     override func setupLayout() {
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.bottom.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.top.width.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-12)
+        }
+
         titleView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(80)
         }
         
@@ -113,28 +129,30 @@ class MakeCharmView: BaseView {
         }
         
         cardImageShadowView.snp.makeConstraints { make in
-            make.width.equalTo(310)
-            make.height.equalTo(550)
-            make.edges.equalTo(cardImageView)
+            make.top.equalTo(titleView.snp.bottom).offset(12)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(320)
+            make.height.equalTo(560)
         }
         
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(cardImageView.snp.bottom).offset(40)
-            make.trailing.equalToSuperview().offset(-32)
+            make.trailing.equalTo(cardImageShadowView.snp.trailing)
             make.height.equalTo(60)
             make.width.equalTo(240)
+            make.bottom.equalToSuperview()
         }
         
         shareButton.snp.makeConstraints { make in
             make.top.equalTo(saveButton.snp.top)
-            make.trailing.equalTo(saveButton.snp.leading).offset(-8)
-            make.leading.equalToSuperview().offset(38)
+            make.leading.equalTo(cardImageShadowView.snp.leading)
             make.width.height.equalTo(60)
+            make.bottom.equalToSuperview()
         }
         
         toolTipView.snp.makeConstraints { make in
             make.bottom.equalTo(saveButton.snp.top).offset(16)
-            make.trailing.equalToSuperview().offset(-56)
+            make.centerX.equalTo(saveButton)
             make.width.equalTo(200)
         }
         
@@ -143,7 +161,7 @@ class MakeCharmView: BaseView {
             make.centerX.equalToSuperview()
         }
         
-        shadowBackgroundView.snp.makeConstraints { make in
+        popupShadowBackgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
