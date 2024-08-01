@@ -37,7 +37,6 @@ class MakeCharmViewController: BaseViewController {
         super.viewDidLoad()
         baseView.cardImage = image
         baseView.configure()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func makeCharmMessage() {

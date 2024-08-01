@@ -45,20 +45,17 @@ class CustomTabBarViewController: BaseViewController, TabBarViewDelegate {
     
     func moveToTotalCharmView() {
         let VC = TotalCharmViewController()
-        let naviVC = UINavigationController(rootViewController: VC)
-        moveToView(VC: naviVC)
+        moveToView(VC: VC)
     }
     
     func moveToHomeView() {
         let VC = HomeViewController()
-        let naviVC = UINavigationController(rootViewController: VC)
-        moveToView(VC: naviVC)
+        moveToView(VC: VC)
     }
     
     func moveToMyPageView() {
         let VC = MyPageViewController()
-        let naviVC = UINavigationController(rootViewController: VC)
-        moveToView(VC: naviVC)
+        moveToView(VC: VC)
     }
     
     func moveToView(VC: UIViewController) {
