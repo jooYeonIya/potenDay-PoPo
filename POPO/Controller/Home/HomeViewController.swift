@@ -25,9 +25,7 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         baseView.configure()
-    
         toggleToolTip()
     }
 
@@ -94,11 +92,22 @@ class HomeViewController: BaseViewController {
     
     // 얍 버튼
     func yaapButtonTapped() {
-        let answer = AnswerData(clovaMood: "테스트 중", character: "POPO")
-        let response = AnswerRespons(data: answer, code: 200, message: "성공")
+        guard let deviceId = UserDefaults.standard.string(forKey: "deviceId"),
+        let option = SegmentedOption(rawValue: baseView.segmentedControl.selectedSegmentIndex) else { return }
         
-        baseView.moveToMakeCharmViewButton.isHidden = false        
-        baseView.middleView.updateUIForYaapButtonTppaed(response.data.clovaMood)
+        let messageRequest = MessageRequest(message: baseView.middleView.inputTextView.text,
+                                            deviceId: deviceId,
+                                            character: option.apiName)
+        
+        ClovaAPIService.share.submitMessage(request: messageRequest) { result in
+            switch result {
+            case .success(let response):
+                self.baseView.moveToMakeCharmViewButton.isHidden = false
+                self.baseView.middleView.updateUIForYaapButtonTppaed(response.data.clovaMood)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     // 다시하기 버튼

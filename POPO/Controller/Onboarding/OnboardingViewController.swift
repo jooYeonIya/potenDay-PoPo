@@ -113,27 +113,24 @@ class OnboardingViewController: BaseViewController {
 
     // 사용자 정보 등록
     private func saveUserInfo() {
-//        let userName = baseView.nameTextField.text
-//        let userAge = Ages(rawValue: baseView.selecetedUserAge)?.userAsge
-//        let UUID = UUID().uuidString
-//        
-//        if userName == "" || baseView.selecetedUserAge == 99 {
-//            showAlertOneButton(title: "이름 및 나이를 확인해 주세요", message: "확인혀~")
-//        } else {
-//            let userInfo = UserInfoRequest(age: userAge!, name: userName!, deviceId: UUID)
-//            ClovaAPIService.share.saveUserInfo(request: userInfo) { result in
-//                switch result {
-//                case .success(_):
-//                    UserDefaults.standard.setValue(UUID, forKey: "deviceId")
-                    self.moveToHomeView()
-//                case .failure(_):
-//                    self.showAlertOneButton(title: "", message: "다시 한 번 시도해 주세요")
-//                }
-//            }
-//        }
+        let userName = nameViewController.baseView.nameTextField.text
+        let userAge = Ages(rawValue: selectedAge!)?.apiAge
+        let UUID = UUID().uuidString
+        
+        let userInfo = UserInfoRequest(age: userAge!, name: userName!, deviceId: UUID)
+        ClovaAPIService.share.saveUserInfo(request: userInfo) { result in
+            switch result {
+            case .success(_):
+                UserDefaults.standard.setValue(UUID, forKey: "deviceId")
+                self.moveToHomeView()
+            case .failure(_):
+                self.showAlertOneButton(title: "", message: "다시 한 번 시도해 주세요")
+            }
+        }
     }
     
-    private func moveToHomeView() {        
+    
+    private func moveToHomeView() {
         UserDefaults.standard.setValue(true, forKey: "isOnboardingCompleted")
         UserDefaults.standard.setValue(false, forKey: "isHomeToolTipShow")
         UserDefaults.standard.setValue(false, forKey: "isDonwloadToolTipShow")

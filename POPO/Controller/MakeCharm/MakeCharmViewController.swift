@@ -11,7 +11,7 @@ import RxCocoa
 import Photos
 
 class MakeCharmViewController: BaseViewController {
-
+    
     lazy var baseView = MakeCharmView()
     
     private let disposeBag = DisposeBag()
@@ -27,33 +27,34 @@ class MakeCharmViewController: BaseViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func loadView() {
         super.loadView()
         view = baseView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         baseView.cardImage = image
         baseView.configure()
+        
+        if image == nil {
+            makeCharmMessage()
+        }
     }
     
     private func makeCharmMessage() {
+        guard let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
+        let request = CharmRequest(message: answer!, deviceId: deviceId)
         
-//        guard let deviceId = UserDefaults.standard.string(forKey: "deviceId") else { return }
-//        let request = CharmRequest(message: answer, deviceId: deviceId)
-//        
-//        ClovaAPIService.share.fetchCharm(request: request) { result in
-//            switch result {
-//            case .success(let response):
-//                self.makeCharmImgae(message: [response.data.fourIdioms, response.data.message])
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-        
-        baseView.makeCharmImage(with: ["테스트중", "테스트중이자나 럭키비키일지도 모르자나"])
+        ClovaAPIService.share.fetchCharm(request: request) { result in
+            switch result {
+            case .success(let response):
+                self.baseView.makeCharmImage(with: [response.data.fourIdioms, response.data.message])
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     override func setupEvent() {
@@ -94,7 +95,11 @@ class MakeCharmViewController: BaseViewController {
         baseView.popupView.moveToHomeBUtton.rx
             .tap
             .bind { [weak self] in
-
+                if let presitingVC = self?.presentingViewController as? HomeViewController {
+                    presitingVC.retryButtonTapped()
+                }
+                
+                self?.dismissMakeCharmView()
             }
             .disposed(by: disposeBag)
     }

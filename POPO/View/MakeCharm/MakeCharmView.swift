@@ -218,26 +218,25 @@ class MakeCharmView: BaseView {
         cardImageView.image = combinedImage
 
         // 이미지 저장 (JPEG 형식)
-//        saveImageToFolder(combinedImage) {
-//            self.loadingImageView.isHidden = true
-//            self.saveButton.isHidden = false
-//            self.shareButton.isHidden = false
-//            
-        if UserDefaults.standard.bool(forKey: "isDonwloadToolTipShow") {
-            self.toolTipView.isHidden = true
-            self.toolTipViewLabel.isHidden = true
+        saveImageToFolder(combinedImage) {
+            self.saveButton.isHidden = false
+            self.shareButton.isHidden = false
             
-            UserDefaults.standard.setValue(true, forKey: "isDonwloadToolTipShow")
-        } else {
-            self.toolTipView.isHidden = false
-            self.toolTipViewLabel.isHidden = false
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            if UserDefaults.standard.bool(forKey: "isDonwloadToolTipShow") {
                 self.toolTipView.isHidden = true
                 self.toolTipViewLabel.isHidden = true
+                
+                UserDefaults.standard.setValue(true, forKey: "isDonwloadToolTipShow")
+            } else {
+                self.toolTipView.isHidden = false
+                self.toolTipViewLabel.isHidden = false
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    self.toolTipView.isHidden = true
+                    self.toolTipViewLabel.isHidden = true
+                }
             }
         }
-        //        }
     }
         
     private func drawTextsOnImage(image: UIImage, texts: [(text: NSAttributedString, rect: CGRect)]) -> UIImage {
