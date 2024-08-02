@@ -55,7 +55,7 @@ class MakeCharmView: BaseView {
         
         leftArrowButton.setImage(UIImage(named: "LeftArrowButton"), for: .normal)
 
-        cardImageView.contentMode = .scaleAspectFit
+        cardImageView.contentMode = .scaleAspectFill
         cardImageView.layer.cornerRadius = 16
         cardImageView.layer.masksToBounds = true
         cardImageView.image = cardImage == nil ? UIImage(named: "ImageLoading") : cardImage
