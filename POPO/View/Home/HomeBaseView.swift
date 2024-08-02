@@ -110,7 +110,7 @@ class HomeBaseView: BaseView {
     // Setup Layout
     override func setupLayout() {
         circleView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.edges.equalToSuperview()
             make.width.height.equalTo(580)
         }
         
@@ -142,7 +142,7 @@ class HomeBaseView: BaseView {
         }
         
         moveToMakeCharmViewButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(95)
+            make.centerX.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
             make.height.equalTo(40)
         }
