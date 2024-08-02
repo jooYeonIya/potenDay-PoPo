@@ -225,8 +225,6 @@ class MakeCharmView: BaseView {
             if UserDefaults.standard.bool(forKey: "isDonwloadToolTipShow") {
                 self.toolTipView.isHidden = true
                 self.toolTipViewLabel.isHidden = true
-                
-                UserDefaults.standard.setValue(true, forKey: "isDonwloadToolTipShow")
             } else {
                 self.toolTipView.isHidden = false
                 self.toolTipViewLabel.isHidden = false
@@ -235,6 +233,8 @@ class MakeCharmView: BaseView {
                     self.toolTipView.isHidden = true
                     self.toolTipViewLabel.isHidden = true
                 }
+                
+                UserDefaults.standard.setValue(true, forKey: "isDonwloadToolTipShow")
             }
         }
     }
