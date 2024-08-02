@@ -95,9 +95,9 @@ class MakeCharmViewController: BaseViewController {
         baseView.popupView.moveToHomeBUtton.rx
             .tap
             .bind { [weak self] in
-                if let presitingVC = self?.presentingViewController as? HomeViewController {
-                    presitingVC.retryButtonTapped()
-                }
+                if let parentVC = self?.parent as? HomeViewController {
+                     parentVC.retryButtonTapped()
+                 }
                 
                 self?.dismissMakeCharmView()
             }
