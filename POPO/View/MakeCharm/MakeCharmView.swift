@@ -9,8 +9,8 @@ import UIKit
 
 class MakeCharmView: BaseView {
     
-    lazy var scrollView = UIScrollView()
-    lazy var contentView = UIView()
+    // 백그라운드 뷰
+    lazy var backgroundView = UIView()
     
     // 상단
     lazy var titleView = TitleView(title: "행운부적")
@@ -39,23 +39,23 @@ class MakeCharmView: BaseView {
     }
     
     override func setupUI() {
-        contentView.addSubviews([titleView,
-                                 leftArrowButton,
-                                 cardImageShadowView,
-                                 cardImageView,
-                                 shareButton,
-                                 saveButton,
-                                 toolTipView])
-        scrollView.addSubview(contentView)
-        addSubviews([scrollView, popupShadowBackgroundView, popupView])
+        addSubviews([backgroundView,
+                     titleView,
+                     leftArrowButton,
+                     cardImageShadowView,
+                     cardImageView,
+                     saveButton,
+                     shareButton,
+                     toolTipView,
+                     popupShadowBackgroundView,
+                     popupView])
         
         backgroundColor = .userGray(9)
-        
-        scrollView.showsVerticalScrollIndicator = false
-        
+        backgroundView.backgroundColor = .userGray(9)
+                
         leftArrowButton.setImage(UIImage(named: "LeftArrowButton"), for: .normal)
 
-        cardImageView.contentMode = .scaleAspectFill
+        cardImageView.contentMode = .scaleToFill
         cardImageView.layer.cornerRadius = 16
         cardImageView.layer.masksToBounds = true
         cardImageView.image = cardImage == nil ? UIImage(named: "ImageLoading") : cardImage
@@ -71,15 +71,16 @@ class MakeCharmView: BaseView {
         configuration.imagePadding = 4
         configuration.background.image = UIImage(named: "SaveButton")
         
-        let attributedString = NSAttributedString(string: "저장하기", 
+        let attributedString = NSAttributedString(string: "저장하기",
                                                   attributes: [.font: UIFont.bodyBold(ofSize: 15),
                                                     .foregroundColor: UIColor.userGray(1)])
         configuration.attributedTitle = AttributedString(attributedString)
         
+        // 버튼 화면
         saveButton.configuration = configuration
-        
         shareButton.setBackgroundImage(UIImage(named: "ShareButton"), for: .normal)
         
+        // 툴팁
         toolTipView.addSubview(toolTipViewLabel)
         
         // 저장 완료 화면
@@ -98,20 +99,15 @@ class MakeCharmView: BaseView {
     }
     
     override func setupLayout() {
-        
-        scrollView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top)
-            make.leading.trailing.bottom.equalToSuperview()
-            make.width.equalToSuperview()
+        backgroundView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(100)
         }
-        
-        contentView.snp.makeConstraints { make in
-            make.top.width.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-12)
-        }
-
+    
         titleView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(80)
         }
         
@@ -123,31 +119,31 @@ class MakeCharmView: BaseView {
         
         cardImageView.snp.makeConstraints { make in
             make.top.equalTo(titleView.snp.bottom).offset(12)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(320)
-            make.height.equalTo(560)
+            make.leading.trailing.equalToSuperview().inset(24)
+            
+            let height = UIScreen.main.bounds.height - 80 - 12 - 60 - 40 - 100
+            make.height.equalTo(height)
         }
         
         cardImageShadowView.snp.makeConstraints { make in
             make.top.equalTo(titleView.snp.bottom).offset(12)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(320)
-            make.height.equalTo(560)
+            make.leading.trailing.equalToSuperview().inset(24)
+            
+            let height = UIScreen.main.bounds.height - 80 - 12 - 60 - 40 - 100
+            make.height.equalTo(height)
         }
         
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(cardImageView.snp.bottom).offset(40)
-            make.trailing.equalTo(cardImageShadowView.snp.trailing)
+            make.leading.equalTo(shareButton.snp.trailing).offset(8)
+            make.trailing.equalTo(cardImageView.snp.trailing)
             make.height.equalTo(60)
-            make.width.equalTo(240)
-            make.bottom.equalToSuperview()
         }
         
         shareButton.snp.makeConstraints { make in
-            make.top.equalTo(saveButton.snp.top)
-            make.leading.equalTo(cardImageShadowView.snp.leading)
+            make.top.equalTo(cardImageView.snp.bottom).offset(40)
+            make.leading.equalTo(cardImageView.snp.leading)
             make.width.height.equalTo(60)
-            make.bottom.equalToSuperview()
         }
         
         toolTipView.snp.makeConstraints { make in
@@ -176,7 +172,7 @@ class MakeCharmView: BaseView {
     func makeCharmImage(with messages: [String]) {
         let number = Int.random(in: 0...6)
         
-        guard let charmImage = Images(rawValue: number), 
+        guard let charmImage = Images(rawValue: number),
                 let image = UIImage(named: charmImage.name) else { return }
                
         let text1 = messages[0]
@@ -235,6 +231,7 @@ class MakeCharmView: BaseView {
                 }
                 
                 UserDefaults.standard.setValue(true, forKey: "isDonwloadToolTipShow")
+
             }
         }
     }
