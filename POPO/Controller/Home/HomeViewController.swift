@@ -72,6 +72,7 @@ class HomeViewController: BaseViewController {
                 switch buttonAction {
                 case .selected: 
                     self?.baseView.middleView.toggleActionButton(.loading)
+                    self?.baseView.middleView.inputTextView.resignFirstResponder()
                     self?.yaapButtonTapped()
                 case .retry:
                     self?.retryButtonTapped()
