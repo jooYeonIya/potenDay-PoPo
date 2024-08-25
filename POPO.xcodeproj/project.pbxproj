@@ -96,6 +96,7 @@
 		0AADD12E2C4E5ECB00A2C7A4 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		0AADD1672C4FD77100A2C7A4 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		0AADD16D2C4FDBF100A2C7A4 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		0AC731BF2C7AB16000DBAA2C /* APIConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = APIConfig.xcconfig; sourceTree = "<group>"; };
 		0ADFB54C2C5095B6004FB1BA /* UhBee Se_hyun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Se_hyun.ttf"; sourceTree = "<group>"; };
 		0ADFB54E2C5095CD004FB1BA /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		0ADFB5502C5095E4004FB1BA /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
@@ -242,6 +243,7 @@
 				0A34A6002C4D3CBB0023C8C7 /* Info.plist */,
 				0A34A5F22C4D3CBA0023C8C7 /* AppDelegate.swift */,
 				0A34A5F42C4D3CBA0023C8C7 /* SceneDelegate.swift */,
+				0AC731BF2C7AB16000DBAA2C /* APIConfig.xcconfig */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -610,6 +612,7 @@
 /* Begin XCBuildConfiguration section */
 		0A34A6012C4D3CBB0023C8C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AC731BF2C7AB16000DBAA2C /* APIConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -673,6 +676,7 @@
 		};
 		0A34A6022C4D3CBB0023C8C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AC731BF2C7AB16000DBAA2C /* APIConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -729,6 +733,7 @@
 		};
 		0A34A6042C4D3CBB0023C8C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AC731BF2C7AB16000DBAA2C /* APIConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -759,6 +764,7 @@
 		};
 		0A34A6052C4D3CBB0023C8C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AC731BF2C7AB16000DBAA2C /* APIConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

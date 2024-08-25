@@ -212,8 +212,8 @@ class MiddleBaseView: BaseView {
         outPutCharacterImageView.image = UIImage(named: option.imageName)
     }
     
-    func updateUIForYaapButtonTppaed(_ answer: String) {
-        outPutTextView.text = answer
+    func updateUIForYaapButtonTppaed(_ answer: String?) {
+        outPutTextView.text = answer 
         toggleActionButton(.retry)
     }
 }

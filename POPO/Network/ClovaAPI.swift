@@ -19,7 +19,7 @@ enum ClovaAPI {
     case saveUserInfo(request: UserInfoRequest)
     
     // 포포, 비키 답변 불러오기
-    case getAnswer(request: MessageRequest)
+    case getAnswer(request: String)
     
     // 부적 만들기 메세기 불러오기
     case getCharmMessage(request: CharmRequest)
@@ -30,7 +30,7 @@ enum ClovaAPI {
 
 extension ClovaAPI: TargetType {
     var baseURL: URL {
-        return URL(string: "http://223.130.162.220:8080")!
+        return URL(string: "https://api.openai.com/v1")!
     }
     
     var path: String {
@@ -42,7 +42,7 @@ extension ClovaAPI: TargetType {
         case .saveUserInfo(request: _):
             return "/onboard"
         case .getAnswer(request: _):
-            return "/message"
+            return "/chat/completions"
         case .getCharmMessage:
             return "/charm"
         case .modifyUserName(request: _):
@@ -76,7 +76,15 @@ extension ClovaAPI: TargetType {
         case let .saveUserInfo(request):
             return .requestJSONEncodable(request)
         case let .getAnswer(request):
-            return .requestJSONEncodable(request)
+            let parameters: [String: Any] = [
+                "model": "gpt-4o",
+                "messages": [
+                    ["role": "system", "content": "You are a helpful assistant."],
+                    ["role": "user", "content": request]
+                    ],
+                "max_tokens": 150
+            ]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case let .getCharmMessage(request):
             return .requestJSONEncodable(request)
         case let .modifyUserName(request):
@@ -85,10 +93,18 @@ extension ClovaAPI: TargetType {
     }
     
     var headers: [String: String]? {
-        return ["Content-Type": "application/json"]
+        let apiKey = getAPIKeyFromInfoPlist()
+        return [
+            "Content-Type": "application/json",
+            "Authorization": "Bearer \(apiKey)"
+        ]
     }
     
     var sampleData: Data {
         return Data()
+    }
+    
+    private func getAPIKeyFromInfoPlist() -> String {
+        return Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String ?? ""
     }
 }

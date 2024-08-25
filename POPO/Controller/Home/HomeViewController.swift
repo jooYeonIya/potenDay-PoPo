@@ -101,13 +101,8 @@ class HomeViewController: BaseViewController {
                                             character: option.apiName)
         
         ClovaAPIService.share.submitMessage(request: messageRequest) { result in
-            switch result {
-            case .success(let response):
-                self.baseView.moveToMakeCharmViewButton.isHidden = false
-                self.baseView.middleView.updateUIForYaapButtonTppaed(response.data.clovaMood)
-            case .failure(let error):
-                print(error)
-            }
+            self.baseView.moveToMakeCharmViewButton.isHidden = false
+            self.baseView.middleView.updateUIForYaapButtonTppaed(result)
         }
     }
     

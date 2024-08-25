@@ -70,17 +70,27 @@ class ClovaAPIService {
     
     // 포포 비키 대답 받는 함수
     func submitMessage(request: MessageRequest, 
-                       completion: @escaping (Result<AnswerRespons, Error>) -> Void) {
-        provider.request(.getAnswer(request: request)) { result in
+                       completion: @escaping (String?) -> Void) {
+
+        let text = request.character + " " + request.message
+        print(text)
+        
+        provider.request(.getAnswer(request: text)) { result in
             switch result {
-            case let .success(response):
+            case .success(let response):
                 do {
-                    let messageResponse = try JSONDecoder().decode(AnswerRespons.self, from: response.data)
-                    completion(.success(messageResponse))
+                    if let json = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any] {
+                        print("Response JSON: \(json)")
+                        if let choices = json["choices"] as? [[String: Any]],
+                           let message = choices.first?["message"] as? [String: Any],
+                           let text = message["content"] as? String {
+                            completion(text.trimmingCharacters(in: .whitespacesAndNewlines))
+                        }
+                    }
                 } catch {
-                    completion(.failure(error))
+                    print("parsing JSON: \(error)")
                 }
-            case let .failure(error):
+            case .failure(let error):
                 print(error.localizedDescription)
             }
         }
